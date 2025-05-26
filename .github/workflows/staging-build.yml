@@ -8,6 +8,7 @@ on:
 env:
   GITHUB_REGISTRY: ghcr.io
   IMAGE_NAME: coollabsio/coolify-docs
+  VITE_ANALYTICS_DOMAIN: next.coolify.io/docs
 
 jobs:
   build:
