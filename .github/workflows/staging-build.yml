@@ -47,7 +47,7 @@ jobs:
           context: .
           file: Dockerfile
           platforms: linux/arm64
-          secrets: |
+          build-args: |
             VITE_ANALYTICS_DOMAIN=next.coolify.io/docs
           push: true
           cache-from: type=gha,scope=${{ github.workflow }}
