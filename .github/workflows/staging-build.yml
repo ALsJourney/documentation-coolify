@@ -48,6 +48,8 @@ jobs:
           context: .
           file: Dockerfile
           platforms: linux/arm64
+          secrets: |
+            VITE_ANALYTICS_DOMAIN=${{ env.VITE_ANALYTICS_DOMAIN }}
           push: true
           cache-from: type=gha,scope=${{ github.workflow }}
           cache-to: type=gha,mode=max,scope=${{ github.workflow }}
