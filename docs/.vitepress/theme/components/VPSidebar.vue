@@ -47,7 +47,6 @@ watch(
 
         <div class="flex gap-4 mt-4">
             <VPNavBarSearch class="search w-full my-auto px-0 " />
-            <VPNavBarAppearance class="appearance my-auto" />
         </div>
 
         <nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1">
