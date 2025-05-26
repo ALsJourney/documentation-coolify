@@ -8,7 +8,6 @@ on:
 env:
   GITHUB_REGISTRY: ghcr.io
   IMAGE_NAME: coollabsio/coolify-docs
-  VITE_ANALYTICS_DOMAIN: next.coolify.io/docs
 
 jobs:
   build:
@@ -49,7 +48,7 @@ jobs:
           file: Dockerfile
           platforms: linux/arm64
           secrets: |
-            VITE_ANALYTICS_DOMAIN=${{ env.VITE_ANALYTICS_DOMAIN }}
+            VITE_ANALYTICS_DOMAIN=next.coolify.io/docs
           push: true
           cache-from: type=gha,scope=${{ github.workflow }}
           cache-to: type=gha,mode=max,scope=${{ github.workflow }}
