@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import yaml from 'vite-plugin-yaml'
 import llmstxt from 'vitepress-plugin-llms'
+import sanitizeDocsPlugin from './plugins/vitepress-plugin-robo8o';
 import { defineConfig } from 'vitepress'
 import { useSidebar } from 'vitepress-openapi'
 import spec from './theme/openapi.json' with { type: 'json' }
@@ -19,8 +20,6 @@ bundledLanguages['ssh'] = {
   scopeName: 'source.ssh-config',
   path: join(dirname(fileURLToPath(import.meta.url)), '../../node_modules/shiki/languages/ssh-config.tmLanguage.json')
 }
-
-console.log(env)
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -624,11 +623,14 @@ export default defineConfig({
   vite: {
     plugins: [
       yaml as any,
-      llmstxt({
-        ignoreFiles: [
-          '/docs/api-reference/api/**/*',
-          '**/api-reference/api/**/*'
-        ],
+      // llmstxt({
+      //   ignoreFiles: [
+      //     '/docs/api-reference/api/**/*',
+      //     '**/api-reference/api/**/*'
+      //   ],
+      // }),
+      sanitizeDocsPlugin({
+        docsDir: 'docs'
       }),
       groupIconVitePlugin({
         customIcon: {
