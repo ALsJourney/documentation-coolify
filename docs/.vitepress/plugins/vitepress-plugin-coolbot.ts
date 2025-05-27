@@ -2,12 +2,27 @@ import { resolve, join, dirname } from 'path';
 import { readFileSync, readdirSync, statSync, mkdirSync, existsSync, writeFileSync } from 'fs';
 import type { Plugin } from 'vite';
 
-export interface robot8oPluginOptions {
+export interface coolbotPluginOptions {
+  /**
+   * Write the raw txt output to the converted directory
+   * @default false
+   */
+  writeRawOutput?: boolean;
   /**
    * Directory containing markdown files to convert
    * @default 'docs'
    */
   docsDir?: string;
+  /**
+   * Webhook URL to send the file map to
+   * @default '' || process.env.COOLBOT_WEBHOOK_URL
+   */
+  webhookUrl?: string;
+  /**
+   * Ignore files in the docs directory
+   * @default []
+   */
+  ignoreFolders?: string[];
 }
 
 interface FileMap {
@@ -17,9 +32,9 @@ interface FileMap {
 /**
  * Plugin to convert markdown files to text files, RAG chain.
  */
-export default function robot8oPlugin(options: robot8oPluginOptions = {}): Plugin {
+export default function coolbotPlugin(options: coolbotPluginOptions = {}): Plugin {
   const docsDir = options.docsDir || 'docs';
-  const webhookUrl = 'https://n8n.darweb.io/webhook-test/kv';
+  const webhookUrl = process.env.COOLBOT_WEBHOOK_URL || '';
 
   const ensureDirectoryExists = (filePath: string) => {
     const dir = dirname(filePath);
@@ -29,13 +44,13 @@ export default function robot8oPlugin(options: robot8oPluginOptions = {}): Plugi
   };
 
   return {
-    name: 'vitepress-plugin-robo8o',
+    name: 'vitepress-plugin-CoolBot',
     
     async closeBundle() {
       try {
         const docsPath = resolve(process.cwd(), docsDir);
         const markdownFiles = getAllMarkdownFiles(docsPath);
-        const convertedDir = resolve(docsPath, '.vitepress/dist/converted');
+        const convertedDir = resolve(docsPath, '.vitepress/dist/');
         const fileMap: FileMap = {};
         
         // Ensure converted directory exists
@@ -43,12 +58,12 @@ export default function robot8oPlugin(options: robot8oPluginOptions = {}): Plugi
           mkdirSync(convertedDir, { recursive: true });
         }
 
-        for (const file of markdownFiles) {
+          for (const file of markdownFiles) {
           try {
             const relativePath = file.replace(docsPath, '');
             
             if (!relativePath.startsWith('\\') && !relativePath.startsWith('/')) {
-              console.warn(`Skipping file with invalid path: ${file}`);
+              console.warn(`CoolBot: Skipping file with invalid path: ${file}`);
               continue;
             }
             
@@ -60,23 +75,27 @@ export default function robot8oPlugin(options: robot8oPluginOptions = {}): Plugi
             const normalizedPath = relativePath.slice(1).replace('.md', '').replace(/\\/g, '/');
             fileMap[normalizedPath] = convertedContent;
 
-            // Write the converted file
-            ensureDirectoryExists(outputPath);
-            writeFileSync(outputPath, convertedContent, 'utf-8');
+            if(options.writeRawOutput) {
+              // Write the converted file
+              ensureDirectoryExists(outputPath);
+              writeFileSync(outputPath, convertedContent, 'utf-8');
+              console.log(`CoolBot: ${relativePath} -> .vitepress/dist/${relativePath.replace('.md', '.txt')}`);
+            }
 
-            console.log(`Converted: ${relativePath} -> .vitepress/dist/converted${relativePath.replace('.md', '.txt')}`);
           } catch (fileError) {
-            console.error(`Error processing file ${file}:`, fileError);
+            console.error(`CoolBot: Error processing file ${file}:`, fileError);
           }
         }
+        
 
         // Write the file map
         const mapPath = resolve(convertedDir, 'kvmap.json');
         writeFileSync(mapPath, JSON.stringify(fileMap, null, 2), 'utf-8');
         
-        // Send POST request to webhook
-        try {
-          const response = await fetch(webhookUrl, {
+        if(webhookUrl) {
+          // Send POST request to webhook
+          try {
+            const response = await fetch(webhookUrl, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -88,15 +107,16 @@ export default function robot8oPlugin(options: robot8oPluginOptions = {}): Plugi
             throw new Error(`HTTP error! status: ${response.status}`);
           }
 
-          console.log('\nROBO8O: Successfully sent file map to webhook');
-        } catch (webhookError) {
-          console.error('ROBO8O: Error sending file map to webhook:', webhookError);
+          console.log('\nCoolBot: Successfully sent file map to webhook');
+          } catch (webhookError) {
+            console.error('CoolBot: Error sending file map to webhook:', webhookError);
+          }
         }
 
-        console.log('\nROBO8O: Generated file map at .vitepress/dist/converted/kvmap.json');
-        console.log('\nROBO8O: Conversion complete');
+        console.log('\nCoolBot: Generated file map at .vitepress/dist/public/kvmap.json');
+        console.log('\nCoolBot: Conversion complete');
       } catch (error) {
-        console.error('ROBO8O: Error during conversion:', error);
+        console.error('CoolBot: Error during conversion:', error);
       }
     }
   };
@@ -111,20 +131,24 @@ function getAllMarkdownFiles(dir: string): string[] {
   let results: string[] = [];
   try {
     const files = readdirSync(dir);
+    const defaultIgnored = ['node_modules', '.vitepress', 'dist', 'api-reference'];
 
     for (const file of files) {
       const filePath = join(dir, file);
       const stat = statSync(filePath);
 
-      // Skip the .vitepress directory and node_modules
-      if (stat.isDirectory() && !['node_modules', '.vitepress', 'dist' , 'api-reference'].includes(file)) {
+      if (defaultIgnored.includes(file)) {
+        continue;
+      }
+
+      if (stat.isDirectory()) {
         results = results.concat(getAllMarkdownFiles(filePath));
       } else if (file.endsWith('.md')) {
         results.push(filePath);
       }
     }
   } catch (error) {
-    console.error('ROBO8O: Error reading directory:', error);
+    console.error('CoolBot: Error reading directory:', error);
   }
 
   return results;
