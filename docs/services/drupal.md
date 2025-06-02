@@ -1,11 +1,11 @@
 ---
-title: Drupal With Postgresql
-description: Here you can find the documentation for hosting Drupal With Postgresql with Coolify.
+title: Drupal
+description: Here you can find the documentation for hosting Drupal with Coolify.
 ---
 
-# Drupal With Postgresql
+# Drupal
 
-## What is Drupal With Postgresql
+## What is Drupal
 
 Drupal is a free and open-source web content management system written in PHP and distributed under the GNU General Public License.
 

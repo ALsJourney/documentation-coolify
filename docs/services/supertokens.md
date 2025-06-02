@@ -1,11 +1,11 @@
 ---
-title: Supertokens With Postgresql
-description: Here you can find the documentation for hosting Supertokens With Postgresql with Coolify.
+title: Supertokens
+description: Here you can find the documentation for hosting Supertokens with Coolify.
 ---
 
-# Supertokens With Postgresql
+# Supertokens
 
-## What is Supertokens With Postgresql
+## What is Supertokens
 
 An open-source authentication solution that simplifies the implementation of secure user authentication and session management for web and mobile applications.
 
