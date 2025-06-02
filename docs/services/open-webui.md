@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Open Webui with Coo
 
 User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.openwebui.com?utm_source=coolify.io)

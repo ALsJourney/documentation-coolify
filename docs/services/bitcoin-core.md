@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Bitcoin Core with C
 
 A self-hosted Bitcoin Core full node.
 
-## External Links
+## Links
 
 - [Official Documentation](https://hub.docker.com/r/ruimarinho/bitcoin-core/?utm_source=coolify.io)

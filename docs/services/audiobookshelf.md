@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Audiobookshelf with
 
 Self-hosted audiobook, ebook, and podcast server
 
-## External Links
+## Links
 
 - [Official Documentation](https://www.audiobookshelf.org/?utm_source=coolify.io)

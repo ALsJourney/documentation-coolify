@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Web Check with Cool
 
 All-in-one OSINT tool for analysing any website
 
-## External Links
+## Links
 
 - [Official Documentation](https://github.com/lissy93/web-check?utm_source=coolify.io)

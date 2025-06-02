@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Strapi with Coolify
 
 Open-source headless CMS to build powerful APIs with built-in content management.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.strapi.io/?utm_source=coolify.io)

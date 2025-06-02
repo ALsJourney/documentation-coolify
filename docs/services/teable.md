@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Teable with Coolify
 
 Teable is a powerful visual interface built on relational databases (PostgreSQL).
 
-## External Links
+## Links
 
 - [Official Documentation](https://help.teable.io/?utm_source=coolify.io)

@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Embystat with Cooli
 
 EmbyStat is a web analytics tool, designed to provide insight into website traffic and user behavior.
 
-## External Links
+## Links
 
 - [Official Documentation](https://github.com/mregni/EmbyStat?utm_source=coolify.io)

@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Convex with Coolify
 
 Convex is the open-source reactive database for app developers.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.convex.dev/?utm_source=coolify.io)

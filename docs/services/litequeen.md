@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Litequeen with Cool
 
 Lite Queen is an open-source SQLite database management software that runs on your server.
 
-## External Links
+## Links
 
 - [Official Documentation](https://litequeen.com/?utm_source=coolify.io)

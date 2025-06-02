@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Libretranslate with
 
 Free and open-source machine translation API, entirely self-hosted.
 
-## External Links
+## Links
 
 - [Official Documentation](https://libretranslate.com/docs/?utm_source=coolify.io)

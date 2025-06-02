@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Neon Ws Proxy with 
 
 The database you love, on a serverless platform designed to help you build reliable and scalable applications faster.
 
-## External Links
+## Links
 
 - [Official Documentation](https://neon.tech?utm_source=coolify.io)

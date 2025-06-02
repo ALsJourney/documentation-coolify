@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Mindsdb with Coolif
 
 MindsDB is the platform for building AI from enterprise data, enabling smarter organizations.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.mindsdb.com/what-is-mindsdb?utm_source=coolify.io)

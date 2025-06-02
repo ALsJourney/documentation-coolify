@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Convertx with Cooli
 
 A self-hosted online file converter. Supports over a thousand different formats.
 
-## External Links
+## Links
 
 - [Official Documentation](https://github.com/C4illin/ConvertX?utm_source=coolify.io)

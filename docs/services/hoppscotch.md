@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Hoppscotch with Coo
 
 The Open Source API Development Platform
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.hoppscotch.io?utm_source=coolify.io)

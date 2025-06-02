@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Nodebb with Coolify
 
 A next-generation discussion platform.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.nodebb.org/?utm_source=coolify.io)

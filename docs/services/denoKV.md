@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Denokv with Coolify
 
 The Denoland key-value database
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.deno.com/deploy/kv/manual/?utm_source=coolify.io)

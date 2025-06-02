@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Checkmate with Cool
 
 An open source server monitoring application
 
-## External Links
+## Links
 
 - [Official Documentation](https://bluewavelabs.gitbook.io/checkmate?utm_source=coolify.io)

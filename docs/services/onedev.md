@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Onedev with Coolify
 
 Git server with CI/CD, kanban, and packages. Seamless integration. Unparalleled experience.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.onedev.io/?utm_source=coolify.io)

@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Faraday with Coolif
 
 Faraday is a powerful, open-source, web-based vulnerability management tool.
 
-## External Links
+## Links
 
 - [Official Documentation](https://faradaysec.com/?utm_source=coolify.io)

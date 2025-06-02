@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Mealie with Coolify
 
 A recipe manager and meal planner.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.mealie.io/?utm_source=coolify.io)

@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Cockpit with Coolif
 
 Cockpit is a headless content platform that is lightweight, fast and ready for takeoff.
 
-## External Links
+## Links
 
 - [Official Documentation](https://getcockpit.com/documentation/?utm_source=coolify.io)

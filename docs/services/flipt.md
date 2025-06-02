@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Flipt with Coolify.
 
 Flipt is a fully managed feature flag solution that enables you to keep your feature flags and remote config next to your code in Git.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.flipt.io/cloud/overview?utm_source=coolify.io)

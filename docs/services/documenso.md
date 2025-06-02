@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Documenso with Cool
 
 Document signing, finally open source
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.documenso.com/?utm_source=coolify.io)

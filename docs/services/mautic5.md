@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Mautic5 with Coolif
 
 Mautic v5 Open Source Marketing Automation
 
-## External Links
+## Links
 
 - [Official Documentation](https://www.mautic.org/?utm_source=coolify.io)

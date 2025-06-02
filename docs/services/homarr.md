@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Homarr with Coolify
 
 Homarr is a self-hosted homepage for your services.
 
-## External Links
+## Links
 
 - [Official Documentation](https://homarr.dev?utm_source=coolify.io)

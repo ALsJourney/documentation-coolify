@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Wireguard Easy with
 
 The easiest way to run WireGuard VPN + Web-based Admin UI.
 
-## External Links
+## Links
 
 - [Official Documentation](https://github.com/wg-easy/wg-easy?utm_source=coolify.io)

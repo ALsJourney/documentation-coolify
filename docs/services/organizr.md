@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Organizr with Cooli
 
 Homelab Services Organizer
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.organizr.app/?utm_source=coolify.io)

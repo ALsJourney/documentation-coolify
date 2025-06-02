@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Keycloak with Cooli
 
 Keycloak is an open-source Identity and Access Management tool.
 
-## External Links
+## Links
 
 - [Official Documentation](https://www.keycloak.org?utm_source=coolify.io)

@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Foundryvtt with Coo
 
 Foundry Virtual Tabletop is a self-hosted & modern roleplaying platform
 
-## External Links
+## Links
 
 - [Official Documentation](https://foundryvtt.com/kb/?utm_source=coolify.io)

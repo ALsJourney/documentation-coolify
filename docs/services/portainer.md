@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Portainer with Cool
 
 Portainer is a lightweight management UI for Docker
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.portainer.io?utm_source=coolify.io)

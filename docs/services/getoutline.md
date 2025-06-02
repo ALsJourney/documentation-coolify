@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Getoutline with Coo
 
 Your team’s knowledge base
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.getoutline.com/s/hosting/doc/hosting-outline-nipGaCRBDu?utm_source=coolify.io)

@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Cyberchef with Cool
 
 The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis
 
-## External Links
+## Links
 
 - [Official Documentation](https://github.com/gchq/CyberChef?utm_source=coolify.io)

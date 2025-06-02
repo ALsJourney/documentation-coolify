@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Next Image Transfor
 
 Drop-in replacement for Vercel's Nextjs image optimization service.
 
-## External Links
+## Links
 
 - [Official Documentation](https://github.com/coollabsio/next-image-transformation?utm_source=coolify.io)

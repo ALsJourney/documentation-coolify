@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Heyform with Coolif
 
 Allows anyone to create engaging conversational forms for surveys, questionnaires, quizzes, and polls. No coding skills required.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.heyform.net/open-source/self-hosting?utm_source=coolify.io)

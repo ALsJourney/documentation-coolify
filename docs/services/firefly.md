@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Firefly with Coolif
 
 A personal finances manager that can help you save money.
 
-## External Links
+## Links
 
 - [Official Documentation](https://firefly-iii.org?utm_source=coolify.io)

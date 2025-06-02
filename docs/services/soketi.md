@@ -9,6 +9,6 @@ description: Here you can find the documentation for hosting Soketi with Coolify
 
 Soketi is your simple, fast, and resilient open-source WebSockets server.
 
-## External Links
+## Links
 
 - [Official Documentation](https://docs.soketi.app?utm_source=coolify.io)
