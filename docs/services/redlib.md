@@ -1,0 +1,14 @@
+---
+title: Redlib
+description: Here you can find the documentation for hosting Redlib with Coolify.
+---
+
+# Redlib
+
+## What is Redlib
+
+An alternative private front-end to Reddit, with its origins in Libreddit.
+
+## External Links
+
+- [Official Documentation](https://github.com/redlib-org/redlib?utm_source=coolify.io)

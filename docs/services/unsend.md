@@ -1,0 +1,14 @@
+---
+title: Unsend
+description: Here you can find the documentation for hosting Unsend with Coolify.
+---
+
+# Unsend
+
+## What is Unsend
+
+Unsend is an open-source alternative to Resend, Sendgrid, Mailgun and Postmark etc.
+
+## External Links
+
+- [Official Documentation](https://docs.unsend.dev/get-started/self-hosting?utm_source=coolify.io)
