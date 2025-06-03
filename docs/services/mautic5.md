@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Mautic5 with Coolif
 
 # Mautic5
 
+<ZoomableImage src="/docs/images/services/mautic.svg" />
+
 ## What is Mautic5
 
 Mautic v5 Open Source Marketing Automation

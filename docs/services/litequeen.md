@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Litequeen with Cool
 
 # Litequeen
 
+<ZoomableImage src="/docs/images/services/litequeen.svg" />
+
 ## What is Litequeen
 
 Lite Queen is an open-source SQLite database management software that runs on your server.

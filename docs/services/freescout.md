@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Freescout with Cool
 
 # Freescout
 
+<ZoomableImage src="/docs/images/services/freescout.png" />
+
 ## What is Freescout
 
 FreeScout is the super lightweight and powerful free open source help desk and shared inbox written in PHP (Laravel framework).

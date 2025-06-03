@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Cloudbeaver with Co
 
 # Cloudbeaver
 
+<ZoomableImage src="/docs/images/services/cloudbeaver-logo.png" />
+
 ## What is Cloudbeaver
 
 CloudBeaver is a lightweight web application designed for comprehensive data management.

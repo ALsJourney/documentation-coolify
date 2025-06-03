@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Mattermost with Coo
 
 # Mattermost
 
+<ZoomableImage src="/docs/images/services/mattermost.svg" />
+
 ## What is Mattermost
 
 Mattermost is an open source, self-hosted Slack-alternative.

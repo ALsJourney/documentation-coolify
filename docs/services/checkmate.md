@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Checkmate with Cool
 
 # Checkmate
 
+<ZoomableImage src="/docs/images/services/checkmate.jpg" />
+
 ## What is Checkmate
 
 An open source server monitoring application

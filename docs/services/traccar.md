@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Traccar with Coolif
 
 # Traccar
 
+<ZoomableImage src="/docs/images/services/traccar.png" />
+
 ## What is Traccar
 
 Traccar is a free and open source modern GPS tracking system.

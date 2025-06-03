@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Neon Ws Proxy with 
 
 # Neon Ws Proxy
 
+<ZoomableImage src="/docs/images/services/neon.svg" />
+
 ## What is Neon Ws Proxy
 
 The database you love, on a serverless platform designed to help you build reliable and scalable applications faster.

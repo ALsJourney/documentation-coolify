@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Foundryvtt with Coo
 
 # Foundryvtt
 
+<ZoomableImage src="/docs/images/services/foundryvtt.png" />
+
 ## What is Foundryvtt
 
 Foundry Virtual Tabletop is a self-hosted & modern roleplaying platform

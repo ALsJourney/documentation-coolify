@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Flowise with Coolif
 
 # Flowise
 
+<ZoomableImage src="/docs/images/services/flowise.jpg" />
+
 ## What is Flowise
 
 Flowise is an open source low-code tool for developers to build customized LLM orchestration flows & AI agents.

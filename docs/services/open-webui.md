@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Open Webui with Coo
 
 # Open Webui
 
+<ZoomableImage src="/docs/images/services/openwebui.svg" />
+
 ## What is Open Webui
 
 User-friendly AI Interface (Supports Ollama, OpenAI API, ...)

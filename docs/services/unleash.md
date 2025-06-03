@@ -3,6 +3,9 @@ title: "Unleash"
 description: "Here you can find the documentation for hosting Unleash with Coolify."
 ---
 
+<ZoomableImage src="/docs/images/services/unleash.svg" />
+
+
 
 ![Unleash](https://raw.githubusercontent.com/Unleash/unleash/main/.github/github_header_opaque_landscape.svg)
 

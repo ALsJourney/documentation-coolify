@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Budibase with Cooli
 
 # Budibase
 
+<ZoomableImage src="/docs/images/services/budibase.svg" />
+
 ## What is Budibase
 
 Low code platform for building business apps and workflows in minutes. Supports PostgreSQL, MySQL, MSSQL, MongoDB, Rest API, Docker, K8s, and more.

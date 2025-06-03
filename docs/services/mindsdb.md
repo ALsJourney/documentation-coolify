@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Mindsdb with Coolif
 
 # Mindsdb
 
+<ZoomableImage src="/docs/images/services/mindsdb.svg" />
+
 ## What is Mindsdb
 
 MindsDB is the platform for building AI from enterprise data, enabling smarter organizations.

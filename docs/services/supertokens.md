@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Supertokens with Co
 
 # Supertokens
 
+<ZoomableImage src="/docs/images/services/supertokens.png" />
+
 ## What is Supertokens
 
 An open-source authentication solution that simplifies the implementation of secure user authentication and session management for web and mobile applications.

@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Readeck with Coolif
 
 # Readeck
 
+<ZoomableImage src="/docs/images/services/readeck.svg" />
+
 ## What is Readeck
 
 Simple web application that lets you save the precious readable content of web pages you like and want to keep forever.

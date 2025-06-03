@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Libretranslate with
 
 # Libretranslate
 
+<ZoomableImage src="/docs/images/services/libretranslate.svg" />
+
 ## What is Libretranslate
 
 Free and open-source machine translation API, entirely self-hosted.

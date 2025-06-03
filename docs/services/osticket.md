@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Osticket with Cooli
 
 # Osticket
 
+<ZoomableImage src="/docs/images/services/osticket.png" />
+
 ## What is Osticket
 
 osTicket is a widely-used open source support ticket system.

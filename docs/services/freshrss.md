@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Freshrss with Cooli
 
 # Freshrss
 
+<ZoomableImage src="/docs/images/services/FreshRSS-logo.png" />
+
 ## What is Freshrss
 
 A free, self-hostable feed aggregator.

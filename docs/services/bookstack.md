@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Bookstack with Cool
 
 # Bookstack
 
+<ZoomableImage src="/docs/images/services/bookstack.png" />
+
 ## What is Bookstack
 
 BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information

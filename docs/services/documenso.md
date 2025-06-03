@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Documenso with Cool
 
 # Documenso
 
+<ZoomableImage src="/docs/images/services/documenso.png" />
+
 ## What is Documenso
 
 Document signing, finally open source

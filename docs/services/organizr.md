@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Organizr with Cooli
 
 # Organizr
 
+<ZoomableImage src="/docs/images/services/organizr.png" />
+
 ## What is Organizr
 
 Homelab Services Organizer

@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Convex with Coolify
 
 # Convex
 
+<ZoomableImage src="/docs/images/services/convex.svg" />
+
 ## What is Convex
 
 Convex is the open-source reactive database for app developers.

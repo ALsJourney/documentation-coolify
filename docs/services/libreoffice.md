@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Libreoffice with Co
 
 # Libreoffice
 
+<ZoomableImage src="/docs/images/services/libreoffice.svg" />
+
 ## What is Libreoffice
 
 LibreOffice is a free and powerful office suite.

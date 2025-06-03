@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Cyberchef with Cool
 
 # Cyberchef
 
+<ZoomableImage src="/docs/images/services/cyberchef.jpeg" />
+
 ## What is Cyberchef
 
 The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis

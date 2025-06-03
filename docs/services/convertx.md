@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Convertx with Cooli
 
 # Convertx
 
+<ZoomableImage src="/docs/images/services/convertx.png" />
+
 ## What is Convertx
 
 A self-hosted online file converter. Supports over a thousand different formats.

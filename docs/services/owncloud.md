@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Owncloud with Cooli
 
 # Owncloud
 
+<ZoomableImage src="/docs/images/services/owncloud.svg" />
+
 ## What is Owncloud
 
 OwnCloud with Open Web UI integrates file management with a powerful, user-friendly interface.

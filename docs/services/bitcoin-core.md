@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Bitcoin Core with C
 
 # Bitcoin Core
 
+<ZoomableImage src="/docs/images/services/bitcoin.svg" />
+
 ## What is Bitcoin Core
 
 A self-hosted Bitcoin Core full node.

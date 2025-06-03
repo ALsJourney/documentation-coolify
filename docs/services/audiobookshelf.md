@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Audiobookshelf with
 
 # Audiobookshelf
 
+<ZoomableImage src="/docs/images/services/audiobookshelf.svg" />
+
 ## What is Audiobookshelf
 
 Self-hosted audiobook, ebook, and podcast server

@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Hoppscotch with Coo
 
 # Hoppscotch
 
+<ZoomableImage src="/docs/images/services/hoppscotch.png" />
+
 ## What is Hoppscotch
 
 The Open Source API Development Platform

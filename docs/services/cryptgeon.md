@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Cryptgeon with Cool
 
 # Cryptgeon
 
+<ZoomableImage src="/docs/images/services/cryptgeon.png" />
+
 ## What is Cryptgeon
 
 Secure note / file sharing service inspired by PrivNote.

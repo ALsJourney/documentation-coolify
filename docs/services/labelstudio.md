@@ -4,11 +4,12 @@ description: "Here you can find the documentation for hosting Label Studio with 
 ---
 
 # What is Label Studio?
+
+<ZoomableImage src="/docs/images/services/labelstudio1.webp" />
 Label Studio is an open-source data labeling platform that streamlines the process of annotating and labeling data for machine learning and AI applications.
 
 ## Screenshots
 
-<ZoomableImage src="/docs/images/services/labelstudio1.webp" />
 <br />
 <ZoomableImage src="/docs/images/services/labelstudio2.webp" />
 <br />

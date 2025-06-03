@@ -331,7 +331,6 @@ export default defineConfig({
               { text: 'Organizr', link: '/services/organizr' },
               { text: 'osTicket', link: '/services/osticket' },
               { text: 'Outline', link: '/services/outline' },
-              { text: 'Outline (Alternative)', link: '/services/getoutline' },
               { text: 'Overseerr', link: '/services/overseerr' },
               { text: 'ownCloud', link: '/services/owncloud' },
               { text: 'Pairdrop', link: '/services/pairdrop' },

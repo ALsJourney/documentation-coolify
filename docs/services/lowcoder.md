@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Lowcoder with Cooli
 
 # Lowcoder
 
+<ZoomableImage src="/docs/images/services/lowcoder.svg" />
+
 ## What is Lowcoder
 
 Lowcoder (forked from OpenBlocks) is a self-hosted, open-source, low-code platform for building internal tools.

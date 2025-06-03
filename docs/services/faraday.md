@@ -5,6 +5,8 @@ description: Here you can find the documentation for hosting Faraday with Coolif
 
 # Faraday
 
+<ZoomableImage src="/docs/images/services/faraday.png" />
+
 ## What is Faraday
 
 Faraday is a powerful, open-source, web-based vulnerability management tool.
