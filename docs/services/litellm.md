@@ -5,11 +5,12 @@ description: "Here you can find the documentation for hosting Litellm with Cooli
 
 # What is Litellm?
 
+<ZoomableImage src="/docs/images/services/litellm1.avif" />
+
 LiteLLM is an open-source LLM Gateway to manage authentication, loadbalancing, and spend tracking across 100+ LLMs. All in the OpenAI format.
 
 ## Screenshots
 
-<ZoomableImage src="/docs/images/services/litellm1.avif" />
 <br />
 <ZoomableImage src="/docs/images/services/litellm2.avif" />
 <br />

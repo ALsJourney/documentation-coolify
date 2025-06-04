@@ -3,6 +3,9 @@ title: "Reactive Resume"
 description: "Here you can find the documentation for hosting Reactive Resume with Coolify."
 ---
 
+<ZoomableImage src="/docs/images/services/rxresume.svg" />
+
+
 
 ![Reactive Resume](https://camo.githubusercontent.com/34a172f62213af3abf30c655d1a42744d57019f3866b321aa83d9f4d403d5248/68747470733a2f2f692e696d6775722e636f6d2f464663346e795a2e6a7067)
 

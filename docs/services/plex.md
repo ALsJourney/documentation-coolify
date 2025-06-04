@@ -5,7 +5,6 @@ description: "Here you can find the documentation for hosting Plex with Coolify.
 
 <ZoomableImage src="/docs/images/services/plex.svg" />
 
-
 ## What is Plex?
 
 Available on almost any device, Plex is the first-and-only streaming platform to offer free ad-supported movies, shows, and live TV together.
