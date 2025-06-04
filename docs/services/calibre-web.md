@@ -9,7 +9,7 @@ description: Here you can find the documentation for hosting Calibre Web with Co
 
 ## What is Calibre Web
 
-Calibre-web is a web app providing a clean interface for browsing, reading and downloading eBooks.
+Calibre web is a web app providing a clean interface for browsing, reading and downloading eBooks.
 
 ## Links
 
