@@ -9,7 +9,7 @@ description: Here you can find the documentation for hosting Castopod with Cooli
 
 ## What is Castopod
 
-Castopod is a free & open-source hosting platform made for podcasters who want engage and interact with their audience.
+Castopod is a free & open-source hosting platform made for podcasters who want to engage and interact with their audience.
 
 ## Links
 
