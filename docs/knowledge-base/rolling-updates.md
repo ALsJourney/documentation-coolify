@@ -27,6 +27,9 @@ For rolling updates to function properly, the following conditions must be met:
 - **Shouldn’t be Docker Compose:** Rolling updates are not supported on Docker Compose-based deployments.
     - Docker Compose deployments uses static container names, the update process may not be able to correctly manage container instances, which can prevent the rolling update from executing as expected.
 
+- **Port Mapping:** If a port is mapped to the host machine, the new container cannot bind to the same port during the update process.
+    - This can cause conflicts when trying to route traffic to the new container while the old one is still running, preventing the rolling update from being completed successfully.
+
 
 ## Configuring Health Checks
 To ensure successful rolling updates, please verify that your application includes a health check endpoint. 
