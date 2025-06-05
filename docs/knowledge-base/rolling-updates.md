@@ -24,6 +24,9 @@ For rolling updates to function properly, the following conditions must be met:
 - **Default Container Naming:** Rolling updates require the use of the default container naming convention. 
     - If you set a custom container name, the update process may not be able to correctly manage container instances, which can prevent the rolling update from executing as expected.
 
+- **Shouldn’t be Docker Compose:** Rolling updates are not supported on Docker Compose-based deployments.
+    - Docker Compose deployments uses static container names, the update process may not be able to correctly manage container instances, which can prevent the rolling update from executing as expected.
+
 
 ## Configuring Health Checks
 To ensure successful rolling updates, please verify that your application includes a health check endpoint. 
