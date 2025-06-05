@@ -103,6 +103,7 @@ export default defineConfig({
               { text: 'Uninstallation', link: '/get-started/uninstallation' },
             ]
           },
+          { text: 'Cloud', link: '/get-started/cloud' },
           { text: 'Usage', link: '/get-started/usage' },
           {
             text: 'Concepts', link: '/get-started/concepts',
