@@ -1,6 +1,6 @@
 ---
 title: Coolify Cloud
-descriptiom: 
+description: Coolify Cloud is a fully managed service provided by the Coolify team.
 ---
 
 <ZoomableImage src="/docs/images/get-started/cloud-banner.webp" />
