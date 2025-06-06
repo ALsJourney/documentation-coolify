@@ -468,6 +468,7 @@ export default defineConfig({
                 text: 'How-Tos',
                 collapsed: true,
                 items: [
+                  { text: 'Migrate Applications', link: '/knowledge-base/how-to/migrate-apps-different-host' },
                   { text: 'Backup & Restore Coolify', link: '/knowledge-base/how-to/backup-restore-coolify' },
                   { text: 'Load-balancing on Hetzner', link: '/knowledge-base/how-to/hetzner-loadbalancing' },
                   { text: 'Wordpress Multisite', link: '/knowledge-base/how-to/wordpress-multisite' },
