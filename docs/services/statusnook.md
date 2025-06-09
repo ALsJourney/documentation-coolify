@@ -3,6 +3,9 @@ title: "Statusnook"
 description: "Here you can find the documentation for hosting Statusnook with Coolify."
 ---
 
+<ZoomableImage src="/docs/images/services/statusnook.svg" />
+
+
 ![Statusnook](https://github.com/goksan/statusnook/assets/17437810/ff2bb1d4-5d75-4b6e-b8d9-a7227d1aee6c)
 
 ## What is Statusnook?
