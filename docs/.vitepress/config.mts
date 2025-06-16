@@ -520,6 +520,7 @@ export default defineConfig({
                   { text: 'OpenSSH', link: '/knowledge-base/server/openssh' },
                   { text: 'Oracle Cloud', link: '/knowledge-base/server/oracle-cloud' },
                   { text: 'Proxies', link: '/knowledge-base/server/proxies' },
+                  { text: 'Server Patching', link: '/knowledge-base/server/patching' },
                 ]
               },
               {
