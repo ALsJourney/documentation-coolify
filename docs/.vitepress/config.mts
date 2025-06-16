@@ -471,7 +471,7 @@ export default defineConfig({
                   { text: 'Migrate Applications', link: '/knowledge-base/how-to/migrate-apps-different-host' },
                   { text: 'Backup & Restore Coolify', link: '/knowledge-base/how-to/backup-restore-coolify' },
                   { text: 'Load-balancing on Hetzner', link: '/knowledge-base/how-to/hetzner-loadbalancing' },
-                  { text: 'Wordpress Multisite', link: '/knowledge-base/how-to/wordpress-multisite' },
+                  { text: 'WordPress Multisite', link: '/knowledge-base/how-to/wordpress-multisite' },
                   { text: 'Raspberry Pi OS Setup', link: '/knowledge-base/how-to/raspberry-pi-os' },
                   { text: 'Private NPM Registry', link: '/knowledge-base/how-to/private-npm-registry' },
                   { text: 'Ollama with GPU', link: '/knowledge-base/how-to/ollama-with-gpu' },
