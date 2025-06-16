@@ -617,6 +617,13 @@ export default defineConfig({
         items: [
           { text: 'Overview', link: '/troubleshoot/overview' },
           {
+            text: 'Installation',
+            collapsed: true,
+            items: [
+              { text: 'Docker Installation Failed', link: '/troubleshoot/installation/docker-install-failed' },
+            ]
+          },
+          {
             text: 'Applications',
             collapsed: true,
             items: [
