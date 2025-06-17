@@ -123,6 +123,7 @@ You can host ANY service with Coolify that could be containerized.
 - [LibreOffice](/services/libreoffice) - Free and open-source office suite.
 - [LibreTranslate](/services/libretranslate) - Free and open-source machine translation API.
 - [Listmonk](/services/listmonk) - Self-hosted newsletter and mailing list manager.
+- [Leantime](/services/leantime) - Open source project management system for non-project managers.
 - [Litellm](/services/litellm) - Open source LLM Gateway to manage authentication, loadbalancing, and spend tracking across 100+ LLMs. All in the OpenAI format.
 - [LiteQueen](/services/litequeen) - Lightweight service management platform.
 - [Logto](/services/logto) - Logto is an Auth0 alternative designed for modern apps and SaaS products.
