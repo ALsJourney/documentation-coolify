@@ -193,6 +193,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Slash](/services/slash) - Open-source, self-hosted links and notes manager.
 - [Snapdrop](/services/snapdrop) - Local file sharing in your browser.
 - [Soketi](/services/soketi) - Open-source WebSocket server.
+- [Soketi App Manager](/services/soketi-app-manager) - Open-source user-friendly interface for managing Soketi websocket applications.
 - [Sonarr](/services/sonarr) - A internet PVR for Usenet and Torrents.
 - [Statusnook](/services/statusnook) - A status page system for your website.
 - [Stirling PDF](/services/stirling-pdf) - Powerful PDF manipulation tool.
