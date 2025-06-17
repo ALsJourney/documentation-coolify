@@ -143,6 +143,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Mosquitto](/services/mosquitto) - Open-source MQTT broker.
 - [N8N](/services/n8n) - Workflow automation tool.
 - [Neon WS Proxy](/services/neon-ws-proxy) - WebSocket proxy for Neon database.
+- [Netbird Client](/services/netbird-client) - Open source secure WireGuard®-based overlay network with SSO, MFA and granular access controls.
 - [Next Image Transformation](/services/next-image-transformation) - Image transformation service for Next.js.
 - [Nextcloud](/services/nextcloud) - A safe home for all your data.
 - [Nexus](/services/nexus) - A repository manager that allows you to store, manage, and distribute your software artifacts.
