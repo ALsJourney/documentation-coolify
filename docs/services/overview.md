@@ -196,6 +196,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Stirling PDF](/services/stirling-pdf) - Powerful PDF manipulation tool.
 - [Strapi](/services/strapi) - Open-source headless CMS.
 - [Supabase](/services/supabase) - Open source Firebase alternative.
+- [Seafile](/services/seafile) - Open source cloud storage system for file sync, share and document collaboration. 
 - [Superset](/services/superset) - Open-source data visualization and exploration platform.
 - [SuperTokens](/services/supertokens) - Open-source authentication solution.
 - [Syncthing](/services/syncthing) - Open Source Continuous File Synchronization.
