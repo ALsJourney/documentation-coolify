@@ -215,6 +215,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Uptime Kuma](/services/uptime-kuma) - A fancy self-hosted monitoring tool.
 - [Vaultwarden](/services/vaultwarden) - Unofficial Bitwarden compatible server.
 - [Vikunja](/services/vikunja) - The open-source to-do app.
+- [Vert](/services/vert) - Open source file conversion utility that uses WebAssembly to convert files on your device.
 - [VvvebJs](/services/vvveb) - Powerful website builder with drag and drop functionality.
 - [Wakapi](/services/wakapi) - Open-source coding activity tracker.
 - [Weaviate](/services/weaviate) - Open source, AI-native vector database.
