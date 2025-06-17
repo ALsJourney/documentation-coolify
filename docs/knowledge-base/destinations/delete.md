@@ -18,7 +18,7 @@ Verify that no other resources depend on this destination:
 
 - **Environment Variables**: Check for hardcoded references
 - **Network Dependencies**: Ensure no cross-destination communication
-- **Load Balancers**: Update load balancer configuration
+- **Proxies & Load Balancers**: Update load balancer and proxy configuration
 
 ## Deletion Process
 
@@ -83,6 +83,10 @@ docker network disconnect <destination> coolify-proxy
 docker network rm <destination>
 ```
 
+::: info Note
+Replace `<destination>` with the docker network name of the destination being deleted.
+:::
+
 ## Deletion Restrictions
 
 ### Active Resources
@@ -113,3 +117,7 @@ docker network inspect <destination>
 # Force remove the network
 docker network rm -f <destination>
 ```
+
+::: info Note
+Replace `<destination>` with the docker network name of the destination being deleted.
+:::
