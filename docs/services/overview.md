@@ -204,6 +204,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Traccar](/services/traccar) - Open-source GPS tracking platform.
 - [Transmission](/services/transmission) - Fast, easy, and free BitTorrent client.
 - [Trigger](/services/trigger) - Open-source workflow automation tool.
+- [Typesense](/services/typesense) - An open source alternative to Algolia
 - [Umami](/services/umami) - Simple, fast, privacy-focused alternative to Google Analytics.
 - [Unleash](/services/unleash) - Open-source feature management platform.
 - [Unsend](/services/unsend) - Open-source email recall service.
