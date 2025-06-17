@@ -189,6 +189,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Qdrant](/services/qdrant) - Open source, AI-native vector database.
 - [RabbitMQ](/services/rabbitmq) - Open source message broker.
 - [Radarr](/services/radarr) - A Media server software.
+- [Ryot](/services/ryot) - Open source platform for tracking various facets of your life - media, fitness etc.
 - [Rallly](/services/rallly) - Open-source meeting scheduling tool.
 - [Reactive Resume](/services/reactive-resume) - A free and open source resume builder.
 - [Readeck](/services/readeck) - Web article reader and bookmark manager.
