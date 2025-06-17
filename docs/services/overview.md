@@ -224,4 +224,5 @@ You can host ANY service with Coolify that could be containerized.
 - [Windmill](/services/windmill) - Open-source developer platform.
 - [WireGuard Easy](/services/wireguard-easy) - Easy-to-use WireGuard VPN server.
 - [WordPress](/services/wordpress) - Website and blogging platform.
+- [Yamtrack](/services/yamtrack) - Open source media tracker for movies, tv shows, anime, manga, video games and books.
 - [Zipline](/services/zipline) - Next generation ShareX / File upload server
