@@ -20,16 +20,13 @@ Verify that no other resources depend on this destination:
 - **Network Dependencies**: Ensure no cross-destination communication
 - **Proxies & Load Balancers**: Update load balancer and proxy configuration
 
+### Backup Important Data
+
+If you have any peristent storages in applications or databases that you want to keep, make sure to back them up before proceeding with deletion.
+
 ## Deletion Process
 
-### Step 1: Create Backups (Optional)
-
-Before stopping any resources, create backups to prevent data loss:
-
-- **Databases**: Use Coolify's built-in backup features or manual exports to create database dumps.
-- **Persistent Storages**: Copy important files and configurations to a safe location on your server or external storage outside of the volume.
-
-### Step 2: Stop All Resources
+### Step 1: Stop All Resources
 
 <ZoomableImage src="/images/destinations/stop-resource.webp" />
 
