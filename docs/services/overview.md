@@ -128,6 +128,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Logto](/services/logto) - Logto is an Auth0 alternative designed for modern apps and SaaS products.
 - [Lowcoder](/services/lowcoder) - Open-source low-code platform for building internal tools.
 - [Mailpit](/services/mailpit) - Self-hosted email and SMTP testing tool.
+- [Marimo](/services/marimo) - Open-source reactive notebook for Python
 - [Martin](/services/martin) - PostGIS vector tile server.
 - [Mattermost](/services/mattermost) - Open-source messaging platform for teams.
 - [Mautic](/services/mautic5) - Open-source marketing automation platform.
