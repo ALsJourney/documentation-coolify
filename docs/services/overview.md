@@ -95,6 +95,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Ghost](/services/ghost) - A professional publishing platform.
 - [Gitea](/services/gitea) - A painless self-hosted Git service.
 - [GitLab](/services/gitlab) - DevOps lifecycle tool.
+- [Grist](/services/grist) - Open source relational spreadsheet database
 - [Glance](/services/glance) - All-in-one Home Server Dashboard.
 - [Glances](/services/glances) - Cross-platform system monitoring tool.
 - [GlitchTip](/services/glitchtip) - An open-source error tracking tool.
