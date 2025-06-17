@@ -126,6 +126,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Leantime](/services/leantime) - Open source project management system for non-project managers.
 - [Litellm](/services/litellm) - Open source LLM Gateway to manage authentication, loadbalancing, and spend tracking across 100+ LLMs. All in the OpenAI format.
 - [LiteQueen](/services/litequeen) - Lightweight service management platform.
+- [LimeSurvey](/services/limesurvey) - Open-source survey platform. 
 - [Logto](/services/logto) - Logto is an Auth0 alternative designed for modern apps and SaaS products.
 - [Lowcoder](/services/lowcoder) - Open-source low-code platform for building internal tools.
 - [Mailpit](/services/mailpit) - Self-hosted email and SMTP testing tool.
