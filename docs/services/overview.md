@@ -131,6 +131,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Mailpit](/services/mailpit) - Self-hosted email and SMTP testing tool.
 - [Marimo](/services/marimo) - Open-source reactive notebook for Python
 - [Martin](/services/martin) - PostGIS vector tile server.
+- [Memos](/services/memos) - Open-source, lightweight note-taking solution
 - [Mattermost](/services/mattermost) - Open-source messaging platform for teams.
 - [Mautic](/services/mautic5) - Open-source marketing automation platform.
 - [Maybe](/services/maybe) - Personal finance and wealth management application.
