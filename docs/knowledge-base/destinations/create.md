@@ -20,7 +20,6 @@ Before creating a destination, ensure you have:
    - **Server**: Select the target server
    - **Name**: A descriptive name for the destination
    - **Network**: Docker network name (auto-generated)
-   - **Type**: Choose between Standalone Docker or Docker Swarm
 
 <ZoomableImage src="/images/destinations/create-destination.webp" />
 
@@ -55,19 +54,32 @@ Before creating a destination, ensure you have:
 
 ### Destination Type
 
+The destination type is **automatically determined** based on your selected server's configuration:
+
 #### Standalone Docker
 
-- **Default choice** for most users
+- **Automatically selected** when the server is configured as a standalone Docker host
 - Creates a standard Docker network
 - Suitable for single-server deployments
 - Supports bridge and custom networks
 
 #### Docker Swarm
 
-- For cluster environments only
+- **Automatically selected** when the server is configured as a Docker Swarm manager or worker
 - Creates overlay networks for multi-node communication
-- Requires Docker Swarm mode to be enabled
+- Server must have Docker Swarm mode enabled during server setup
 - Advanced feature for clustered deployments
+
+::: tip Server Configuration Determines Type
+You cannot manually choose between Standalone Docker and Docker Swarm when creating a destination. The type is determined by how your server was configured when it was added to Coolify.
+:::
+
+## Configuring Server Type
+
+To use Docker Swarm destinations, you must configure your server as a Swarm manager or worker when adding it to Coolify:
+
+1. **Adding a new server**: During server setup, check "Is it a Swarm Manager?" or "Is it a Swarm Worker?"
+2. **Existing servers**: Server type cannot be changed after creation - you must add a new server with the correct Swarm configuration
 
 ## Automatic Network Creation
 
