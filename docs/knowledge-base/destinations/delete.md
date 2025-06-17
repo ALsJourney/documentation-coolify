@@ -5,55 +5,54 @@ Learn how to safely remove destinations from your Coolify setup when they're no 
 ## Before You Delete
 
 ### Check for Active Resources
+
 Before deleting a destination, ensure it's not being used:
 
 1. **Applications**: No applications deployed to this destination
-2. **Databases**: No databases running in this destination  
+2. **Databases**: No databases running in this destination
 3. **Services**: No services configured for this destination
-4. **Volumes**: No persistent volumes attached
 
 ### Resource Dependencies
+
 Verify that no other resources depend on this destination:
+
 - **Environment Variables**: Check for hardcoded references
 - **Network Dependencies**: Ensure no cross-destination communication
 - **Load Balancers**: Update load balancer configuration
-- **DNS Records**: Update any DNS records pointing to this destination
 
 ## Deletion Process
 
-### Step 1: Stop All Resources
+### Step 1: Create Backups (Optional)
 
-1. **Stop Applications**:
-   - Go to each application's page
-   - Click **Stop** to halt the application
-   - Wait for containers to stop completely
+Before stopping any resources, create backups to prevent data loss:
 
-2. **Stop Databases**:
-   - Navigate to database configurations  
-   - Stop all database instances
-   - Create backups if needed
+**Databases**: Use Coolify's built-in backup features or manual exports to create database dumps.
+**Persistent Storage Backups**: Copy important files and configurations to a safe location on your server or external storage outside of the volume.
 
-3. **Remove Services**:
-   - Stop any running services
-   - Remove service configurations
+### Step 2: Stop All Resources
+
+<ZoomableImage src="/images/destinations/stop-resource.webp" />
+
+For each application, database, and service in the destination:
+
+1. Go to the configuration page of the resource
+2. Click **Stop** in the top right corner
+3. Wait for the resource to stop completely
 
 ### Step 2: Remove Resources
 
-1. **Delete Applications**:
-   - Go to application settings
-   - Click **Delete Application**
-   - Confirm the deletion
+For each application, database, and service in the destination:
 
-2. **Delete Databases**:
-   - Access database settings
-   - Choose **Delete Database**
-   - Backup data if necessary
+<ZoomableImage src="/images/destinations/delete-resource.webp" />
 
-3. **Clean Up Volumes**:
-   - Remove any unused volumes
-   - Check for orphaned storage
+1. Go to the configuration page of the resource
+2. Click **Danger Zone** in the left menu
+3. Click the red **Delete** button
+4. Confirm the deletion
 
 ### Step 3: Delete the Destination
+
+<ZoomableImage src="/images/destinations/delete-destination.webp" />
 
 1. Navigate to the destination page
 2. Click **Delete Destination**
@@ -61,11 +60,14 @@ Verify that no other resources depend on this destination:
 4. Enter your password if required
 5. Confirm the deletion
 
-<ZoomableImage src="/images/destinations/delete-destination.webp" />
+::: info Note
+The **Delete Destination** button will only appear if all resources inside the destination have been stopped and removed.
+:::
 
 ## What Happens During Deletion
 
 ### Network Cleanup
+
 When you delete a destination, Coolify automatically:
 
 1. **Disconnects Proxy**: Removes proxy connection to the network
@@ -74,27 +76,33 @@ When you delete a destination, Coolify automatically:
 4. **Updates Database**: Removes destination records
 
 ### Network Commands
+
 Coolify executes these commands during deletion:
+
 ```bash
 # Disconnect proxy from network
-docker network disconnect destination-network coolify-proxy
+docker network disconnect <destination> coolify-proxy
 
 # Remove the Docker network
-docker network rm destination-network
+docker network rm <destination>
 ```
 
 ## Deletion Restrictions
 
 ### Active Resources
+
 You cannot delete a destination if it has:
+
 - Running applications
-- Active databases  
+- Active databases
 - Deployed services
 - Connected containers
 
 ### Error Messages
+
 Common deletion errors:
-- **"Destination has active resources"**: Stop all resources first
+
+- **"You must delete all resources before deleting this destination."**: Stop all resources first
 - **"Network is in use"**: Some containers are still connected
 - **"Permission denied"**: Insufficient server permissions
 - **"Network not found"**: Network was manually removed
@@ -102,12 +110,15 @@ Common deletion errors:
 ## Force Deletion (Advanced)
 
 ### When to Use Force Deletion
+
 Only use force deletion when:
+
 - Normal deletion fails due to orphaned resources
 - Network is corrupted or inaccessible
 - Server connectivity issues prevent normal cleanup
 
 ### Manual Network Cleanup
+
 If automatic cleanup fails, manually remove the network:
 
 ```bash
@@ -128,19 +139,24 @@ docker network rm destination-network
 ## Post-Deletion Tasks
 
 ### Verify Cleanup
+
 After deletion, verify:
+
 1. **Network Removed**: `docker network ls` doesn't show the network
 2. **No Orphaned Containers**: Check for containers still using the network
 3. **Proxy Configuration**: Verify proxy routes are cleaned up
 4. **DNS Records**: Update any DNS pointing to this destination
 
 ### Update Documentation
+
 - Remove destination from documentation
 - Update network diagrams
 - Notify team members of the change
 
 ### Load Balancer Updates
+
 If using external load balancing:
+
 1. **Remove Servers**: Remove servers from load balancer pools
 2. **Update Health Checks**: Remove health check targets
 3. **DNS Changes**: Update DNS records if necessary
@@ -148,7 +164,9 @@ If using external load balancing:
 ## Troubleshooting Deletion Issues
 
 ### Network Still Exists
+
 If the Docker network persists after deletion:
+
 ```bash
 # Check what's using the network
 docker network inspect network-name
@@ -158,7 +176,9 @@ docker network rm -f network-name
 ```
 
 ### Proxy Connection Issues
+
 If proxy loses connectivity after deletion:
+
 ```bash
 # Restart the proxy
 docker restart coolify-proxy
@@ -168,7 +188,9 @@ docker restart coolify-proxy
 ```
 
 ### Database Connection Errors
+
 If applications lose database connectivity:
+
 1. **Check Database Status**: Ensure database wasn't accidentally deleted
 2. **Verify Network Configuration**: Check if database moved to different destination
 3. **Update Connection Strings**: Update application database URLs
@@ -176,6 +198,7 @@ If applications lose database connectivity:
 ## Recovery Options
 
 ### Accidental Deletion
+
 If you accidentally delete a destination:
 
 1. **Recreate Destination**: Create a new destination with the same name
@@ -184,7 +207,9 @@ If you accidentally delete a destination:
 4. **Update Configuration**: Reconfigure any custom settings
 
 ### Data Recovery
+
 For data recovery after accidental deletion:
+
 1. **Volume Recovery**: Check if Docker volumes still exist
 2. **Backup Restoration**: Restore from scheduled backups
 3. **Database Recovery**: Use database-specific recovery tools
@@ -192,18 +217,21 @@ For data recovery after accidental deletion:
 ## Best Practices
 
 ### Before Deletion
+
 1. **Create Backups**: Backup all important data
 2. **Document Dependencies**: List all dependent resources
 3. **Notify Team**: Inform team members of planned deletion
 4. **Test Impact**: Verify what will be affected
 
 ### During Deletion
+
 1. **Follow Order**: Stop resources before deleting destination
 2. **Verify Each Step**: Confirm each deletion step completes
 3. **Monitor Logs**: Watch for errors during deletion process
 4. **Have Rollback Plan**: Be prepared to recreate if needed
 
 ### After Deletion
+
 1. **Verify Cleanup**: Confirm all resources are removed
 2. **Update Documentation**: Remove references to deleted destination
 3. **Monitor Applications**: Check that remaining applications still work
@@ -212,7 +240,9 @@ For data recovery after accidental deletion:
 ## Alternative to Deletion
 
 ### Destination Deactivation
+
 Instead of deleting, consider:
+
 1. **Stop All Resources**: Keep destination but stop all services
 2. **Remove from Load Balancer**: Stop receiving traffic
 3. **Maintain for Recovery**: Keep available for emergency use
