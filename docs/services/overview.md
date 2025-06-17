@@ -167,6 +167,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Organizr](/services/organizr) - Homepage organizer for your server services.
 - [osTicket](/services/osticket) - Open-source help desk ticketing system.
 - [Outline](/services/outline) - Open-source collaboration tool.
+- [OrangeHRM](/services/orangehrm) - Open-source Human Resource Management (HRM) System
 - [Observium](/services/observium) - Open-source network monitoring platform
 - [Onetime Secret](/services/onetime-secret) - Open-source secret link that can be viewed only once.
 - [Overseerr](/services/overseerr) - A request management and media discovery tool built to work with your existing Plex ecosystem.
