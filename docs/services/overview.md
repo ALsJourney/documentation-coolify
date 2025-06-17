@@ -51,6 +51,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Chaskiq](/services/chaskiq) - Open source customer engagement platform.
 - [Chatwoot](/services/chatwoot) - Open-source customer engagement suite.
 - [Checkmate](/services/checkmate) - Website monitoring and uptime service.
+- [CodiMD](/services/codimd) - Open source real-time collaboration with markdown platform.
 - [ClassicPress](/services/classicpress) - A business-focused CMS with a strong community.
 - [CloudBeaver](/services/cloudbeaver) - Universal database tool with web interface.
 - [Cloudflared](/services/cloudflared) - Cloudflare Tunnel client.
