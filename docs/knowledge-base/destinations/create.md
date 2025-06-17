@@ -5,6 +5,7 @@ This guide shows you how to create new destinations in Coolify for deploying you
 ## Prerequisites
 
 Before creating a destination, ensure you have:
+
 - At least one server connected to Coolify
 - Appropriate permissions to manage destinations
 - Basic understanding of Docker networks
@@ -33,18 +34,21 @@ Before creating a destination, ensure you have:
 ## Configuration Options
 
 ### Destination Name
+
 - Must be unique per server
 - Auto-generated based on server name and network ID
 - Can be customized to be more descriptive
 - Format: `server-name-network-id`
 
 ### Network Name
+
 - Automatically generated unique identifier
 - Uses CUID2 format for uniqueness
 - Cannot be changed after creation
 - Used as the actual Docker network name
 
 ### Server Selection
+
 - Choose from available servers in your team
 - Server must be online and accessible
 - Determines where the Docker network will be created
@@ -52,12 +56,14 @@ Before creating a destination, ensure you have:
 ### Destination Type
 
 #### Standalone Docker
+
 - **Default choice** for most users
 - Creates a standard Docker network
 - Suitable for single-server deployments
 - Supports bridge and custom networks
 
 #### Docker Swarm
+
 - For cluster environments only
 - Creates overlay networks for multi-node communication
 - Requires Docker Swarm mode to be enabled
@@ -95,13 +101,8 @@ Common errors when creating destinations:
 ## After Creation
 
 Once created, your destination will:
+
 - Appear in the destinations list
 - Be available for deploying applications and databases
 - Have network connectivity configured automatically
 - Be ready to host your containerized resources
-
-## Next Steps
-
-- [Deploy an application](../applications/) to your new destination
-- [Create a database](../databases/) in the destination
-- [Configure multiple destinations](./multi-server.md) for high availability
