@@ -35,6 +35,7 @@ You can host ANY service with Coolify that could be containerized.
 - [Argilla](/services/argilla) - An open-source platform for building, training, and evaluating conversational AI models.
 - [Audiobookshelf](/services/audiobookshelf) - Self-hosted audiobook and podcast server.
 - [Authentik](/services/authentik) - An open-source Identity Provider, focused on flexibility and versatility.
+- [Apache Superset](/services/apache-superset) - An open-source data exploration and data visualization platform.
 - [Baby Buddy](/services/babybuddy) - It helps parents track their baby's daily activities, growth, and health with ease.
 - [Beszel](/services/beszel) - Lightweight server monitoring hub with historical data, docker stats, and alerts.
 - [Bitcoin Core](/services/bitcoin-core) - Bitcoin Core full node software.
