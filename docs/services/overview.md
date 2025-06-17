@@ -62,6 +62,7 @@ You can host ANY service with Coolify that could be containerized.
 - [CyberChef](/services/cyberchef) - Data analysis and manipulation tool for cybersecurity.
 - [Dashboard](/services/dashboard) - A simple dashboard for your server.
 - [Dashy](/services/dashy) - Customizable homepage dashboard for self-hosted services.
+- [Diun](/services/diun) - Open source Docker Image Update Notifier
 - [Deno KV](/services/denokv) - Deno's built-in key-value database service.
 - [Directus](/services/directus) - An open-source headless CMS and API for custom databases.
 - [Docker Registry](/services/docker-registry) - A Docker registry to store and manage your Docker images.
