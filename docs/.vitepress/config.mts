@@ -471,7 +471,7 @@ export default defineConfig({
                   { text: 'Migrate Applications', link: '/knowledge-base/how-to/migrate-apps-different-host' },
                   { text: 'Backup & Restore Coolify', link: '/knowledge-base/how-to/backup-restore-coolify' },
                   { text: 'Load-balancing on Hetzner', link: '/knowledge-base/how-to/hetzner-loadbalancing' },
-                  { text: 'Wordpress Multisite', link: '/knowledge-base/how-to/wordpress-multisite' },
+                  { text: 'WordPress Multisite', link: '/knowledge-base/how-to/wordpress-multisite' },
                   { text: 'Raspberry Pi OS Setup', link: '/knowledge-base/how-to/raspberry-pi-os' },
                   { text: 'Private NPM Registry', link: '/knowledge-base/how-to/private-npm-registry' },
                   { text: 'Ollama with GPU', link: '/knowledge-base/how-to/ollama-with-gpu' },
@@ -520,6 +520,8 @@ export default defineConfig({
                   { text: 'OpenSSH', link: '/knowledge-base/server/openssh' },
                   { text: 'Oracle Cloud', link: '/knowledge-base/server/oracle-cloud' },
                   { text: 'Proxies', link: '/knowledge-base/server/proxies' },
+                  { text: 'Server Patching', link: '/knowledge-base/server/patching' },
+                  { text: 'Terminal Access', link: '/knowledge-base/server/terminal-access' },
                 ]
               },
               {
@@ -614,6 +616,13 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: 'Overview', link: '/troubleshoot/overview' },
+          {
+            text: 'Installation',
+            collapsed: true,
+            items: [
+              { text: 'Docker Installation Failed', link: '/troubleshoot/installation/docker-install-failed' },
+            ]
+          },
           {
             text: 'Applications',
             collapsed: true,
