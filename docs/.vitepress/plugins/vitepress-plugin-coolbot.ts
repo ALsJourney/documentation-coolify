@@ -89,7 +89,7 @@ export default function coolbotPlugin(options: coolbotPluginOptions = {}): Plugi
         
 
         // Write the file map
-        const mapPath = resolve(convertedDir, 'kvmap.json');
+        const mapPath = resolve(convertedDir, 'llms-text.json');
         writeFileSync(mapPath, JSON.stringify(fileMap, null, 2), 'utf-8');
         
         if(webhookUrl) {
@@ -113,7 +113,7 @@ export default function coolbotPlugin(options: coolbotPluginOptions = {}): Plugi
           }
         }
 
-        console.log('\nCoolBot: Generated file map at .vitepress/dist/public/kvmap.json');
+        console.log('\nCoolBot: Generated file map at .vitepress/dist/public/llms-text.json');
         console.log('\nCoolBot: Conversion complete');
       } catch (error) {
         console.error('CoolBot: Error during conversion:', error);
