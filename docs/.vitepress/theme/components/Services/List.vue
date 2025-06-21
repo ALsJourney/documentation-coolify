@@ -1375,11 +1375,15 @@ const toggleCategory = (category: string) => {
         }
     }
 }
+
+const navigateTo = (path: string) => {
+    window.location.href = `/docs/${path}`
+}
 </script>
 
 
 <template>
-    <div>
+    <div class="">
         <div class="w-full flex flex-col justify-between">
             <div class="flex w-full justify-between">
                 <input v-model="search" type="text" placeholder="Search"
@@ -1449,7 +1453,7 @@ const toggleCategory = (category: string) => {
                 <div v-else v-for="category in filteredCategories" :key="category">
                     <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">{{ category }}</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6 rounded-xl">
-                        <div v-for="service in filteredServicesByCategory(category)" :key="service.name"
+                        <div v-for="service in filteredServicesByCategory(category)" :key="service.name" @click="navigateTo(`services/${service.name.toLowerCase()}`)"
                             class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                             <div class="w-full h-full flex flex-col dark:default-soft rounded-t-xl p-3">
                                 <div class="font-bold text-md text-gray-900 dark:text-gray-100">{{ service.name }}</div>
@@ -1493,7 +1497,7 @@ const toggleCategory = (category: string) => {
                                 </div>
                             </template>
                             <template v-else>
-                                <div v-for="service in filteredServicesByCategory(category)" :key="service.name"
+                                <div v-for="service in filteredServicesByCategory(category)" :key="service.name" @click="navigateTo(`services/${service.name.toLowerCase()}`)"
                                     class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                                     <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
                                         <div class="font-bold text-md text-gray-900 dark:text-gray-100">{{ service.name }}</div>
