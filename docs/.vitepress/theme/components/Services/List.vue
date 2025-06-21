@@ -1376,8 +1376,12 @@ const toggleCategory = (category: string) => {
     }
 }
 
-const navigateTo = (path: string) => {
-    window.location.href = `/docs/${path}`
+const navigateTo = (path: string, external: boolean = false) => {
+    if (external) {
+        window.location.href = path
+    } else {
+        window.location.href = `/docs/${path}`
+    }
 }
 </script>
 
@@ -1389,9 +1393,6 @@ const navigateTo = (path: string) => {
                 <input v-model="search" type="text" placeholder="Search"
                     class="search w-full max-w-xs border-2 border-gray-300 dark:border-gray-600 rounded-lg py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);" />
                 <div class="relative flex gap-2" ref="dropdownRef">
-                    <button class="bg-purple-700 dark:bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors" style="background-color: rgba(101, 117, 133, 0.16);">
-                        Add Service
-                    </button>
                     <button @click.stop="isOpen = !isOpen" 
                         class="select flex items-center justify-between w-48 border-2 border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);">
                         <span>{{ selectedCategories.length === 1 ? selectedCategories[0] : `${selectedCategories.length} categories` }}</span>
@@ -1420,6 +1421,9 @@ const navigateTo = (path: string) => {
                             </div>
                         </div>
                     </div>
+                    <button @click="navigateTo('https://github.com/coollabsio/coolify/blob/v4.x/CONTRIBUTING.md', true)" class="bg-purple-700 dark:bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors" style="background-color: rgba(101, 117, 133, 0.16);">
+                        Add Service
+                    </button>
                 </div>
             </div>
         </div>
