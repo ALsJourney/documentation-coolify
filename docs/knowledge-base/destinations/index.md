@@ -4,7 +4,7 @@ Destinations in Coolify are **Docker network endpoints** where your applications
 
 ## What are Destinations?
 
-A destination is essentially a Docker network that acts as a deployment target for your resources. When you deploy an application or database, it gets deployed to a specific destination (Docker network) on a server, providing network isolation and organization for your containerized workloads.
+A destination is essentially a [Docker network](https://docs.docker.com/engine/network/) that acts as a deployment target for your resources. When you deploy an application or database, it gets deployed to a specific destination (Docker network) on a server, providing network isolation and organization for your containerized workloads.
 
 ## Types of Destinations
 
@@ -14,13 +14,13 @@ Coolify differentiates destinations between two types based on the server config
 
 - **Purpose**: For single-server deployments
 - **Use Case**: Most common setup for individual servers
-- **Network Type**: Docker bridge or custom networks
+- **Network Type**: [Docker bridge](https://docs.docker.com/engine/network/drivers/bridge/) or custom networks
 
 ### 2. Docker Swarm
 
-- **Purpose**: For Docker Swarm cluster deployments
+- **Purpose**: For [Docker Swarm](https://docs.docker.com/engine/swarm/) cluster deployments
 - **Use Case**: Multi-node cluster environments
-- **Network Type**: Docker overlay networks
+- **Network Type**: [Docker overlay networks](https://docs.docker.com/engine/network/drivers/overlay/)
 
 ## Key Concepts
 

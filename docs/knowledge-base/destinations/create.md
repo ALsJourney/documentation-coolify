@@ -8,7 +8,7 @@ Before creating a destination, ensure you have:
 
 - At least one server connected to Coolify
 - Appropriate permissions to manage destinations
-- Basic understanding of Docker networks
+- Basic understanding of [Docker networks](https://docs.docker.com/engine/network/)
 
 ## Creating a New Destination
 
