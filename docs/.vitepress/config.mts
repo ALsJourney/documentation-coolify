@@ -459,7 +459,6 @@ export default defineConfig({
                   { text: 'Overview', link: '/knowledge-base/destinations/index' },
                   { text: 'Creating Destinations', link: '/knowledge-base/destinations/create' },
                   { text: 'Managing Destinations', link: '/knowledge-base/destinations/manage' },
-                  { text: 'Multi-Server Deployments', link: '/knowledge-base/destinations/multi-server' },
                   { text: 'Networking', link: '/knowledge-base/destinations/networking' },
                   { text: 'Deleting Destinations', link: '/knowledge-base/destinations/delete' },
                 ]
