@@ -16,71 +16,15 @@ Navigate to **Servers** → **[Server Name]** → **Destinations** to view desti
 
 ## Editing Destination Settings
 
-<ZoomableImage src="/images/destinations/destinations-settings.webp" />
+Click on a destination to access its management page where you can either edit or [delete](./delete.md) it.
 
-Click on a destination to access its management page where you can:
+<ZoomableImage src="/docs/images/destinations/destinations-settings.webp" />
 
 ### Basic Information
 
 - **Name**: Update the destination display name
 - **Server IP**: View the server IP address where the destination is hosted (read-only)
 - **Docker Network**: View the Docker network name (read-only)
-
-## Destination Limits and Quotas
-
-### Resource Limits
-
-- No hard limits on resources per destination
-- Limited by server capacity and Docker constraints
-- Monitor resource usage to prevent overloading
-
-### Network Limits
-
-- Each destination uses one Docker network
-- Network names must be unique per server
-- Consider network performance for high-traffic applications
-
-## Troubleshooting
-
-### Common Issues
-
-#### Destination Not Showing Resources
-
-- Refresh the destination status
-- Check if containers are actually running
-- Verify network connectivity
-
-#### Network Connectivity Problems
-
-- Restart the proxy connection
-- Check firewall rules on the server
-- Verify Docker network configuration
-
-#### Resource Deployment Failures
-
-- Check server disk space and memory
-- Verify destination is accessible
-- Review deployment logs for errors
-
-### Recovery Operations
-
-- **Refresh Networks**: Reconnect proxy to networks
-- **Restart Containers**: Restart all destination resources
-- **Network Recreation**: Advanced troubleshooting option
-
-## Security Considerations
-
-### Network Isolation
-
-- Resources in different destinations cannot communicate by default
-- Use environment variables for cross-destination communication
-- Consider security implications of shared networks
-
-### Access Control
-
-- Destination access follows team permissions
-- Only team members can manage destinations
-- Server access controls apply to destination management
 
 ## Best Practices
 
