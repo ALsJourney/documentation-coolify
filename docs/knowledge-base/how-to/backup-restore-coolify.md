@@ -14,6 +14,14 @@ If you use S3-compatible storage, simply download the backup file from your S3 p
 
 The rest of this guide will focus on the manual backup method, which is ideal for most users.
 
+::: warning NOTE:
+This only backs up and restores the Coolify instance itself — not your application data. 
+
+All settings from your Coolify dashboard will be restored, but application data (such as volume mounts) must be backed up and restored manually. 
+
+For details, refer to the [Application Migration Guide](https://coolify.io/docs/knowledge-base/how-to/migrate-apps-different-host).
+:::
+
 
 ## 1. Create a Manual Backup
 1. **Go to Backup Page on Dashboard:**  
@@ -39,17 +47,12 @@ If you are using S3-compatible storage for backups, download the backup file fro
 Before you restore the backup, you need to obtain the `APP_KEY` from your current Coolify instance. This key is used to decrypt your data during restoration.
 
 1. **Open the Terminal in Coolify:**  
-   Access the **Terminal** tab in the dashboard and connect to `localhost`.
+   Access the **Terminal** tab in the dashboard and connect to the server where Coolify is running. This server is named as `localhost` by default.
 
-2. **Navigate to the Data Directory:**  
-   ```sh
-   cd /data/coolify/source
-   ```
-
-3. **View the Environment File:**  
+2. **View the Environment File**  
    Run the following command to display the contents of the `.env` file:
    ```sh
-   cat .env
+   cat /data/coolify/source/.env
    ```
    Copy the value of `APP_KEY` and save it securely. This key is important for the restoration process.
 
@@ -58,8 +61,8 @@ Save this `APP_KEY` safely. Without it, you cannot restore your backup.
 :::
 
 
-## 3. Back Up Your Coolify SSH Private Key
-When Coolify is first installed, it generates one (or more) SSH key files under `/data/coolify/ssh/keys`. If you restore onto a new machine, you must bring those key files along so your managed servers remain reachable.
+## 3. Back Up Your Coolify SSH Private and Public Key
+Coolify generates one (or more) SSH key files under `/data/coolify/ssh/keys`. If you restore Coolify onto a new machine, you must bring those key files along so your managed servers remain reachable.
 
 1. **Locate the SSH Key on the Old Host:** 
    ```sh
@@ -75,7 +78,11 @@ When Coolify is first installed, it generates one (or more) SSH key files under 
    
    Each `ssh_key@…` entry represents an ED25519 key that Coolify uses to SSH into your servers.
    
-2. **Copy Those SSH Keys to Your New Host**  
+2. **Copy all these SSH key files to your new host server and store them in a secure location (we will need this later on this guide).**  
+
+3. **Retrieve public keys:**
+
+    Retrieve the public keys from your old server's `~/.ssh/authorized_keys` file and append them to the new server's `~/.ssh/authorized_keys` file (do not replace existing entries). 
 
 
 ## 4. Prepare Your New Server
@@ -84,7 +91,7 @@ Set up your new server where you will restore your Coolify instance.
 1. **Install a Fresh Coolify Instance:**  
     Follow the [installation instructions](/get-started/installation) to install Coolify on your new server. 
     
-    Be sure to include the correct version number (`-s 4.0.0-beta.400`) at the end of the installation script to ensure you're installing the same Coolify version as before.
+    Be sure to include the correct version number (example: `-s 4.0.0-beta.400`) at the end of the installation script to ensure you're installing the same Coolify version as before.
     
     For example, to install version `4.0.0-beta.400`, use this command:
     ```sh
@@ -101,9 +108,9 @@ Set up your new server where you will restore your Coolify instance.
 1. **Transfer the Backup File:**  
    Copy the backup file and SSH keys to the new server. You can do this via SCP, FTP, or any other secure file transfer method.
    
-2. **Stop coolify:**  
+2. **Stop Coolify:**  
    ```sh
-   docker stop $(docker ps -q --filter "name=coolify")
+   docker stop coolify coolify-redis coolify-realtime coolify-proxy
    ```
 
 3. **Run the Restore Command:**  
@@ -116,7 +123,7 @@ Set up your new server where you will restore your Coolify instance.
    You have to replace `/path/to/your_backup_file` with the path of your backup file on the server.
 
    ::: warning Note:
-   Some warnings about existing foreign keys or sequences might appear; these can usually be ignored if the base structure remains intact.
+   Some warnings about existing foreign keys or sequences might appear, these can usually be ignored if the base structure remains intact.
    :::
 
 ## 6. Replace the Auto-Generated SSH Key
@@ -127,26 +134,22 @@ Set up your new server where you will restore your Coolify instance.
   rm -f /data/coolify/ssh/keys/*
   ```
 
-2. **Copy your old key files into** `/data/coolify/ssh/keys/`
+2. **Move your old key files into** `/data/coolify/ssh/keys/`
+  
+    These are the files you copied to the new host server on [step 3](#_3-back-up-your-coolify-ssh-private-and-public-key)
 
 
 ## 7. Update Environment Settings for Restoration
 After restoring the backup, update your environment configuration to allow the new instance to use the old data.
 
-1. **Access the Data Directory:**  
-   Navigate to the directory where your environment files are stored:
-   ```sh
-   cd /data/coolify/source
-   ```
-
-2. **Edit the Environment File:**  
+1. **Edit the Environment File:**  
    Open the `.env` file with your preferred text editor:
    ```sh
-   nano .env
+   nano /data/coolify/source/.env
    ```
 
-3. **Add the Previous APP Key:**  
-   Add a new environment variable called `APP_PREVIOUS_KEYS` and paste the `APP_KEY` you saved earlier:
+2. **Add the Previous APP Key:**  
+   Add a new environment variable called `APP_PREVIOUS_KEYS` and paste the value of `APP_KEY` you saved earlier:
    ```yaml
    APP_PREVIOUS_KEYS=your_previous_app_key_here
    ```
@@ -158,9 +161,10 @@ To apply the restored backup and updated environment settings, restart your Cool
 
 1. **Run the Installation Script:**  
    Re-run the Coolify installation command:
-   ```sh
-   curl -fsSL https://cdn.coollabs.io/coolify/install.sh | sudo bash
-   ```
+    ```sh
+    curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash -s 4.0.0-beta.400
+    ```
+    Remember to replace `4.0.0-beta.400` with the desired version number.
 
 2. **Verify the Restoration:**  
    Visit your Coolify dashboard URL and log in with the same credentials from your previous instance. Your projects, deployments, and settings should now be restored.
@@ -179,4 +183,6 @@ To apply the restored backup and updated environment settings, restart your Cool
 - **Server is not reachable (Permission denied):** 
   If Coolify cannot SSH into your servers because it doesn’t have the same key files. 
   
-  Make sure you copied all of `/data/coolify/ssh/keys/` from the old host, and then placed them (with identical filenames) under `/data/coolify/ssh/keys/` on the new host. If those files do not exactly match what was on the old server, you will see this error.
+  Make sure you copied all of `/data/coolify/ssh/keys/` from the old host, and then placed them under `/data/coolify/ssh/keys/` on the new host. If those files do not exactly match what was on the old server, you will see this error.
+  
+  Also, ensure that the corresponding public key from the old host's `authorized_keys` file is added to the new host's `~/.ssh/authorized_keys`.
