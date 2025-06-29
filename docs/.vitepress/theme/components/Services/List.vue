@@ -8,6 +8,15 @@
     border-color: #3c3f44;
 }
 
+/* Purple checkboxes */
+input[type="checkbox"] {
+    accent-color: #9333ea; /* purple-600 */
+}
+
+.dark input[type="checkbox"] {
+    accent-color: #a855f7; /* purple-500 */
+}
+
 .search {
     width: 100%;
     border: 1px solid #e0e0e0;
@@ -1366,8 +1375,10 @@ const toggleCategory = (category: string) => {
     
     const index = selectedCategories.value.indexOf(category)
     if (index === -1) {
-        selectedCategories.value = selectedCategories.value.filter(c => c !== 'All')
-        selectedCategories.value.push(category)
+        selectedCategories.value.splice(index, 1)
+        if (selectedCategories.value.length === 0) {
+            selectedCategories.value = ['All']
+        }
     } else {
         selectedCategories.value.splice(index, 1)
         if (selectedCategories.value.length === 0) {
@@ -1387,44 +1398,42 @@ const navigateTo = (path: string, external: boolean = false) => {
 
 
 <template>
-    <div class="">
-        <div class="w-full flex flex-col justify-between">
-            <div class="flex w-full justify-between">
-                <input v-model="search" type="text" placeholder="Search"
-                    class="search w-full max-w-xs border-2 border-gray-300 dark:border-gray-600 rounded-lg py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);" />
-                <div class="relative flex gap-2" ref="dropdownRef">
-                    <button @click.stop="isOpen = !isOpen" 
-                        class="select flex items-center justify-between w-48 border-2 border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);">
-                        <span>{{ selectedCategories.length === 1 ? selectedCategories[0] : `${selectedCategories.length} categories` }}</span>
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div v-if="isOpen" 
-                        class="absolute z-10 top-full w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 max-h-60 overflow-y-auto">
-                        <div class="p-2">
-                            <label class="flex items-center space-x-2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer">
+    <div class="flex flex-col">
+        <div class="w-full flex justify-between gap-2">
+            <input v-model="search" type="text" placeholder="Search"
+                class="search w-full max-w-xs border-2 border-gray-300 dark:border-gray-600 rounded-lg py-3 sm:py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);" />
+            <div class="relative flex gap-2" ref="dropdownRef">
+                <button @click.stop="isOpen = !isOpen" 
+                    class="select flex items-center justify-between w-48 border-2 border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 sm:px-3 sm:py-2 bg-purple-700 dark:bg-purple-600 text-gray-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);">
+                    <span>{{ selectedCategories.length === 1 ? selectedCategories[0] : `${selectedCategories.length} categories` }}</span>
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div v-if="isOpen" 
+                    class="absolute z-10 top-full w-48 rounded-lg shadow-lg bg-white dark:!bg-[#23272f] border border-gray-200 dark:border-gray-700 max-h-60 overflow-y-auto">
+                    <div class="p-2">
+                        <label class="flex items-center space-x-2 p-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer">
+                            <input type="checkbox" 
+                                :checked="selectedCategories.includes('All')"
+                                @change="toggleCategory('All')"
+                                class="rounded border-gray-300 dark:border-gray-600 text-purple-600 dark:text-purple-400 focus:ring-purple-500 dark:focus:ring-purple-400 bg-white dark:bg-gray-800">
+                            <span class="text-gray-900 dark:text-white">All Categories</span>
+                        </label>
+                        <div v-for="category in categories" :key="category" class="mt-1">
+                            <label class="flex items-center space-x-2 p-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer">
                                 <input type="checkbox" 
-                                    :checked="selectedCategories.includes('All')"
-                                    @change="toggleCategory('All')"
-                                    class="rounded border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 focus:ring-purple-500 dark:focus:ring-purple-400 bg-white dark:bg-gray-800">
-                                <span class="text-gray-900 dark:text-gray-100">All Categories</span>
+                                    :checked="selectedCategories.includes(category)"
+                                    @change="toggleCategory(category)"
+                                    class="rounded border-gray-300 dark:border-gray-600 text-purple-600 dark:text-purple-400 focus:ring-purple-500 dark:focus:ring-purple-400 bg-white dark:bg-gray-800">
+                                <span class="text-gray-900 dark:text-white">{{ category }}</span>
                             </label>
-                            <div v-for="category in categories" :key="category" class="mt-1">
-                                <label class="flex items-center space-x-2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer">
-                                    <input type="checkbox" 
-                                        :checked="selectedCategories.includes(category)"
-                                        @change="toggleCategory(category)"
-                                        class="rounded border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 focus:ring-purple-500 dark:focus:ring-purple-400 bg-white dark:bg-gray-800">
-                                    <span class="text-gray-900 dark:text-gray-100">{{ category }}</span>
-                                </label>
-                            </div>
                         </div>
                     </div>
-                    <button @click="navigateTo('https://github.com/coollabsio/coolify/blob/v4.x/CONTRIBUTING.md', true)" class="bg-purple-700 dark:bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors" style="background-color: rgba(101, 117, 133, 0.16);">
-                        Add Service
-                    </button>
                 </div>
+                <button @click="navigateTo('https://github.com/coollabsio/coolify/blob/v4.x/CONTRIBUTING.md', true)" class="bg-purple-700 dark:bg-purple-600 text-gray-900 dark:text-white px-6 py-3 sm:px-4 sm:py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors" style="background-color: rgba(101, 117, 133, 0.16);">
+                    Add Service
+                </button>
             </div>
         </div>
         <div class="grid-container">
@@ -1440,7 +1449,10 @@ const navigateTo = (path: string, external: boolean = false) => {
                             </div>
                             <div class="p-4">
                                 <div class="bg-white dark:default-soft w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                    <img src="https://github.com/coollabsio/coolify-docs/blob/v4.x/docs/public/logo.svg" alt="Coolify" class="w-auto h-16 px-2 rounded-xl" />
+                                    <picture>
+                                        <source srcset="https://github.com/coollabsio/coolify-docs/blob/v4.x/docs/public/logo.svg" type="image/svg+xml">
+                                        <img src="https://github.com/coollabsio/coolify-docs/blob/v4.x/docs/public/logo.svg" alt="Coolify" class="w-auto h-16 px-2 rounded-xl" />
+                                    </picture>
                                 </div>
                             </div>
                             <!-- <div class="flex gap-2 p-4">
@@ -1460,13 +1472,16 @@ const navigateTo = (path: string, external: boolean = false) => {
                         <div v-for="service in filteredServicesByCategory(category)" :key="service.name" @click="navigateTo(`services/${service.name.toLowerCase()}`)"
                             class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                             <div class="w-full h-full flex flex-col dark:default-soft rounded-t-xl p-3">
-                                <div class="font-bold text-md text-gray-900 dark:text-gray-100">{{ service.name }}</div>
+                                <div class="font-bold text-md text-gray-900 mb-1 dark:text-gray-100">{{ service.name }}</div>
                                 <div class="text-gray-500 dark:text-gray-400 text-xs">{{ service.description }}</div>
                             </div>
                             <div class="p-4">
                                 <div class="w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                    <img :src="`https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`" :alt="service.name" 
-                                    class="w-auto h-16 px-2 rounded-xl" />
+                                    <picture>
+                                        <source :srcset="`https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`" type="image/svg+xml">
+                                        <img :src="`https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg`" :alt="service.name" 
+                                        class="w-auto h-16 px-2 rounded-xl" />
+                                    </picture>
                                 </div>
                             </div>
                             <!-- <div class="flex gap-2 p-4">
@@ -1495,7 +1510,10 @@ const navigateTo = (path: string, external: boolean = false) => {
                                     </div>
                                     <div class="p-4">
                                         <div class=" w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                            <img src="https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg" alt="Coolify" class="w-auto h-16 px-2 rounded-xl" />
+                                            <picture>
+                                                <source srcset="https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg" type="image/svg+xml">
+                                                <img src="https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg" alt="Coolify" class="w-auto h-16 px-2 rounded-xl" />
+                                            </picture>
                                         </div>
                                     </div>
                                 </div>
@@ -1504,13 +1522,16 @@ const navigateTo = (path: string, external: boolean = false) => {
                                 <div v-for="service in filteredServicesByCategory(category)" :key="service.name" @click="navigateTo(`services/${service.name.toLowerCase()}`)"
                                     class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                                     <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
-                                        <div class="font-bold text-md text-gray-900 dark:text-gray-100">{{ service.name }}</div>
+                                        <div class="font-bold text-md text-gray-900 mb-1 dark:text-gray-100">{{ service.name }}</div>
                                         <div class="text-gray-500 dark:text-gray-400 text-xs">{{ service.description }}</div>
                                     </div>
                                     <div class="p-4">
                                         <div class=" w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                            <img :src="`https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`" :alt="service.name" 
-                                            class="w-auto h-16 px-2 rounded-xl" />
+                                            <picture>
+                                                <source :srcset="`https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`" type="image/svg+xml">
+                                                <img :src="`https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg`" :alt="service.name" 
+                                                class="w-auto h-16 px-2 rounded-xl" />
+                                            </picture>
                                         </div>
                                     </div>
                                 </div>
