@@ -1462,7 +1462,7 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
                         </div>
                     </div>
                 </div>
-                <button @click="navigateTo('https://github.com/coollabsio/coolify/blob/v4.x/CONTRIBUTING.md', true)" class="bg-purple-700 dark:bg-purple-600 text-gray-900 dark:text-white px-6 py-3 sm:px-4 sm:py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors" style="background-color: rgba(101, 117, 133, 0.16);">
+                <button @click="navigateTo('https://github.com/coollabsio/coolify/blob/v4.x/CONTRIBUTING.md', true)" class="text-gray-900 dark:text-white px-6 py-3 sm:px-4 sm:py-2 rounded-lg transition-colors" style="background-color: rgba(101, 117, 133, 0.16);" onmouseover="this.style.backgroundColor='rgba(75, 85, 99, 0.25)'" onmouseout="this.style.backgroundColor='rgba(101, 117, 133, 0.16)'">
                     Add Service
                 </button>
             </div>
