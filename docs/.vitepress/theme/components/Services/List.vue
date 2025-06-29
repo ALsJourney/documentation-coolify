@@ -14,7 +14,7 @@ input[type="checkbox"] {
 }
 
 .dark input[type="checkbox"] {
-    accent-color: #a855f7; /* purple-500 */
+    accent-color: #8b5cf6; /* purple-500 */
 }
 
 .search {
@@ -1373,14 +1373,19 @@ const toggleCategory = (category: string) => {
         return
     }
     
+    // Remove 'All' if it's currently selected and we're selecting a specific category
+    if (selectedCategories.value.includes('All')) {
+        selectedCategories.value = selectedCategories.value.filter(c => c !== 'All')
+    }
+    
     const index = selectedCategories.value.indexOf(category)
     if (index === -1) {
-        selectedCategories.value.splice(index, 1)
-        if (selectedCategories.value.length === 0) {
-            selectedCategories.value = ['All']
-        }
+        // Category not found, add it
+        selectedCategories.value.push(category)
     } else {
+        // Category found, remove it
         selectedCategories.value.splice(index, 1)
+        // If no categories are selected, default to 'All'
         if (selectedCategories.value.length === 0) {
             selectedCategories.value = ['All']
         }
@@ -1394,6 +1399,32 @@ const navigateTo = (path: string, external: boolean = false) => {
         window.location.href = `/docs/${path}`
     }
 }
+
+// Fallback image composable
+const useImageFallback = () => {
+    const imageErrors = ref(new Set<string>())
+    
+    const handleImageError = (serviceName: string) => {
+        imageErrors.value.add(serviceName)
+    }
+    
+    const hasImageError = (serviceName: string) => {
+        return imageErrors.value.has(serviceName)
+    }
+    
+    const getFallbackImage = () => {
+        return "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTAwIiB6b29tQW5kUGFuPSJtYWduaWZ5IiB2aWV3Qm94PSIwIDAgMzc1IDM3NC45OTk5OTEiIGhlaWdodD0iNTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWVNpZCBtZWV0IiB2ZXJzaW9uPSIxLjAiPjxkZWZzPjxnLz48L2RlZnM+PGcgZmlsbD0iIzhjNTJmZiIgZmlsbC1vcGFjaXR5PSIwLjMwMiI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODQuNjYzNzkzLCAzMTAuMDE2NDg0KSI+PGc+PHBhdGggZD0iTSA2MyAtMTY4IEwgMjEgLTE2OCBMIDIxIC00MiBMIDYzIC00MiBaIE0gNjMgMCBMIDIzMSAwIEwgMjMxIC00MiBMIDYzIC00MiBaIE0gNjMgLTE2OCBMIDIzMSAtMTY4IEwgMjMxIC0yMTAgTCA2MyAtMjEwIFogTSA2MyAtMTY4ICIvPjwvZz48L2c+PC9nPjxnIGZpbGw9IiM4YzUyZmYiIGZpbGwtb3BhY2l0eT0iMC41MDIiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcxLjQwNTUzNywgMjk2Ljc1ODIzMykiPjxnPjxwYXRoIGQ9Ik0gNjMgLTE2OCBMIDIxIC0xNjggTCAyMSAtNDIgTCA2MyAtNDIgWiBNIDYzIDAgTCAyMzEgMCBMIDIzMSAtNDIgTCA2MyAtNDIgWiBNIDYzIC0xNjggTCAyMzEgLTE2OCBMIDIzMSAtMjEwIEwgNjMgLTIxMCBaIE0gNjMgLTE2OCAiLz48L2c+PC9nPjwvZz48ZyBmaWxsPSIjOGM1MmZmIiBmaWxsLW9wYWNpdHk9IjEiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU4LjE0NzI4NywgMjgzLjQ5OTk4MSkiPjxnPjxwYXRoIGQ9Ik0gNjMgLTE2OCBMIDIxIC0xNjggTCAyMSAtNDIgTCA2MyAtNDIgWiBNIDYzIDAgTCAyMzEgMCBMIDIzMSAtNDIgTCA2MyAtNDIgWiBNIDYzIC0xNjggTCAyMzEgLTE2OCBMIDIzMSAtMjEwIEwgNjMgLTIxMCBaIE0gNjMgLTE2OCAiLz48L2c+PC9nPjwvZz48L3N2Zz4="
+    }
+    
+    return {
+        imageErrors,
+        handleImageError,
+        hasImageError,
+        getFallbackImage
+    }
+}
+
+const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useImageFallback()
 </script>
 
 
@@ -1417,7 +1448,7 @@ const navigateTo = (path: string, external: boolean = false) => {
                             <input type="checkbox" 
                                 :checked="selectedCategories.includes('All')"
                                 @change="toggleCategory('All')"
-                                class="rounded border-gray-300 dark:border-gray-600 text-purple-600 dark:text-purple-400 focus:ring-purple-500 dark:focus:ring-purple-400 bg-white dark:bg-gray-800">
+                                class="rounded border-gray-300 dark:border-gray-600 text-purple-600 dark:text-purple-500 focus:ring-purple-600 dark:focus:ring-purple-500 bg-white dark:bg-gray-800">
                             <span class="text-gray-900 dark:text-white">All Categories</span>
                         </label>
                         <div v-for="category in categories" :key="category" class="mt-1">
@@ -1425,7 +1456,7 @@ const navigateTo = (path: string, external: boolean = false) => {
                                 <input type="checkbox" 
                                     :checked="selectedCategories.includes(category)"
                                     @change="toggleCategory(category)"
-                                    class="rounded border-gray-300 dark:border-gray-600 text-purple-600 dark:text-purple-400 focus:ring-purple-500 dark:focus:ring-purple-400 bg-white dark:bg-gray-800">
+                                    class="rounded border-gray-300 dark:border-gray-600 text-purple-600 dark:text-purple-500 focus:ring-purple-600 dark:focus:ring-purple-500 bg-white dark:bg-gray-800">
                                 <span class="text-gray-900 dark:text-white">{{ category }}</span>
                             </label>
                         </div>
@@ -1443,16 +1474,13 @@ const navigateTo = (path: string, external: boolean = false) => {
                     <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6">
                         <div class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                             <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
-                                <div class="font-bold text-lg text-gray-900 dark:text-gray-100">Service not found</div>
-                                <div class="text-gray-500 dark:text-gray-400 text-sm">Try adjusting your search or category filter and/or
+                                <div class="font-bold text-md mb-1 text-gray-900 dark:text-gray-100">Service not found</div>
+                                <div class="text-gray-500 dark:text-gray-400 text-xs">Try adjusting your search or category filter and/or
                                     help us grow by contributing your service to our catalog</div>
                             </div>
                             <div class="p-4">
                                 <div class="bg-white dark:default-soft w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                    <picture>
-                                        <source srcset="https://github.com/coollabsio/coolify-docs/blob/v4.x/docs/public/logo.svg" type="image/svg+xml">
-                                        <img src="https://github.com/coollabsio/coolify-docs/blob/v4.x/docs/public/logo.svg" alt="Coolify" class="w-auto h-16 px-2 rounded-xl" />
-                                    </picture>
+                                    <img :src="getFallbackImage()" alt="Coolify" class="w-auto h-16 px-2 rounded-xl" />
                                 </div>
                             </div>
                             <!-- <div class="flex gap-2 p-4">
@@ -1476,12 +1504,13 @@ const navigateTo = (path: string, external: boolean = false) => {
                                 <div class="text-gray-500 dark:text-gray-400 text-xs">{{ service.description }}</div>
                             </div>
                             <div class="p-4">
-                                <div class="w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                    <picture>
-                                        <source :srcset="`https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`" type="image/svg+xml">
-                                        <img :src="`https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg`" :alt="service.name" 
-                                        class="w-auto h-16 px-2 rounded-xl" />
-                                    </picture>
+                                <div class="bg-white dark:default-soft w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
+                                    <img 
+                                        :src="hasImageError(service.name) ? getFallbackImage() : `https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`"
+                                        :alt="service.name" 
+                                        @error="handleImageError(service.name)"
+                                        class="w-auto h-16 px-2 rounded-xl" 
+                                    />
                                 </div>
                             </div>
                             <!-- <div class="flex gap-2 p-4">
@@ -1504,16 +1533,13 @@ const navigateTo = (path: string, external: boolean = false) => {
                             <template v-if="filteredServicesByCategory(category).length === 0">
                                 <div class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                                     <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
-                                        <div class="font-bold text-md text-gray-900 dark:text-gray-100">No services found</div>
+                                        <div class="font-bold text-md mb-1 text-gray-900 dark:text-gray-100">No services found</div>
                                         <div class="text-gray-500 dark:text-gray-400 text-sm">Try adjusting your search or category filter
                                             and/or help us grow by contributing your service to our catalog</div>
                                     </div>
                                     <div class="p-4">
-                                        <div class=" w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                            <picture>
-                                                <source srcset="https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg" type="image/svg+xml">
-                                                <img src="https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg" alt="Coolify" class="w-auto h-16 px-2 rounded-xl" />
-                                            </picture>
+                                        <div class="bg-white dark:default-soft w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
+                                            <img :src="getFallbackImage()" alt="Coolify" class="w-auto h-16 px-2 rounded-xl" />
                                         </div>
                                     </div>
                                 </div>
@@ -1526,12 +1552,13 @@ const navigateTo = (path: string, external: boolean = false) => {
                                         <div class="text-gray-500 dark:text-gray-400 text-xs">{{ service.description }}</div>
                                     </div>
                                     <div class="p-4">
-                                        <div class=" w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                            <picture>
-                                                <source :srcset="`https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`" type="image/svg+xml">
-                                                <img :src="`https://raw.githubusercontent.com/coollabsio/coolify-docs/refs/heads/v4.x/docs/public/logo.svg`" :alt="service.name" 
-                                                class="w-auto h-16 px-2 rounded-xl" />
-                                            </picture>
+                                        <div class="bg-white dark:default-soft w-full h-full min-h-[200px] rounded-xl flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
+                                            <img 
+                                                :src="hasImageError(service.name) ? getFallbackImage() : `https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`"
+                                                :alt="service.name" 
+                                                @error="handleImageError(service.name)"
+                                                class="w-auto h-16 px-2 rounded-xl" 
+                                            />
                                         </div>
                                     </div>
                                 </div>
