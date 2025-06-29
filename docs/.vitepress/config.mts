@@ -61,6 +61,7 @@ export default defineConfig({
     },
     logo: '/coolify-logo-transparent.png',
     nav: [
+      { text: 'Services', link: '/services/overview' },
       { text: 'Coolify Cloud', link: 'https://coolify.io/pricing/' },
       {
         text: 'Resources',
