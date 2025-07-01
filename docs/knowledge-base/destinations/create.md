@@ -50,6 +50,7 @@ Before creating a destination, ensure you have:
 
 - Choose from available servers in your team
 - Server must be online and accessible
+- Can not be a [build server](/builds/servers)
 - Determines where the Docker network will be created
 
 ### Destination Type
