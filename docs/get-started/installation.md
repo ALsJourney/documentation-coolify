@@ -48,7 +48,7 @@ Coolify supports several Linux distributions:
 - Debian-based (e.g., Debian, Ubuntu)
 - Redhat-based (e.g., CentOS, Fedora, Redhat, AlmaLinux, Rocky, Asahi)
 - SUSE-based (e.g., SLES, SUSE, openSUSE)
-- Arch Linux
+- Arch Linux (Note: Not all Arch derivatives are supported)
 - Alpine Linux
 - Raspberry Pi OS 64-bit (Raspbian)
 
