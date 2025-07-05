@@ -1,8 +1,4 @@
 <style scoped>
-.services-grid {
-    @apply space-y-8;
-}
-
 .default-soft{
     background: rgba(101, 117, 133, 0.16);
     border-color: #3c3f44;
@@ -24,6 +20,7 @@ input[type="checkbox"] {
     padding: 8px 12px;
     background-color: #fff;
     transition: border-color 0.3s ease;
+    font-size: 14px;
 }
 
 .dark .search {
@@ -32,18 +29,104 @@ input[type="checkbox"] {
     color: #f9fafb;
 }
 
+/* Responsive search input */
+@media (max-width: 640px) {
+    .search {
+        padding: 10px 12px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+@media (max-width: 480px) {
+    .search {
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+}
+
 .select {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 8px 12px;
     background-color: #fff;
     transition: border-color 0.3s ease;
+    font-size: 14px;
+    min-width: 120px;
 }
 
 .dark .select {
     border-color: #374151;
     background-color: #1f2937;
     color: #f9fafb;
+}
+
+/* Responsive select dropdown */
+@media (max-width: 640px) {
+    .select {
+        padding: 10px 12px;
+        font-size: 16px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .select {
+        padding: 12px 16px;
+        font-size: 16px;
+        min-width: 80px;
+    }
+}
+
+/* Responsive container layout */
+@media (min-width: 640px) {
+    .input-container {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .input-container .search {
+        max-width: 20rem;
+    }
+    
+    .input-container .button-group {
+        flex-direction: row;
+    }
+    
+    .input-container .select {
+        width: 12rem;
+    }
+    
+    .input-container .add-service-btn {
+        width: auto;
+    }
+    
+    .dropdown-content {
+        left: auto;
+        width: 12rem;
+    }
+}
+
+/* Responsive dropdown content */
+@media (max-width: 640px) {
+    .dropdown-content {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .dropdown-content label {
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dropdown-content {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    .dropdown-content label {
+        padding: 12px 10px;
+    }
 }
 
 .select:hover {
@@ -103,14 +186,21 @@ input[type="checkbox"] {
     grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+/* Responsive grid columns */
 @media (min-width: 640px) {
-    .sm\:grid-cols-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (min-width: 768px) {
-    .md\:grid-cols-3 {
+    .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .services-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
@@ -1350,21 +1440,27 @@ onUnmounted(() => {
 const filteredServices = computed(() =>
     services.filter(s =>
         (selectedCategories.value.includes('All') || selectedCategories.value.includes(s.category)) &&
-        s.name.toLowerCase().includes(search.value.toLowerCase())
+        (search.value === '' || s.name.toLowerCase().includes(search.value.toLowerCase()) || s.description.toLowerCase().includes(search.value.toLowerCase()))
     )
 )
 
 const filteredServicesByCategory = (category: string) => {
     return services.filter(s =>
         s.category === category &&
-        s.name.toLowerCase().includes(search.value.toLowerCase())
+        (search.value === '' || s.name.toLowerCase().includes(search.value.toLowerCase()) || s.description.toLowerCase().includes(search.value.toLowerCase()))
     )
 }
 
 const filteredCategories = computed(() => {
-    return categories.value.filter(category =>
-        filteredServicesByCategory(category).length > 0
-    )
+    if (selectedCategories.value.includes('All')) {
+        return categories.value.filter(category =>
+            filteredServicesByCategory(category).length > 0
+        )
+    } else {
+        return selectedCategories.value.filter(category =>
+            filteredServicesByCategory(category).length > 0
+        )
+    }
 })
 
 const toggleCategory = (category: string) => {
@@ -1430,19 +1526,19 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
 
 <template>
     <div class="flex flex-col">
-        <div class="w-full flex justify-between gap-2">
+        <div class="input-container w-full flex flex-col justify-between gap-2">
             <input v-model="search" type="text" placeholder="Search"
-                class="search w-full max-w-xs border-2 border-gray-300 dark:border-gray-600 rounded-lg py-3 sm:py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);" />
-            <div class="relative flex gap-2" ref="dropdownRef">
+                class="search w-full border-2 border-gray-300 dark:border-gray-600 rounded-lg py-3 sm:py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);" />
+            <div class="button-group relative flex flex-col gap-2" ref="dropdownRef">
                 <button @click.stop="isOpen = !isOpen" 
-                    class="select flex items-center justify-between w-48 border-2 border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 sm:px-3 sm:py-2 bg-purple-700 dark:bg-purple-600 text-gray-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);">
-                    <span>{{ selectedCategories.length === 1 ? selectedCategories[0] : `${selectedCategories.length} categories` }}</span>
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    class="select flex items-center justify-between w-full border-2 border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 sm:px-3 sm:py-2 bg-purple-700 dark:bg-purple-600 text-gray-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-800" style="background-color: rgba(101, 117, 133, 0.16);">
+                    <span class="text-sm sm:text-base">{{ selectedCategories.length === 1 ? selectedCategories[0] : `${selectedCategories.length} categories` }}</span>
+                    <svg class="w-4 h-4 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div v-if="isOpen" 
-                    class="absolute z-10 top-full w-48 rounded-lg shadow-lg bg-white dark:!bg-[#23272f] border border-gray-200 dark:border-gray-700 max-h-60 overflow-y-auto">
+                    class="dropdown-content absolute z-10 top-full left-0 right-0 rounded-lg shadow-lg bg-white dark:!bg-[#23272f] border border-gray-200 dark:border-gray-700 max-h-60 overflow-y-auto">
                     <div class="p-2">
                         <label class="flex items-center space-x-2 p-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer">
                             <input type="checkbox" 
@@ -1462,7 +1558,7 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
                         </div>
                     </div>
                 </div>
-                <button @click="navigateTo('https://github.com/coollabsio/coolify/blob/v4.x/CONTRIBUTING.md', true)" class="text-gray-900 dark:text-white px-6 py-3 sm:px-4 sm:py-2 rounded-lg transition-colors" style="background-color: rgba(101, 117, 133, 0.16);" onmouseover="this.style.backgroundColor='rgba(75, 85, 99, 0.25)'" onmouseout="this.style.backgroundColor='rgba(101, 117, 133, 0.16)'">
+                <button @click="navigateTo('https://github.com/coollabsio/coolify/blob/v4.x/CONTRIBUTING.md', true)" class="add-service-btn text-gray-900 dark:text-white px-6 py-3 sm:px-4 sm:py-2 rounded-lg transition-colors text-sm sm:text-base w-full" style="background-color: rgba(101, 117, 133, 0.16);" onmouseover="this.style.backgroundColor='rgba(75, 85, 99, 0.25)'" onmouseout="this.style.backgroundColor='rgba(101, 117, 133, 0.16)'">
                     Add Service
                 </button>
             </div>
@@ -1470,8 +1566,8 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
         <div class="grid-container">
             <template v-if="selectedCategories.includes('All')">
                 <div v-if="filteredCategories.length === 0">
-                    <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Search Results</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">No results found</h2>
+                    <div class="services-grid grid grid-cols-1 gap-6">
                         <div class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                             <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
                                 <div class="font-bold text-md mb-1 text-gray-900 dark:text-gray-100">Service not found</div>
@@ -1496,7 +1592,7 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
                 </div>
                 <div v-else v-for="category in filteredCategories" :key="category">
                     <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">{{ category }}</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6 rounded-xl">
+                    <div class="services-grid grid grid-cols-1 gap-6 rounded-xl">
                         <div v-for="service in filteredServicesByCategory(category)" :key="service.name" @click="navigateTo(`services/${service.name.toLowerCase()}`)"
                             class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                             <div class="w-full h-full flex flex-col dark:default-soft rounded-t-xl p-3">
@@ -1529,7 +1625,7 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
                 <div>
                     <div v-for="category in selectedCategories" :key="category">
                         <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">{{ category }}</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+                        <div class="services-grid grid grid-cols-1 gap-6 mb-8">
                             <template v-if="filteredServicesByCategory(category).length === 0">
                                 <div class="dark:default-soft rounded-xl shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                                     <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
