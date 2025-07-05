@@ -101,7 +101,7 @@ input[type="checkbox"] {
     }
     
     .dropdown-content {
-        left: auto;
+        left: 0;
         width: 12rem;
     }
 }
