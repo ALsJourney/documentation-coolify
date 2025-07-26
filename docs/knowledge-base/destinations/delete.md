@@ -24,39 +24,6 @@ Verify that no other resources depend on this destination:
 
 If you have any peristent storages in applications or databases that you want to keep, make sure to back them up before proceeding with deletion.
 
-## Deletion Process
-
-### Step 1: Stop All Resources
-
-<ZoomableImage src="/images/destinations/stop-resource.webp" />
-
-For each application, database, and service in the destination:
-
-1. Go to the configuration page of the resource
-2. Click **Stop** in the top right corner
-3. Wait for the resource to stop completely
-
-### Step 2: Remove Resources
-
-For each application, database, and service in the destination:
-
-<ZoomableImage src="/images/destinations/delete-resource.webp" />
-
-1. Go to the configuration page of the resource
-2. Click **Danger Zone** in the left menu
-3. Click the red **Delete** button
-4. Confirm the deletion
-
-### Step 3: Delete the Destination
-
-<ZoomableImage src="/images/destinations/delete-destination.webp" />
-
-1. Navigate to the destination page
-2. Click **Delete Destination**
-3. Confirm you understand the consequences
-4. Enter your password if required
-5. Confirm the deletion
-
 ## What Happens During Deletion
 
 ### Network Cleanup
