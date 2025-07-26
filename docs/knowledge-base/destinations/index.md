@@ -50,8 +50,11 @@ Destinations can host multiple types of resources:
 4. **Flexibility**: Ability to deploy the same application to multiple destinations/servers
 5. **Scalability**: Support for multi-server deployments through additional destinations
 
+## How to Use Destinations
+
 ## Related Topics
 
 - [Creating Destinations](./create.md)
 - [Managing Destinations](./manage.md)
+- [Deleting Destinations](./delete.md)
 - [Network Configuration](./networking.md)
