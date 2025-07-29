@@ -1571,8 +1571,7 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
                         <div class="dark:default-soft rounded-lg shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                             <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
                                 <div class="font-bold text-md mb-1 text-gray-900 dark:text-gray-100">Service not found</div>
-                                <div class="text-gray-500 dark:text-gray-400 text-xs">Try adjusting your search or category filter and/or
-                                    help us grow by contributing your service to our catalog</div>
+                                <div class="text-gray-500 dark:text-gray-400 text-xs">Try adjusting your search or category filter.</div>
                             </div>
                             <div class="p-4">
                                 <div class="bg-white dark:default-soft w-full h-full min-h-[100px] rounded-lg flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
@@ -1630,8 +1629,7 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
                                 <div class="dark:default-soft rounded-lg shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
                                     <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
                                         <div class="font-bold text-md mb-1 text-gray-900 dark:text-gray-100">No services found</div>
-                                        <div class="text-gray-500 dark:text-gray-400 text-sm">Try adjusting your search or category filter
-                                            and/or help us grow by contributing your service to our catalog</div>
+                                        <div class="text-gray-500 dark:text-gray-400 text-sm">Try adjusting your search or category filter.</div>
                                     </div>
                                     <div class="p-4">
                                         <div class="bg-white dark:default-soft w-full h-full min-h-[100px] rounded-lg flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
