@@ -182,6 +182,11 @@ input[type="checkbox"] {
     grid-auto-rows: minmax(200px, auto);
 }
 
+/* Override for not found cards */
+.services-grid.not-found-grid {
+    grid-auto-rows: auto;
+}
+
 .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -1567,25 +1572,12 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
             <template v-if="selectedCategories.includes('All')">
                 <div v-if="filteredCategories.length === 0">
                     <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">No results found</h2>
-                    <div class="services-grid grid grid-cols-1 gap-6">
+                    <div class="services-grid not-found-grid grid grid-cols-1 gap-6">
                         <div class="dark:default-soft rounded-lg shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
-                            <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
+                            <div class="w-full flex flex-col dark:default-soft rounded-b-xl p-3">
                                 <div class="font-bold text-md mb-1 text-gray-900 dark:text-gray-100">Service not found</div>
                                 <div class="text-gray-500 dark:text-gray-400 text-xs">Try adjusting your search or category filter.</div>
                             </div>
-                            <div class="p-4">
-                                <div class="bg-white dark:default-soft w-full h-full min-h-[100px] rounded-lg flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                    <img :src="getFallbackImage()" alt="Coolify" class="w-auto h-8 px-2 rounded-lg" />
-                                </div>
-                            </div>
-                            <!-- <div class="flex gap-2 p-4">
-                                <button class="bg-purple-700 dark:bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors">
-                                    Install Service
-                                </button>
-                                <button class="bg-purple-700 dark:bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors">
-                                    Read More
-                                </button>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -1624,17 +1616,12 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
                 <div>
                     <div v-for="category in selectedCategories" :key="category">
                         <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">{{ category }}</h2>
-                        <div class="services-grid grid grid-cols-1 gap-6 mb-8">
+                        <div class="services-grid not-found-grid grid grid-cols-1 gap-6 mb-8">
                             <template v-if="filteredServicesByCategory(category).length === 0">
-                                <div class="dark:default-soft rounded-lg shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
-                                    <div class="w-full h-full flex flex-col dark:default-soft rounded-b-xl p-3">
+                                <div class="dark:default-soft h-auto rounded-lg shadow border border-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors hover:cursor-pointer flex flex-col">
+                                    <div class="w-full flex flex-col dark:default-soft rounded-b-xl p-3">
                                         <div class="font-bold text-md mb-1 text-gray-900 dark:text-gray-100">No services found</div>
                                         <div class="text-gray-500 dark:text-gray-400 text-sm">Try adjusting your search or category filter.</div>
-                                    </div>
-                                    <div class="p-4">
-                                        <div class="bg-white dark:default-soft w-full h-full min-h-[100px] rounded-lg flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                            <img :src="getFallbackImage()" alt="Coolify" class="w-auto h-8 px-2 rounded-lg" />
-                                        </div>
                                     </div>
                                 </div>
                             </template>
