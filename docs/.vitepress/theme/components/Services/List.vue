@@ -1442,13 +1442,6 @@ onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside)
 })
 
-const filteredServices = computed(() =>
-    services.filter(s =>
-        (selectedCategories.value.includes('All') || selectedCategories.value.includes(s.category)) &&
-        (search.value === '' || s.name.toLowerCase().includes(search.value.toLowerCase()) || s.description.toLowerCase().includes(search.value.toLowerCase()))
-    )
-)
-
 const filteredServicesByCategory = (category: string) => {
     return services.filter(s =>
         s.category === category &&
@@ -1525,7 +1518,7 @@ const useImageFallback = () => {
     }
 }
 
-const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useImageFallback()
+const { handleImageError, hasImageError, getFallbackImage } = useImageFallback()
 </script>
 
 
@@ -1600,14 +1593,6 @@ const { imageErrors, handleImageError, hasImageError, getFallbackImage } = useIm
                                     />
                                 </div>
                             </div>
-                            <!-- <div class="flex gap-2 p-4">
-                                <button class="bg-purple-700 dark:bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors">
-                                    Install Service
-                                </button>
-                                <button class="border border-white text-white px-4 py-2 rounded-lg hover:bg-purple-800 dark:hover:bg-purple-700 transition-colors">
-                                    Read More
-                                </button>
-                            </div> -->
                         </div>
                     </div>
                 </div>
