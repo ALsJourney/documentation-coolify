@@ -22,9 +22,6 @@ import 'virtual:group-icons.css'
 // Import plugins
 import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
 
-// @ts-ignore
-import spec from "./openapi.json" assert { type: "json" };
-
 // Import components
 import Card from "./components/Card.vue";
 import CardGroup from "./components/CardGroup.vue";
@@ -44,12 +41,30 @@ import { DirectiveBinding } from "vue";
 export default {
   extends: DefaultTheme,
   Layout: Landing,
-  enhanceApp({ app, router, siteData }) {
+  async enhanceApp({ app, router, siteData }) {
     enhanceAppWithTabs(app);
 
-    useOpenapi({
-      spec,
-    });
+    // Dynamically fetch the OpenAPI spec
+    try {
+      // Use GitHub's raw content API to avoid CORS issues
+      const response = await fetch("https://raw.githubusercontent.com/coollabsio/coolify/v4.x/openapi.json");
+      const spec = await response.json();
+      
+      useOpenapi({
+        spec,
+      });
+    } catch (error) {
+      console.error("Failed to load OpenAPI spec from GitHub, falling back to local file:", error);
+      // Fallback to local file if GitHub fetch fails
+      try {
+        const localSpec = await import("./openapi.json", { assert: { type: "json" } });
+        useOpenapi({
+          spec: localSpec.default,
+        });
+      } catch (localError) {
+        console.error("Failed to load local OpenAPI spec:", localError);
+      }
+    }
 
     theme.enhanceApp({ app, router, siteData });
     app.component("Card", Card);
