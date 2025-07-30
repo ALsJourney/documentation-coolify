@@ -14,9 +14,9 @@ Navigate to **Destinations** to see all your destinations across all servers.
 Navigate to **Servers** → **[Server Name]** → **Destinations** to view destinations specific to that server.
 <ZoomableImage src="/docs/images/destinations/destinations-server-overview.webp" />
 
-## Editing Destination Settings
+## Editing & Deleting Destinations
 
-Click on a destination to access its management page where you can either edit or [delete](./delete.md) it.
+Click on a destination to access its management page where you can either edit or delete it.
 
 <ZoomableImage src="/docs/images/destinations/destinations-settings.webp" />
 
@@ -26,22 +26,40 @@ Click on a destination to access its management page where you can either edit o
 - **Server IP**: View the server IP address where the destination is hosted (read-only)
 - **Docker Network**: View the Docker network name (read-only)
 
+### Before You Delete
+
+#### Check for Active Resources
+
+Coolify won't allow you to delete a destination that has active resources. Therefore, before deleting a destination, ensure it's not being used:
+
+1. **Applications**: No applications deployed to this destination
+2. **Databases**: No databases running in this destination
+3. **Services**: No services configured for this destination
+
+#### Resource Dependencies
+
+Verify that no other resources depend on this destination, to avoid issues after deletion:
+
+- **Environment Variables**: Check for hardcoded references
+- **Network Dependencies**: Ensure no cross-destination communication
+- **Proxies & Load Balancers**: Update load balancer and proxy configuration
+
 ## Assign Resources to a Destination
 
 When you have more then one destination on a server, you will get prompted to select a destination when creating a new resource.
 
 <ZoomableImage src="/docs/images/destinations/destinations-selection.webp" />
 
-If your resource is already created, you can make a **Copy** of it to another destination:
+If your resource is already created, you can make a **Clone** of it to another destination:
 
-<ZoomableImage src="/docs/images/destinations/destinations-copy.webp" />
+<ZoomableImage src="/docs/images/destinations/destinations-clone.webp" />
 
 1. Navigate to the resource's management page over the **Projects** tab.
 2. Go to **Resource Operations**
 3. Select the destination
 
 ::: warning
-Copying a resource to another destination will create a new instance of that resource. This will not move the resource or it's data but create a duplicate.
+Cloning a resource to another destination will create a new instance of that resource. This will not move the resource or it's data but create a duplicate.
 :::
 
 ### Service Stacks
