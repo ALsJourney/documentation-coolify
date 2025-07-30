@@ -44,7 +44,7 @@ environment:
 And then in the UI set `NODE_ENV` to your desired shared variable. For example if you want to use a team based variable (make sure you have the `NODE_ENV` variable set in the Team Variables):
 
 ```bash
-NODE_ENV=${team.NODE_ENV}
+NODE_ENV={{team.NODE_ENV}}
 ```
 
 ## Predefined Variables
