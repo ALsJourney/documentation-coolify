@@ -56,5 +56,3 @@ Destinations can host multiple types of resources:
 
 - [Creating Destinations](./create.md)
 - [Managing Destinations](./manage.md)
-- [Deleting Destinations](./delete.md)
-- [Network Configuration](./networking.md)
