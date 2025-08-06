@@ -1,5 +1,8 @@
 ---
 title: "Healthcheck"
+description: "Learn how to manage healthchecks in Traefik for your resources."
+keywords:
+  ["Traefik", "Healthchecks", "Not Found", "404", "503", "No available server"]
 ---
 
 # Healthchecks
