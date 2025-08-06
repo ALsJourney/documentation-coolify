@@ -3,13 +3,14 @@ title: "Healthcheck"
 ---
 
 # Healthchecks
+
 For Traefik to be able to route traffic to your services, it needs to know if they are healthy or not. This is done by using healthchecks.
 
 ## Enabled
 
 If your resource has healthchecks enabled, Traefik will only route traffic to it if the healthcheck passes. If the healthcheck fails, Traefik will not route traffic to the resource.
 
-**It will cause the resource to be 404'd.**
+**It will cause the resource to return a `404 Not Found` or `No available server` error.**
 
 ## Disabled
 
