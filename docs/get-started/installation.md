@@ -11,7 +11,6 @@ If you decide to go with **Coolify Cloud**, there's no installation required. Si
 
 Below, you'll find instructions for installing Coolify if you prefer to **self-host** it.
 
-
 ## Self-hosted Installation
 
 If you like taking control and managing everything yourself, self-hosting Coolify is the way to go. 
@@ -24,7 +23,6 @@ curl -fsSL https://cdn.coollabs.io/coolify/install.sh | sudo bash
 ```
 Run this script in your terminal, and Coolify will be installed automatically. For more details, including firewall configuration and prerequisites, check out the guide below.
 :::
-
 
 ## Before You Begin
 
