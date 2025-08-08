@@ -1,5 +1,6 @@
 ---
 title: Installation
+outline: 2
 ---
 
 <ZoomableImage src="/docs/images/get-started/installation-banner.webp" />
@@ -12,6 +13,7 @@ Below, you'll find instructions for installing Coolify if you prefer to **self-h
 
 
 ## Self-hosted Installation
+
 If you like taking control and managing everything yourself, self-hosting Coolify is the way to go. 
 
 It's completely free (apart from your server costs) and gives you full control over your setup.
@@ -25,6 +27,7 @@ Run this script in your terminal, and Coolify will be installed automatically. F
 
 
 ## Before You Begin
+
 Before installing Coolify, make sure your server meets the necessary requirements.
 
 ### 1. Server Requirements

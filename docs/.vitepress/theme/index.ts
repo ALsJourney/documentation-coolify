@@ -10,14 +10,11 @@ import DefaultTheme from "vitepress/theme";
 
 // Import styles
 import "./style.css";
-// import "./style-dark-default.css";
-// Custom Scrollbars on Windows
-import "./scrollbar.css";
-// Custom Style override
 // import "./custom.css";
 import "./tailwind.postcss";
 import "vitepress-openapi/dist/style.css";
 import 'virtual:group-icons.css'
+
 
 // Import plugins
 import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
@@ -35,6 +32,10 @@ import TabBlock from "./components/TabBlock.vue";
 import ZoomableImage from "./components/ZoomableImage.vue";
 import Globe from "./components/Landing/Globe.vue";
 import Browser from "./components/Landing/Browser.vue";
+
+// Import Vdoc overrides
+import VPDoc from "./components/VPDoc.vue";
+import VPDocAside from "./components/VPDocAside.vue";
 import { DirectiveBinding } from "vue";
 
 export default {
@@ -77,6 +78,10 @@ export default {
     app.component("ZoomableImage", ZoomableImage);
     app.component("Globe", Globe);
     app.component("Browser", Browser);
+
+    // Register Vdoc overrides
+    app.component("VPDoc", VPDoc);
+    app.component("VPDocAside", VPDocAside);
 
     router.onAfterRouteChange = () => {
       if (typeof window !== "undefined" && (window as any).plausible) {

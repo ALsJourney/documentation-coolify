@@ -12,7 +12,7 @@ import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { loadEnv } from 'vitepress'
 const env = loadEnv('', process.cwd())
-const sidebar = useSidebar({ spec, collapsible: true })
+const sidebar = useSidebar({ spec })
 
 // Add SSH to bundled languages
 bundledLanguages['ssh'] = {
@@ -75,6 +75,8 @@ export default defineConfig({
     search: {
       provider: 'local'
     },
+
+    outline: [2, 4],
 
     editLink: {
       pattern: 'https://github.com/coollabsio/documentation-coolify/tree/main/docs/:path',
