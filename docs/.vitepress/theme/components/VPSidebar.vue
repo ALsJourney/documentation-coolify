@@ -44,7 +44,7 @@ watch(
 
     <aside v-if="hasSidebar" class="VPSidebar" :class="{ open }" ref="navEl" @click.stop>
 
-        <div class="curtain mb-12" />
+        <div class="curtain sm:mb-12" />
 
         
         <nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1">
