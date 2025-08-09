@@ -28,6 +28,8 @@ If your resource has health checks _disabled_, Traefik will route traffic to it 
 
 There are two ways to configure health checks for your applications:
 
+<ZoomableImage src="/docs/images/knowledge-base/resources/healthcheck.webp" />
+
 1. **Using the UI**: You can set up health checks directly in the Coolify UI when creating or editing an application. You can specify the path to check, the expected response code, and the interval for checking. It will be required that the container has either `curl` or `wget` installed to perform the health checks.
 
 2. **Using the Dockerfile**: You can also define health checks in your Dockerfile using the [HEALTHCHECK](https://docs.docker.com/reference/dockerfile/#healthcheck) instruction. This allows you to specify how the health check should be performed, including the command to run and the expected response.
