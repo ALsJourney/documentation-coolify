@@ -301,7 +301,7 @@ php_admin_value[post_max_size] = 256M
 
 1. Create a new resource from a private or public repository.
 2. Set the `Ports Exposes` field to `8000`, for example.
-3. Set default environnement variables using `Developer view` in `Environment Variables`:
+3. Set default environment variables using `Developer view` in `Environment Variables`:
 
 ```sh
 APP_DEBUG=false
