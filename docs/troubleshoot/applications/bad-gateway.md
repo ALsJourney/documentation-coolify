@@ -52,9 +52,8 @@ If your deployed application **maybe** works when you access it via your serverâ
 
     <ZoomableImage src="/docs/images/troubleshoot/applications/bad-gateway/4.webp" />
 
-- **Restart Container / Check Logs:** Restart the container or check its logs to diagnose the issue. Often, a failing health check might be the problem, and removing the health check could fix it.
-
-    <ZoomableImage src="/docs/images/troubleshoot/applications/bad-gateway/5.webp" />
+- **Restart Container / Check Logs:** Restart the container or check its logs to diagnose the issue.
+  <ZoomableImage src="/docs/images/troubleshoot/applications/bad-gateway/5.webp" />
 
 ## Support
 
