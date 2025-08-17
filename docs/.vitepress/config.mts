@@ -249,6 +249,15 @@ export default defineConfig({
                 ]
               },
               {
+                text: 'Destinations',
+                collapsed: true,
+                items: [
+                  { text: 'Overview', link: '/knowledge-base/destinations/index' },
+                  { text: 'Creating Destinations', link: '/knowledge-base/destinations/create' },
+                  { text: 'Managing Destinations', link: '/knowledge-base/destinations/manage' },
+                ]
+              },
+              {
                 text: 'Resources',
                 collapsed: true,
                 items: [
