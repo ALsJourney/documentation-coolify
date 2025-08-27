@@ -48,7 +48,7 @@ watch(
 
         
         <nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1">
-            <VPNavBarSearch class="visually-hidden sm:block search w-full my-auto px-0 " />
+            <VPNavBarSearch class="sm:block search w-full my-auto px-0 " /> 
 
             <span class="visually-hidden" id="sidebar-aria-label">
                 Sidebar Navigation
