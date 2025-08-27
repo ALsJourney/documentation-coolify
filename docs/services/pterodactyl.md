@@ -13,12 +13,12 @@ Stop settling for less. Make game servers a first-class citizen on your platform
 
 ## Screenshots
 
-![](/docs/images/services/pterodactyl-screenshot-1.webp)
-![](/docs/images/services/pterodactyl-screenshot-2.webp)
-![](/docs/images/services/pterodactyl-screenshot-3.webp)
-![](/docs/images/services/pterodactyl-screenshot-4.webp)
-![](/docs/images/services/pterodactyl-screenshot-5.webp)
-![](/docs/images/services/pterodactyl-screenshot-6.webp)
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-1.webp" />
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-2.webp" />
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-3.webp" />
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-4.webp" />
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-5.webp" />
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-6.webp" />
 
 
 ## Links

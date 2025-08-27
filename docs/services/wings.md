@@ -53,8 +53,8 @@ The **Pterodactyl Panel** should still be configured to use port `443` externall
 
 ## Screenshots
 
-_(Wings itself runs in the background and doesn’t have a UI, so these are typically viewed via the Panel.)_
+_(Wings itself runs in the background and doesn't have a UI, so these are typically viewed via the Panel.)_
 
-![](/docs/images/services/pterodactyl-screenshot-7.webp)
-![](/docs/images/services/pterodactyl-screenshot-8.webp)
-![](/docs/images/services/pterodactyl-screenshot-9.webp)
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-7.webp" />
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-8.webp" />
+<ZoomableImage src="/docs/images/services/pterodactyl-screenshot-9.webp" />
