@@ -48,9 +48,9 @@ export default {
     // Dynamically fetch the OpenAPI spec
     try {
       // Use GitHub's raw content API to avoid CORS issues
-      const response = await fetch("https://raw.githubusercontent.com/coollabsio/coolify/v4.x/openapi.json");
+      const response = await fetch("https://raw.githubusercontent.com/coollabsio/coolify/v4.x/openapi.json", { cache: "no-store" });
       const spec = await response.json();
-      
+
       useOpenapi({
         spec,
       });
