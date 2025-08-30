@@ -439,6 +439,7 @@ export default defineConfig({
             collapsed: true,
             items: [
               { text: 'Bad Gateway', link: '/troubleshoot/applications/bad-gateway.md' },
+              { text: 'Gateway Timeout (504)', link: '/troubleshoot/applications/gateway-timeout' },
               { text: 'Failed To Get Access Token During Deployment', link: '/troubleshoot/applications/failed-to-get-token' },
             ]
           },
