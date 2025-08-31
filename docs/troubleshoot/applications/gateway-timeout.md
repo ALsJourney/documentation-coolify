@@ -36,7 +36,7 @@ There are two primary scenarios that cause 504 Gateway Timeout errors in Coolify
 
 ### Root Cause
 
-When you define custom Docker networks in your Docker Compose file, the `coolify-proxy` container runs in Coolify's default network while your application runs in the custom network. This network isolation prevents the proxy from reaching your application, especially when Docker's internal DNS returns different IPs based on timing and network joins.
+When you define custom Docker networks in your Docker Compose file, the `coolify-proxy` container runs in Coolify's own networks while your application runs in the custom network. This network isolation prevents the proxy from reaching your application, especially when Docker's internal DNS returns different IPs based on timing and network joins.
 
 ### Diagnosis
 
@@ -95,22 +95,6 @@ docker network connect <your-network-name> coolify-proxy
 ```
 
 **Note:** This is a temporary fix that may need to be reapplied after proxy restarts.
-
-#### Solution 3: Add Health Checks
-
-Adding health checks can help maintain network connectivity:
-
-```yaml
-services:
-  app:
-    image: myapp:latest
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-```
 
 ## Issue 2: Large Upload/Download Timeouts
 
