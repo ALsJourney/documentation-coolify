@@ -4,6 +4,7 @@ description: "A guide on how to use Docker Compose deployments with Coolify."
 ---
 
 # Docker Compose
+
 If you are using `Docker Compose` based deployments, you need to understand how Docker Compose works with Coolify.
 
 In all cases the Docker Compose (`docker-compose.y[a]ml`) file is the single source of truth.
@@ -21,8 +22,43 @@ services:
       - SOME_DEFAULT_VARIABLE=${OTHER_NAME_IN_COOLIFY:-hello} # Creates an environment variable of value "hello" editable in Coolify's UI
 ```
 
-
 <ZoomableImage src="/docs/images/screenshots/Docker-compose-environment-variables-UI.webp" />
+
+## Required environment variables
+
+Coolify supports marking environment variables as required using Docker Compose's built-in syntax. This feature improves the deployment experience by validating critical configuration before starting services.
+
+### Syntax
+
+Use the `:?` syntax to mark variables as required:
+
+```yaml
+services:
+  webapp:
+    environment:
+      # Required variable - must be set, no default
+      - DATABASE_URL=${DATABASE_URL:?}
+
+      # Required variable with default value - prefilled but editable
+      - PORT=${PORT:?3000}
+
+      # Optional variable with default - standard Docker Compose behavior
+      - DEBUG=${DEBUG:-false}
+```
+
+**Key behaviors:**
+
+- **Required variables** (`${VAR:?}`) appear first in the environment variables list and show a red border when empty
+- **Required with defaults** (`${VAR:?default}`) are prefilled with the default value but remain editable
+- **Optional variables** (`${VAR:-default}`) use standard Docker Compose behavior
+
+If a required variable is not set during deployment:
+
+- Coolify will highlight the missing variable in the UI
+- The deployment will be prevented until all required variables are provided
+- Clear error messages guide users to fix the configuration
+
+This validation happens before container creation, preventing partial deployments and runtime failures.
 
 ## Coolify's magic environment variables
 
@@ -114,7 +150,7 @@ services:
 If you have a service that you do not want to be part of your overall healthchecks, you can exclude it from the healthchecks by setting the `exclude_from_hc` option to `true`.
 
 ::: success Tip
- This is useful for example if you have a migration service that runs only once and then the container stops.
+This is useful for example if you have a migration service that runs only once and then the container stops.
 :::
 
 ```yaml
@@ -136,13 +172,12 @@ Here is an example. You have a stack with a `postgres` database and a `laravel` 
 
 If you set `Connect to Predefined Network` option on your `laravel` stack, your `laravel` application will be able to connect to your `postgres` database, but you need to use the `postgres-<uuid>` as your database host.
 
-
 ## Raw Docker Compose Deployment
 
 You can set up your project to use docker compose build pack to deploy your compose file directly without most of Coolify's magic. It is called `Raw Compose Deployment`.
 
 ::: warning Caution
-  This is for advanced users. If you are not familiar with Docker Compose, we do not recommend this method.
+This is for advanced users. If you are not familiar with Docker Compose, we do not recommend this method.
 :::
 
 ### Labels
