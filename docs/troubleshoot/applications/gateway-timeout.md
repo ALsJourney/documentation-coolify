@@ -15,7 +15,7 @@ tags:
 
 # Gateway Timeout (504) Errors
 
-Gateway timeout errors occur when the Coolify proxy cannot get a response from your application within the configured timeout period. This is different from Bad Gateway (502) errors, which indicate the proxy cannot connect to your application at all.
+Gateway timeout errors occur when the Coolify proxy cannot get a response from your application within the configured timeout period. This is different from [Bad Gateway (502)](troubleshoot/applications/bad-gateway) errors, which indicate the proxy cannot connect to your application at all.
 
 ## Common Causes
 
@@ -30,7 +30,7 @@ There are two primary scenarios that cause 504 Gateway Timeout errors in Coolify
 
 - Application works initially after deployment
 - 504 Gateway Timeout errors appear after hours or days
-- Application is reachable via direct IP and port
+- Application is reachable via direct IP and port (requires manual port mapping)
 - Restarting the application temporarily fixes the issue
 - Using custom Docker networks in your configuration
 
@@ -56,11 +56,12 @@ When you define custom Docker networks in your Docker Compose file, the `coolify
 
 #### Solution 1: Use Coolify Destinations (Recommended)
 
-Let Coolify manage networks automatically by using Destinations instead of custom networks:
+Let Coolify manage networks automatically by using [Destinations](/knowledge-base/destinations/) instead of custom networks:
 
 1. Remove custom network definitions from your Docker Compose file
-2. Configure the network destination in Coolify's UI under **Destinations**
-3. Redeploy your application
+2. [Configure the network destination](/knowledge-base/destinations/create) in Coolify's UI under **Destinations**
+3. [Move your application / service to the desired destination](/knowledge-base/destinations/manage#assign-resources-to-a-destination)
+4. Redeploy
 
 **Before (problematic):**
 
