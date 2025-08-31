@@ -163,7 +163,7 @@ command:
   - "--entrypoints.https.transport.respondingTimeouts.idleTimeout=5m"
 ```
 
-Read more about Traefik timeouts in the [official documentation](https://doc.traefik.io/traefik/reference/install-configuration/entrypoints/#timeout).
+Read more about Traefik timeouts in the [official documentation ↗](https://doc.traefik.io/traefik/reference/install-configuration/entrypoints/#timeout).
 
 ##### For Caddy
 
@@ -179,7 +179,7 @@ caddy.servers.timeouts.write=300s
 caddy.servers.timeouts.idle=5m
 ```
 
-Read more about Caddy timeouts in the [official documentation](https://caddyserver.com/docs/caddyfile/options#timeouts).
+Read more about Caddy timeouts in the [official documentation ↗](https://caddyserver.com/docs/caddyfile/options#timeouts).
 
 ##### For Nginx (One-Click Databases)
 
@@ -191,6 +191,8 @@ Nginx configuration cannot be directly modified for one-click databases in Cooli
 4. This maps the port directly from the container, bypassing Nginx and its timeout limitations
 
 **Example:** For a PostgreSQL database, map port `5432:5432` to access it directly without any proxy timeouts.
+
+Read more about public database access here: [One-Click Databases](/databases/#ports-mapping-vs-public-port).
 
 #### Solution 2: Implement Chunked Uploads
 
@@ -254,5 +256,5 @@ If these solutions don't resolve your gateway timeout issues:
    docker logs <your-container-name> --tail 200 > app-logs.txt
    ```
 
-2. Join our [Discord community](https://coolify.io/discord)
+2. Join our [Discord Community ↗](https://coolify.io/discord)
 3. Share your configuration, logs, and the specific steps you've tried
