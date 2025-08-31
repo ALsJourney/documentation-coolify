@@ -5,16 +5,17 @@ title: Docker Compose Build Packs
 <ZoomableImage src="/docs/images/builds/packs/compose/banner.webp" />
 <br />
 
-Docker Compose lets you deploy multiple Docker containers and configure them easily. 
+Docker Compose lets you deploy multiple Docker containers and configure them easily.
 
 With the Docker Compose build pack, you can use your own Docker Compose file (i.e. `docker-compose.y[a]ml`) as the single source of truth, giving you full control over how your application is built and deployed on Coolify.
 
 ## How to use Docker Compose?
+
 ### 1. Create a New Resource in Coolify
+
 On the Coolify dashboard, open your project and click the **Create New Resource** button.
 
 <ZoomableImage src="/docs/images/builds/packs/compose/1.webp" />
-
 
 ### 2. Choose Your Deployment Option
 
@@ -24,20 +25,20 @@ On the Coolify dashboard, open your project and click the **Create New Resource*
 
 **B.** If your repository is private, you can select **Github App** or **Deploy Key**. (These methods require extra configuration. You can check the guides on setting up a [Github App ↗](/knowledge-base/git/github/integration#with-github-app-recommended) or [Deploy Key ↗](/knowledge-base/git/github/integration#with-deploy-keys) if needed.)
 
-
 ### 3. Select Your Git Repository
+
 If you are using a public repository, paste the URL of your GitHub repository when prompted. The steps are very similar for all other options.
 
 <ZoomableImage src="/docs/images/builds/packs/compose/3.webp" />
 
-
 ### 4. Choose the Build Pack
+
 Coolify defaults to using Nixpacks. Click the Nixpacks option and select **Docker Compose** as your build pack from the dropdown menu.
 
 <ZoomableImage src="/docs/images/builds/packs/compose/4.webp" />
 
-
 ### 5. Configure the Build Pack
+
 <ZoomableImage src="/docs/images/builds/packs/compose/5.webp" />
 
 - **Branch:** Coolify will automatically detect the branch in your repository.
@@ -46,31 +47,68 @@ Coolify defaults to using Nixpacks. Click the Nixpacks option and select **Docke
 
 Click on **Continue** button once you have set all the above settings to correct details.
 
-
 ## Advanced Configuration
+
 ### Defining Environment Variables
+
 Coolify automatically detects environment variables mentioned in your compose file and displays them in the UI. For example:
 
 ```yaml
 services:
   myservice:
     environment:
-      - SOME_HARDCODED_VALUE=hello    # Passed to the container, but not visible in Coolify's UI.
-      - SOME_VARIABLE=${SOME_VARIABLE_IN_COOLIFY_UI}  # Creates an editable, uninitialized variable in the UI.
-      - SOME_DEFAULT_VARIABLE=${OTHER_NAME_IN_COOLIFY:-hello}  # Sets a default value "hello" that can be edited.
+      - SOME_HARDCODED_VALUE=hello # Passed to the container, but not visible in Coolify's UI.
+      - SOME_VARIABLE=${SOME_VARIABLE_IN_COOLIFY_UI} # Creates an editable, uninitialized variable in the UI.
+      - SOME_DEFAULT_VARIABLE=${OTHER_NAME_IN_COOLIFY:-hello} # Sets a default value "hello" that can be edited.
 ```
 
 <ZoomableImage src="/docs/images/builds/packs/compose/6.webp" />
 
+### Required Environment Variables
+
+You can mark environment variables as required using the `:?` syntax. Required variables must be set before deployment and will be highlighted in Coolify's UI with a red border if empty.
+
+```yaml
+services:
+  myapp:
+    environment:
+      # Required variables - deployment will fail if not set
+      - DATABASE_URL=${DATABASE_URL:?}
+      - API_KEY=${API_KEY:?}
+
+      # Required variables with default values - prefilled in UI but can be changed
+      - PORT=${PORT:?3000}
+      - LOG_LEVEL=${LOG_LEVEL:?info}
+
+      # Optional variables - standard behavior
+      - DEBUG=${DEBUG:-false}
+      - CACHE_TTL=${CACHE_TTL:-3600}
+```
+
+**Key behaviors:**
+
+- **Required variables** (`${VAR:?}`) appear first in the environment variables list and show a red border when empty
+- **Required with defaults** (`${VAR:?default}`) are prefilled with the default value but remain editable
+- **Optional variables** (`${VAR:-default}`) use standard Docker Compose behavior
+
+If a required variable is not set during deployment:
+
+- Coolify will highlight the missing variable in the UI
+- The deployment will be prevented until all required variables are provided
+- Clear error messages guide users to fix the configuration
+
+This validation happens before container creation, preventing partial deployments and runtime failures.
 
 ### Coolify's Magic Environment Variables
-Coolify can generate dynamic environment variables for you using the following syntax: `SERVICE_<TYPE>_<IDENTIFIER>`. 
+
+Coolify can generate dynamic environment variables for you using the following syntax: `SERVICE_<TYPE>_<IDENTIFIER>`.
 
 ::: warning HEADS UP!
 Support for Magic Environment Variables in Compose files based on Git sources has been added in Coolify v4.0.0-beta.411
 :::
 
 The types include:
+
 - **FQDN:** Generates a fully qualified domain name for the service.
 - **URL:** Generates a URL based on the defined FQDN.
 - **USER:** Creates a random username.
@@ -109,9 +147,11 @@ services:
 ```
 
 ### Storage
+
 You can set up storage in your compose file, with some extra options for Coolify.
 
 #### Create an Empty Directory
+
 Define directories with host binding and inform Coolify to create them:
 
 ```yaml
@@ -122,10 +162,11 @@ services:
       - type: bind
         source: ./srv
         target: /srv
-        is_directory: true   # Instructs Coolify to create the directory.
+        is_directory: true # Instructs Coolify to create the directory.
 ```
 
 #### Create a File with Content
+
 Specify a file with predefined content and even include a dynamic value from an environment variable:
 
 ```yaml
@@ -147,6 +188,7 @@ services:
 ```
 
 ### Exclude from Healthchecks
+
 If a service should not be part of the overall healthchecks (for example, a one-time migration service), set the `exclude_from_hc` option to `true`:
 
 ```yaml
@@ -157,25 +199,27 @@ services:
 ```
 
 ### Connect to Predefined Networks
-By default, each compose stack is deployed to a separate network named after your resource UUID. This setup allows each service in the stack to communicate with one another.  
 
-If you want to connect services across different stacks (for example, linking an application to a separate database), enable the **Connect to Predefined Network** option on your Service Stack page. 
+By default, each compose stack is deployed to a separate network named after your resource UUID. This setup allows each service in the stack to communicate with one another.
+
+If you want to connect services across different stacks (for example, linking an application to a separate database), enable the **Connect to Predefined Network** option on your Service Stack page.
 
 <ZoomableImage src="/docs/images/builds/packs/compose/7.webp" />
 
 Note that you must use the full name (like `postgres-<uuid>`) when referencing a service in another stack.
 
-
 ### Raw Docker Compose Deployment
+
 For advanced users, Coolify offers a "Raw Compose Deployment" mode. This option lets you deploy your Docker Compose file directly without many of Coolify's additional configurations.
 
 <ZoomableImage src="/docs/images/builds/packs/compose/8.webp" />
 
 ::: danger CAUTION
-  This mode is intended for advanced users familiar with Docker Compose.
+This mode is intended for advanced users familiar with Docker Compose.
 :::
 
 ### Labels
+
 Coolify automatically adds these labels to your application (if not already set):
 
 ```yaml
@@ -195,10 +239,11 @@ labels:
 ```
 
 ## Known Issues and Solutions
-::: details 1. Visiting the Application Domain Shows "No Available Server"
-If you see a "No Available Server" error when visiting your website, it is likely due to the health check for your container. 
 
-Run `docker ps` on your server terminal to check if your container is unhealthy or still starting.  
+::: details 1. Visiting the Application Domain Shows "No Available Server"
+If you see a "No Available Server" error when visiting your website, it is likely due to the health check for your container.
+
+Run `docker ps` on your server terminal to check if your container is unhealthy or still starting.
 
 To resolve this, fix the issue causing the container to be unhealthy or remove the health checks.
 :::
