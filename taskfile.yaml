@@ -39,11 +39,13 @@ tasks:
   commit:
     desc: "Commit changes locally with message and optional description"
     deps: [ _commit ]
+    silent: true
 
   # 📤 Commit changes + push to remote in one go
   push:
     desc: "Commit changes and push to remote"
     deps: [ _commit ]
+    silent: true
     shell: bash
     cmds:
       - cmd: |
