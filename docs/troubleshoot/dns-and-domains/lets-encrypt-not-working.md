@@ -81,6 +81,24 @@ On the Coolify proxy logs check for error messages.
   <ZoomableImage src="/docs/images/troubleshoot/dns-and-domains/lets-encrypt-not-working/3.webp" />
   :::
 
+
+## 9. Verify DNS Records
+
+Let's Encrypt performs a DNS lookup to resolve the IP address of your server. If you have both **IPv4 (A record)** and **IPv6 (AAAA record)** configured to point to your server, Let's Encrypt will verify both records during the domain ownership challenge.
+
+- **If both IPv4 and IPv6 are present**, Let's Encrypt may prefer to use **IPv6** for the challenge, but **both IPv4 and IPv6 should be able to complete the challenge**.
+
+### Why This Matters:
+
+If either the **IPv4** or **IPv6** address is misconfigured, the challenge may fail. For example:
+
+- If your domain resolves to both **IPv4** and **IPv6**, but the **IPv6 (AAAA) record** has **port 80 closed**, the HTTP challenge will fail. Similarly, if **port 443** is closed for IPv6, the TLS-ALPN challenge will fail, even if **IPv4** passes the challenge.
+
+To ensure successful validation:
+- Both **IPv4 (A record)** and **IPv6 (AAAA record)** must be able to serve the challenge file correctly.
+
+If you don’t need IPv6, you can remove the **AAAA record** from your DNS configuration. This will make Let's Encrypt use **IPv4** for the challenge.
+
 ## Support
 If none of the above steps work, try these additional options:
 - **Community Help:** Join our [Discord community ↗](https://coolify.io/discord) and post in the support forum channel.
