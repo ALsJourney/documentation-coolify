@@ -126,7 +126,7 @@ The types include:
 | **HEX\_128**                           | Random String (Hexadecimal, 128 characters)        |
 | **USER**                               | Random String (16 characters)                      |
 | **FQDN**                               | Fully Qualified Domain Name (FQDN)                 |
-| **URL**                                | URL                                                |
+| **URL**                                | URL based on the defined FQDN                      |
 
 Example:
 ```yaml
