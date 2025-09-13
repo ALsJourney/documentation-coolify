@@ -337,6 +337,13 @@ const services = [
         category: 'Monitoring'
     },
     {
+        name: 'Bluesky PDS',
+        slug: 'bluesky-pds',
+        icon: '/public/images/services/bluesky.svg',
+        description: 'Bluesky PDS (Personal Data Server) for decentralized social networking.',
+        category: 'Social Media'
+    },
+    {
         name: 'Bitcoin Core',
         slug: 'bitcoin-core',
         icon: '/public/images/services/bitcoin-core.svg',
@@ -405,6 +412,13 @@ const services = [
         icon: '/public/images/services/changedetection.svg',
         description: 'Website change detection monitor and notifications.',
         category: 'Monitoring'
+    },
+    {
+        name: 'Chroma',
+        slug: 'chroma',
+        icon: '/public/images/services/chroma.svg',
+        description: 'Open-source, AI-native vector database for building applications with embeddings.',
+        category: 'AI'
     },
     {
         name: 'Chaskiq',
@@ -596,11 +610,25 @@ const services = [
         category: 'Media'
     },
     {
+        name: 'Elasticsearch',
+        slug: 'elasticsearch',
+        icon: '/public/images/services/elasticsearch.svg',
+        description: 'Free and Open Source, Distributed, RESTful Search Engine.',
+        category: 'Search'
+    },
+    {
         name: 'Emby Stat',
         slug: 'emby-stat',
         icon: '/public/images/services/emby-stat.svg',
         description: 'A simple and easy-to-use Emby statistics dashboard.',
         category: 'Media'
+    },
+    {
+        name: 'Excalidraw',
+        slug: 'excalidraw',
+        icon: '/public/images/services/excalidraw.svg',
+        description: 'Virtual whiteboard for sketching hand-drawn like diagrams.',
+        category: 'Productivity'
     },
     {
         name: 'Evolution API',
@@ -715,11 +743,25 @@ const services = [
         category: 'Development'
     },
     {
+        name: 'GitHub Runner',
+        slug: 'github-runner',
+        icon: '/public/images/services/github-runner.png',
+        description: 'A GitHub Actions runner for Docker.',
+        category: 'Development'
+    },
+    {
         name: 'GitLab',
         slug: 'gitlab',
         icon: '/public/images/services/gitlab.svg',
         description: 'DevOps lifecycle tool.',
         category: 'Development'
+    },
+    {
+        name: 'GoWa',
+        slug: 'gowa',
+        icon: '/public/images/services/gowa.svg',
+        description: 'Golang WhatsApp - Built with Go for efficient memory use.',
+        category: 'Communication'
     },
     {
         name: 'Glance',
@@ -790,6 +832,13 @@ const services = [
         icon: '/public/images/services/homarr.svg',
         description: 'Customizable browser homepage and dashboard.',
         category: 'Administration'
+    },
+    {
+        name: 'Homebox',
+        slug: 'homebox',
+        icon: '/public/images/services/homebox.svg',
+        description: 'Inventory and organization system built for the Home User.',
+        category: 'Home'
     },
     {
         name: 'Homepage',
@@ -869,6 +918,13 @@ const services = [
         category: 'Development'
     },
     {
+        name: 'KaraKeep',
+        slug: 'karakeep',
+        icon: '/public/images/services/karakeep.svg',
+        description: 'Self-hostable bookmark-everything app with AI-based automatic tagging.',
+        category: 'Productivity'
+    },
+    {
         name: 'Keycloak',
         slug: 'keycloak',
         icon: '/public/images/services/keycloak.svg',
@@ -909,6 +965,13 @@ const services = [
         icon: '/public/images/services/libreoffice.svg',
         description: 'Free and open-source office suite.',
         category: 'Productivity'
+    },
+    {
+        name: 'LibreChat',
+        slug: 'librechat',
+        icon: '/public/images/services/librechat.svg',
+        description: 'Self-hosted, powerful, and privacy-focused chat UI for multiple AI models.',
+        category: 'AI'
     },
     {
         name: 'LibreTranslate',
@@ -965,6 +1028,13 @@ const services = [
         icon: '/public/images/services/martin.svg',
         description: 'PostGIS vector tile server.',
         category: 'Development'
+    },
+    {
+        name: 'Matrix',
+        slug: 'matrix',
+        icon: '/public/images/services/matrix.svg',
+        description: 'Chat securely with your family, friends, community.',
+        category: 'Communication'
     },
     {
         name: 'Mattermost',
@@ -1035,6 +1105,13 @@ const services = [
         icon: '/public/images/services/minecraft.svg',
         description: 'Minecraft game server.',
         category: 'Gaming'
+    },
+    {
+        name: 'Miniflux',
+        slug: 'miniflux',
+        icon: '/public/images/services/miniflux.svg',
+        description: 'Minimalist and opinionated feed reader.',
+        category: 'RSS'
     },
     {
         name: 'MinIO',
@@ -1177,6 +1254,13 @@ const services = [
         category: 'Business'
     },
     {
+        name: 'OpenPanel',
+        slug: 'openpanel',
+        icon: '/public/images/services/openpanel.svg',
+        description: 'Open source alternative to Mixpanel and Plausible for product analytics.',
+        category: 'Analytics'
+    },
+    {
         name: 'Outline',
         slug: 'outline',
         icon: '/public/images/services/outline.svg',
@@ -1226,11 +1310,25 @@ const services = [
         category: 'Design'
     },
     {
+        name: 'Pi-hole',
+        slug: 'pi-hole',
+        icon: '/public/images/services/pihole.svg',
+        description: 'Network-wide ad blocker that acts as a DNS sinkhole.',
+        category: 'Security'
+    },
+    {
         name: 'phpMyAdmin',
         slug: 'phpmyadmin',
         icon: '/public/images/services/phpmyadmin.svg',
         description: 'MySQL database management tool.',
         category: 'Development'
+    },
+    {
+        name: 'PingvinShare',
+        slug: 'pingvinshare',
+        icon: '/public/images/services/pingvinshare.svg',
+        description: 'Self-hosted file sharing platform that combines lightness and beauty.',
+        category: 'File Sharing'
     },
     {
         name: 'Plane',
@@ -1373,6 +1471,13 @@ const services = [
         category: 'Search'
     },
     {
+        name: 'Sequin',
+        slug: 'sequin',
+        icon: '/public/images/services/sequin.svg',
+        description: 'The fastest Postgres change data capture.',
+        category: 'Analytics'
+    },
+    {
         name: 'Shlink',
         slug: 'shlink',
         icon: '/public/images/services/shlink.svg',
@@ -1483,6 +1588,13 @@ const services = [
         icon: '/public/images/services/transmission.svg',
         description: 'Fast, easy, and free BitTorrent client.',
         category: 'Media'
+    },
+    {
+        name: 'TriliumNext',
+        slug: 'triliumnext',
+        icon: '/public/images/services/triliumnext.svg',
+        description: 'Build your personal knowledge base with TriliumNext Notes.',
+        category: 'Productivity'
     },
     {
         name: 'Trigger',
@@ -1782,7 +1894,7 @@ const { handleImageError, hasImageError, getFallbackImage } = useImageFallback()
                             <div class="p-4">
                                 <div class="bg-white dark:default-soft w-full h-full min-h-[100px] rounded-lg flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
                                     <img 
-                                        :src="hasImageError(service.name) ? getFallbackImage() : `https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`"
+                                        :src="hasImageError(service.name) ? getFallbackImage() : service.icon"
                                         :alt="service.name" 
                                         @error="handleImageError(service.name)"
                                         class="w-auto h-8 px-2 rounded-lg" 
@@ -1816,7 +1928,7 @@ const { handleImageError, hasImageError, getFallbackImage } = useImageFallback()
                                     <div class="p-4">
                                         <div class="bg-white dark:default-soft w-full h-full min-h-[100px] rounded-lg flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
                                             <img 
-                                                :src="hasImageError(service.name) ? getFallbackImage() : `https://raw.githubusercontent.com/coollabsio/coolify-docs/db61a7c5175b48b638cbc445980370af68374921/docs/public/images/services/${service.name.toLowerCase()}.svg`"
+                                                :src="hasImageError(service.name) ? getFallbackImage() : service.icon"
                                                 :alt="service.name" 
                                                 @error="handleImageError(service.name)"
                                                 class="w-auto h-8 px-2 rounded-lg" 
