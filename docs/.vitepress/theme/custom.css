@@ -3,4 +3,9 @@
     padding-right: 0px !important;
     padding-left: calc(var(--vp-sidebar-width)) !important;
   }
+
+  .VPNavBar.has-sidebar .content {
+    padding-right: 0px !important;
+    padding-left: calc(var(--vp-sidebar-width)) !important;
+  }
 }
