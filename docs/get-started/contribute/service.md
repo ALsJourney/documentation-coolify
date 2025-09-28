@@ -97,11 +97,11 @@ Always specify a port, as Caddy Proxy cannot automatically determine the service
 
 ## Adding a new service template to the Coolify Documentation
 
-Once your service template is merged into Coolify, add documentation to this repository:
+Once your service template is merged into Coolify, it will be important to also add documentation for it in the Coolify docs.
+In the [Coolify Docs Contribute section](/get-started/contribute/documentation) we explain how to contribute and run the documentation on your own PC.
+As soon as you have your local setup ready, follow these steps to add your new service:
 
-1. Add service logo
-
-   - Add the logo under `/docs/public/images/services/`
+1. Add service logo under `/docs/public/images/services/`
 
 2. Create documentation file
 
@@ -129,8 +129,8 @@ Once your service template is merged into Coolify, add documentation to this rep
 
    ## Links
 
-   - [Official website ↗](https://example.com?utm_source=coolify)
-   - [GitHub ↗](https://github.com/example/repo?utm_source=coolify)
+   - [Official website ↗](https://example.com?utm_source=coolify.io)
+   - [GitHub ↗](https://github.com/example/repo?utm_source=coolify.io)
    ```
 
 4. Add Service to the Services Overview
@@ -141,7 +141,7 @@ Once your service template is merged into Coolify, add documentation to this rep
     {
         name: 'Service Name',
         slug: 'service-name', # Match the filename of your documentation file
-        icon: '/public/images/services/service.svg', # Path to your logo
+        icon: '/docs/images/services/service.svg', # Path to your logo
         description: 'Brief description of the service.',
         category: 'Analytics' # Choose an appropriate category
     },
