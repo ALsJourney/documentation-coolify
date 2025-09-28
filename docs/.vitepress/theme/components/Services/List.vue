@@ -232,6 +232,32 @@ input[type="checkbox"] {
     min-height: 100vh;
     align-content: start;
 }
+
+/* Image loading states */
+.image-loading {
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.image-error {
+    opacity: 0.8;
+    filter: grayscale(1);
+    transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+.image-loaded {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Smooth image transitions */
+img {
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
 </style>
 
 <script setup lang="ts">
@@ -1744,6 +1770,8 @@ const handleClickOutside = (event: MouseEvent) => {
 // Add and remove event listeners
 onMounted(() => {
     document.addEventListener('click', handleClickOutside)
+    // Preload all service images to detect broken ones early
+    preloadServices(services)
 })
 
 onUnmounted(() => {
@@ -1802,31 +1830,84 @@ const navigateTo = (path: string, external: boolean = false) => {
     }
 }
 
-// Fallback image composable
+// Enhanced image fallback composable with preloading
 const useImageFallback = () => {
-    const imageErrors = ref(new Set<string>())
-    
-    const handleImageError = (serviceName: string) => {
-        imageErrors.value.add(serviceName)
+    const imageStates = ref(new Map<string, 'loading' | 'loaded' | 'error'>())
+    const validatedUrls = ref(new Set<string>())
+
+    const preloadImage = (url: string): Promise<boolean> => {
+        return new Promise((resolve) => {
+            if (validatedUrls.value.has(url)) {
+                resolve(!imageStates.value.get(url) || imageStates.value.get(url) === 'loaded')
+                return
+            }
+
+            imageStates.value.set(url, 'loading')
+            const img = new Image()
+
+            const timeout = setTimeout(() => {
+                imageStates.value.set(url, 'error')
+                validatedUrls.value.add(url)
+                resolve(false)
+            }, 3000) // 3 second timeout
+
+            img.onload = () => {
+                clearTimeout(timeout)
+                imageStates.value.set(url, 'loaded')
+                validatedUrls.value.add(url)
+                resolve(true)
+            }
+
+            img.onerror = () => {
+                clearTimeout(timeout)
+                imageStates.value.set(url, 'error')
+                validatedUrls.value.add(url)
+                resolve(false)
+            }
+
+            img.src = url
+        })
     }
-    
-    const hasImageError = (serviceName: string) => {
-        return imageErrors.value.has(serviceName)
+
+    const preloadServices = async (services: any[]) => {
+        const imageUrls = services.map(service => service.icon)
+        const promises = imageUrls.map(url => preloadImage(url))
+        await Promise.allSettled(promises)
     }
-    
+
+    const handleImageError = (serviceName: string, url: string) => {
+        imageStates.value.set(url, 'error')
+        validatedUrls.value.add(url)
+    }
+
+    const hasImageError = (url: string) => {
+        return imageStates.value.get(url) === 'error'
+    }
+
+    const isImageLoading = (url: string) => {
+        return imageStates.value.get(url) === 'loading'
+    }
+
     const getFallbackImage = () => {
         return "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTAwIiB6b29tQW5kUGFuPSJtYWduaWZ5IiB2aWV3Qm94PSIwIDAgMzc1IDM3NC45OTk5OTEiIGhlaWdodD0iNTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWVNpZCBtZWV0IiB2ZXJzaW9uPSIxLjAiPjxkZWZzPjxnLz48L2RlZnM+PGcgZmlsbD0iIzhjNTJmZiIgZmlsbC1vcGFjaXR5PSIwLjMwMiI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODQuNjYzNzkzLCAzMTAuMDE2NDg0KSI+PGc+PHBhdGggZD0iTSA2MyAtMTY4IEwgMjEgLTE2OCBMIDIxIC00MiBMIDYzIC00MiBaIE0gNjMgMCBMIDIzMSAwIEwgMjMxIC00MiBMIDYzIC00MiBaIE0gNjMgLTE2OCBMIDIzMSAtMTY4IEwgMjMxIC0yMTAgTCA2MyAtMjEwIFogTSA2MyAtMTY4ICIvPjwvZz48L2c+PC9nPjxnIGZpbGw9IiM4YzUyZmYiIGZpbGwtb3BhY2l0eT0iMC41MDIiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcxLjQwNTUzNywgMjk2Ljc1ODIzMykiPjxnPjxwYXRoIGQ9Ik0gNjMgLTE2OCBMIDIxIC0xNjggTCAyMSAtNDIgTCA2MyAtNDIgWiBNIDYzIDAgTCAyMzEgMCBMIDIzMSAtNDIgTCA2MyAtNDIgWiBNIDYzIC0xNjggTCAyMzEgLTE2OCBMIDIzMSAtMjEwIEwgNjMgLTIxMCBaIE0gNjMgLTE2OCAiLz48L2c+PC9nPjwvZz48ZyBmaWxsPSIjOGM1MmZmIiBmaWxsLW9wYWNpdHk9IjEiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU4LjE0NzI4NywgMjgzLjQ5OTk4MSkiPjxnPjxwYXRoIGQ9Ik0gNjMgLTE2OCBMIDIxIC0xNjggTCAyMSAtNDIgTCA2MyAtNDIgWiBNIDYzIDAgTCAyMzEgMCBMIDIzMSAtNDIgTCA2MyAtNDIgWiBNIDYzIC0xNjggTCAyMzEgLTE2OCBMIDIzMSAtMjEwIEwgNjMgLTIxMCBaIE0gNjMgLTE2OCAiLz48L2c+PC9nPjwvZz48L3N2Zz4="
     }
-    
+
+    const getLoadingSpinner = () => {
+        return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTUiIHN0cm9rZT0iIzhjNTJmZiIgc3Ryb2tlLW9wYWNpdHk9IjAuMiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Im0zNSwyMGEyMCwyMCAwIDAgMSAtMTUsMTUiIHN0cm9rZT0iIzhjNTJmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdmFsdWVzPSIwIDIwIDIwOzM2MCAyMCAyMCIvPgo8L3BhdGg+Cjwvc3ZnPgo="
+    }
+
     return {
-        imageErrors,
+        imageStates,
+        preloadServices,
         handleImageError,
         hasImageError,
-        getFallbackImage
+        isImageLoading,
+        getFallbackImage,
+        getLoadingSpinner
     }
 }
 
-const { handleImageError, hasImageError, getFallbackImage } = useImageFallback()
+const { preloadServices, handleImageError, hasImageError, isImageLoading, getFallbackImage, getLoadingSpinner } = useImageFallback()
 </script>
 
 
@@ -1893,11 +1974,12 @@ const { handleImageError, hasImageError, getFallbackImage } = useImageFallback()
                             </div>
                             <div class="p-4">
                                 <div class="bg-white dark:default-soft w-full h-full min-h-[100px] rounded-lg flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                    <img 
-                                        :src="hasImageError(service.name) ? getFallbackImage() : service.icon"
-                                        :alt="service.name" 
-                                        @error="handleImageError(service.name)"
-                                        class="w-auto h-8 px-2 rounded-lg" 
+                                    <img
+                                        :src="isImageLoading(service.icon) ? getLoadingSpinner() : (hasImageError(service.icon) ? getFallbackImage() : service.icon)"
+                                        :alt="service.name"
+                                        @error="handleImageError(service.name, service.icon)"
+                                        class="w-auto h-8 px-2 rounded-lg transition-opacity duration-200"
+                                        :class="{ 'opacity-50': isImageLoading(service.icon) }"
                                     />
                                 </div>
                             </div>
@@ -1927,11 +2009,12 @@ const { handleImageError, hasImageError, getFallbackImage } = useImageFallback()
                                     </div>
                                     <div class="p-4">
                                         <div class="bg-white dark:default-soft w-full h-full min-h-[100px] rounded-lg flex items-center justify-center" style="background-color: rgba(101, 117, 133, 0.16);">
-                                            <img 
-                                                :src="hasImageError(service.name) ? getFallbackImage() : service.icon"
+                                            <img
+                                                :src="isImageLoading(service.icon) ? getLoadingSpinner() : (hasImageError(service.icon) ? getFallbackImage() : service.icon)"
                                                 :alt="service.name"
-                                                @error="handleImageError(service.name)"
-                                                class="w-auto h-8 px-2 rounded-lg" 
+                                                @error="handleImageError(service.name, service.icon)"
+                                                class="w-auto h-8 px-2 rounded-lg transition-opacity duration-200"
+                                                :class="{ 'opacity-50': isImageLoading(service.icon) }"
                                             />
                                         </div>
                                     </div>
