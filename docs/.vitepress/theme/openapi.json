@@ -339,6 +339,28 @@
                                         "type": "boolean",
                                         "nullable": true,
                                         "description": "Use build server."
+                                    },
+                                    "is_http_basic_auth_enabled": {
+                                        "type": "boolean",
+                                        "description": "HTTP Basic Authentication enabled."
+                                    },
+                                    "http_basic_auth_username": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Username for HTTP Basic Authentication"
+                                    },
+                                    "http_basic_auth_password": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Password for HTTP Basic Authentication"
+                                    },
+                                    "connect_to_docker_network": {
+                                        "type": "boolean",
+                                        "description": "The flag to connect the service to the predefined Docker network."
+                                    },
+                                    "force_domain_override": {
+                                        "type": "boolean",
+                                        "description": "Force domain usage even if conflicts are detected. Default is false."
                                     }
                                 },
                                 "type": "object"
@@ -367,6 +389,60 @@
                     },
                     "400": {
                         "$ref": "#\/components\/responses\/400"
+                    },
+                    "409": {
+                        "description": "Domain conflicts detected.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Domain conflicts detected. Use force_domain_override=true to proceed."
+                                        },
+                                        "warning": {
+                                            "type": "string",
+                                            "example": "Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior."
+                                        },
+                                        "conflicts": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "domain": {
+                                                        "type": "string",
+                                                        "example": "example.com"
+                                                    },
+                                                    "resource_name": {
+                                                        "type": "string",
+                                                        "example": "My Application"
+                                                    },
+                                                    "resource_uuid": {
+                                                        "type": "string",
+                                                        "nullable": true,
+                                                        "example": "abc123-def456"
+                                                    },
+                                                    "resource_type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "application",
+                                                            "service",
+                                                            "instance"
+                                                        ],
+                                                        "example": "application"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Domain example.com is already in use by application 'My Application'"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -673,6 +749,28 @@
                                         "type": "boolean",
                                         "nullable": true,
                                         "description": "Use build server."
+                                    },
+                                    "is_http_basic_auth_enabled": {
+                                        "type": "boolean",
+                                        "description": "HTTP Basic Authentication enabled."
+                                    },
+                                    "http_basic_auth_username": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Username for HTTP Basic Authentication"
+                                    },
+                                    "http_basic_auth_password": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Password for HTTP Basic Authentication"
+                                    },
+                                    "connect_to_docker_network": {
+                                        "type": "boolean",
+                                        "description": "The flag to connect the service to the predefined Docker network."
+                                    },
+                                    "force_domain_override": {
+                                        "type": "boolean",
+                                        "description": "Force domain usage even if conflicts are detected. Default is false."
                                     }
                                 },
                                 "type": "object"
@@ -701,6 +799,60 @@
                     },
                     "400": {
                         "$ref": "#\/components\/responses\/400"
+                    },
+                    "409": {
+                        "description": "Domain conflicts detected.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Domain conflicts detected. Use force_domain_override=true to proceed."
+                                        },
+                                        "warning": {
+                                            "type": "string",
+                                            "example": "Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior."
+                                        },
+                                        "conflicts": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "domain": {
+                                                        "type": "string",
+                                                        "example": "example.com"
+                                                    },
+                                                    "resource_name": {
+                                                        "type": "string",
+                                                        "example": "My Application"
+                                                    },
+                                                    "resource_uuid": {
+                                                        "type": "string",
+                                                        "nullable": true,
+                                                        "example": "abc123-def456"
+                                                    },
+                                                    "resource_type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "application",
+                                                            "service",
+                                                            "instance"
+                                                        ],
+                                                        "example": "application"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Domain example.com is already in use by application 'My Application'"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -1007,6 +1159,28 @@
                                         "type": "boolean",
                                         "nullable": true,
                                         "description": "Use build server."
+                                    },
+                                    "is_http_basic_auth_enabled": {
+                                        "type": "boolean",
+                                        "description": "HTTP Basic Authentication enabled."
+                                    },
+                                    "http_basic_auth_username": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Username for HTTP Basic Authentication"
+                                    },
+                                    "http_basic_auth_password": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Password for HTTP Basic Authentication"
+                                    },
+                                    "connect_to_docker_network": {
+                                        "type": "boolean",
+                                        "description": "The flag to connect the service to the predefined Docker network."
+                                    },
+                                    "force_domain_override": {
+                                        "type": "boolean",
+                                        "description": "Force domain usage even if conflicts are detected. Default is false."
                                     }
                                 },
                                 "type": "object"
@@ -1035,6 +1209,60 @@
                     },
                     "400": {
                         "$ref": "#\/components\/responses\/400"
+                    },
+                    "409": {
+                        "description": "Domain conflicts detected.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Domain conflicts detected. Use force_domain_override=true to proceed."
+                                        },
+                                        "warning": {
+                                            "type": "string",
+                                            "example": "Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior."
+                                        },
+                                        "conflicts": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "domain": {
+                                                        "type": "string",
+                                                        "example": "example.com"
+                                                    },
+                                                    "resource_name": {
+                                                        "type": "string",
+                                                        "example": "My Application"
+                                                    },
+                                                    "resource_uuid": {
+                                                        "type": "string",
+                                                        "nullable": true,
+                                                        "example": "abc123-def456"
+                                                    },
+                                                    "resource_type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "application",
+                                                            "service",
+                                                            "instance"
+                                                        ],
+                                                        "example": "application"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Domain example.com is already in use by application 'My Application'"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -1270,6 +1498,28 @@
                                         "type": "boolean",
                                         "nullable": true,
                                         "description": "Use build server."
+                                    },
+                                    "is_http_basic_auth_enabled": {
+                                        "type": "boolean",
+                                        "description": "HTTP Basic Authentication enabled."
+                                    },
+                                    "http_basic_auth_username": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Username for HTTP Basic Authentication"
+                                    },
+                                    "http_basic_auth_password": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Password for HTTP Basic Authentication"
+                                    },
+                                    "connect_to_docker_network": {
+                                        "type": "boolean",
+                                        "description": "The flag to connect the service to the predefined Docker network."
+                                    },
+                                    "force_domain_override": {
+                                        "type": "boolean",
+                                        "description": "Force domain usage even if conflicts are detected. Default is false."
                                     }
                                 },
                                 "type": "object"
@@ -1298,6 +1548,60 @@
                     },
                     "400": {
                         "$ref": "#\/components\/responses\/400"
+                    },
+                    "409": {
+                        "description": "Domain conflicts detected.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Domain conflicts detected. Use force_domain_override=true to proceed."
+                                        },
+                                        "warning": {
+                                            "type": "string",
+                                            "example": "Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior."
+                                        },
+                                        "conflicts": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "domain": {
+                                                        "type": "string",
+                                                        "example": "example.com"
+                                                    },
+                                                    "resource_name": {
+                                                        "type": "string",
+                                                        "example": "My Application"
+                                                    },
+                                                    "resource_uuid": {
+                                                        "type": "string",
+                                                        "nullable": true,
+                                                        "example": "abc123-def456"
+                                                    },
+                                                    "resource_type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "application",
+                                                            "service",
+                                                            "instance"
+                                                        ],
+                                                        "example": "application"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Domain example.com is already in use by application 'My Application'"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -1516,6 +1820,28 @@
                                         "type": "boolean",
                                         "nullable": true,
                                         "description": "Use build server."
+                                    },
+                                    "is_http_basic_auth_enabled": {
+                                        "type": "boolean",
+                                        "description": "HTTP Basic Authentication enabled."
+                                    },
+                                    "http_basic_auth_username": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Username for HTTP Basic Authentication"
+                                    },
+                                    "http_basic_auth_password": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Password for HTTP Basic Authentication"
+                                    },
+                                    "connect_to_docker_network": {
+                                        "type": "boolean",
+                                        "description": "The flag to connect the service to the predefined Docker network."
+                                    },
+                                    "force_domain_override": {
+                                        "type": "boolean",
+                                        "description": "Force domain usage even if conflicts are detected. Default is false."
                                     }
                                 },
                                 "type": "object"
@@ -1544,6 +1870,60 @@
                     },
                     "400": {
                         "$ref": "#\/components\/responses\/400"
+                    },
+                    "409": {
+                        "description": "Domain conflicts detected.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Domain conflicts detected. Use force_domain_override=true to proceed."
+                                        },
+                                        "warning": {
+                                            "type": "string",
+                                            "example": "Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior."
+                                        },
+                                        "conflicts": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "domain": {
+                                                        "type": "string",
+                                                        "example": "example.com"
+                                                    },
+                                                    "resource_name": {
+                                                        "type": "string",
+                                                        "example": "My Application"
+                                                    },
+                                                    "resource_uuid": {
+                                                        "type": "string",
+                                                        "nullable": true,
+                                                        "example": "abc123-def456"
+                                                    },
+                                                    "resource_type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "application",
+                                                            "service",
+                                                            "instance"
+                                                        ],
+                                                        "example": "application"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Domain example.com is already in use by application 'My Application'"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -1615,6 +1995,14 @@
                                         "type": "boolean",
                                         "nullable": true,
                                         "description": "Use build server."
+                                    },
+                                    "connect_to_docker_network": {
+                                        "type": "boolean",
+                                        "description": "The flag to connect the service to the predefined Docker network."
+                                    },
+                                    "force_domain_override": {
+                                        "type": "boolean",
+                                        "description": "Force domain usage even if conflicts are detected. Default is false."
                                     }
                                 },
                                 "type": "object"
@@ -1643,6 +2031,60 @@
                     },
                     "400": {
                         "$ref": "#\/components\/responses\/400"
+                    },
+                    "409": {
+                        "description": "Domain conflicts detected.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Domain conflicts detected. Use force_domain_override=true to proceed."
+                                        },
+                                        "warning": {
+                                            "type": "string",
+                                            "example": "Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior."
+                                        },
+                                        "conflicts": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "domain": {
+                                                        "type": "string",
+                                                        "example": "example.com"
+                                                    },
+                                                    "resource_name": {
+                                                        "type": "string",
+                                                        "example": "My Application"
+                                                    },
+                                                    "resource_uuid": {
+                                                        "type": "string",
+                                                        "nullable": true,
+                                                        "example": "abc123-def456"
+                                                    },
+                                                    "resource_type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "application",
+                                                            "service",
+                                                            "instance"
+                                                        ],
+                                                        "example": "application"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Domain example.com is already in use by application 'My Application'"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -1798,6 +2240,18 @@
                 "summary": "Update",
                 "description": "Update application by UUID.",
                 "operationId": "update-application-by-uuid",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "UUID of the application.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "description": "Application updated.",
                     "required": true,
@@ -2065,6 +2519,14 @@
                                         "type": "boolean",
                                         "nullable": true,
                                         "description": "Use build server."
+                                    },
+                                    "connect_to_docker_network": {
+                                        "type": "boolean",
+                                        "description": "The flag to connect the service to the predefined Docker network."
+                                    },
+                                    "force_domain_override": {
+                                        "type": "boolean",
+                                        "description": "Force domain usage even if conflicts are detected. Default is false."
                                     }
                                 },
                                 "type": "object"
@@ -2096,6 +2558,60 @@
                     },
                     "404": {
                         "$ref": "#\/components\/responses\/404"
+                    },
+                    "409": {
+                        "description": "Domain conflicts detected.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Domain conflicts detected. Use force_domain_override=true to proceed."
+                                        },
+                                        "warning": {
+                                            "type": "string",
+                                            "example": "Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior."
+                                        },
+                                        "conflicts": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "domain": {
+                                                        "type": "string",
+                                                        "example": "example.com"
+                                                    },
+                                                    "resource_name": {
+                                                        "type": "string",
+                                                        "example": "My Application"
+                                                    },
+                                                    "resource_uuid": {
+                                                        "type": "string",
+                                                        "nullable": true,
+                                                        "example": "abc123-def456"
+                                                    },
+                                                    "resource_type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "application",
+                                                            "service",
+                                                            "instance"
+                                                        ],
+                                                        "example": "application"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Domain example.com is already in use by application 'My Application'"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -4441,7 +4957,7 @@
                     "Deployments"
                 ],
                 "summary": "Deploy",
-                "description": "Deploy by tag or uuid. `Post` request also accepted.",
+                "description": "Deploy by tag or uuid. `Post` request also accepted with `uuid` and `tag` json body.",
                 "operationId": "deploy-by-tag-or-uuid",
                 "parameters": [
                     {
@@ -4529,6 +5045,40 @@
                 "summary": "List application deployments",
                 "description": "List application deployments by using the app uuid",
                 "operationId": "list-deployments-by-app-uuid",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "UUID of the application.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "Number of records to skip.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0,
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "Number of records to take.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10,
+                            "minimum": 1
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "List application deployments by using the app uuid.",
@@ -4921,6 +5471,18 @@
                 "summary": "Update",
                 "description": "Update Project.",
                 "operationId": "update-project-by-uuid",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "UUID of the project.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "description": "Project updated.",
                     "required": true,
@@ -5031,6 +5593,190 @@
                     },
                     "404": {
                         "$ref": "#\/components\/responses\/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "\/projects\/{uuid}\/environments": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "List Environments",
+                "description": "List all environments in a project.",
+                "operationId": "get-environments",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Project UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of environments",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Environment"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/401"
+                    },
+                    "400": {
+                        "$ref": "#\/components\/responses\/400"
+                    },
+                    "404": {
+                        "description": "Project not found."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Create Environment",
+                "description": "Create environment in project.",
+                "operationId": "create-environment",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Project UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Environment created.",
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "The name of the environment."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Environment created.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "uuid": {
+                                            "type": "string",
+                                            "example": "env123",
+                                            "description": "The UUID of the environment."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/401"
+                    },
+                    "400": {
+                        "$ref": "#\/components\/responses\/400"
+                    },
+                    "404": {
+                        "description": "Project not found."
+                    },
+                    "409": {
+                        "description": "Environment with this name already exists."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "\/projects\/{uuid}\/environments\/{environment_name_or_uuid}": {
+            "delete": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Delete Environment",
+                "description": "Delete environment by name or UUID. Environment must be empty.",
+                "operationId": "delete-environment",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Project UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "environment_name_or_uuid",
+                        "in": "path",
+                        "description": "Environment name or UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Environment deleted.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Environment deleted."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/401"
+                    },
+                    "400": {
+                        "description": "Environment has resources, so it cannot be deleted."
+                    },
+                    "404": {
+                        "description": "Project or environment not found."
                     }
                 },
                 "security": [
@@ -5321,6 +6067,22 @@
                     },
                     "404": {
                         "description": "Private Key not found."
+                    },
+                    "422": {
+                        "description": "Private Key is in use and cannot be deleted.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Private Key is in use and cannot be deleted."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -5900,8 +6662,7 @@
                                     "server_uuid",
                                     "project_uuid",
                                     "environment_name",
-                                    "environment_uuid",
-                                    "type"
+                                    "environment_uuid"
                                 ],
                                 "properties": {
                                     "type": {
@@ -6030,6 +6791,10 @@
                                         "type": "boolean",
                                         "default": false,
                                         "description": "Start the service immediately after creation."
+                                    },
+                                    "docker_compose_raw": {
+                                        "type": "string",
+                                        "description": "The Docker Compose raw content."
                                     }
                                 },
                                 "type": "object"
@@ -6219,19 +6984,24 @@
                 "summary": "Update",
                 "description": "Update service by UUID.",
                 "operationId": "update-service-by-uuid",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "UUID of the service.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "description": "Service updated.",
                     "required": true,
                     "content": {
                         "application\/json": {
                             "schema": {
-                                "required": [
-                                    "server_uuid",
-                                    "project_uuid",
-                                    "environment_name",
-                                    "environment_uuid",
-                                    "docker_compose_raw"
-                                ],
                                 "properties": {
                                     "name": {
                                         "type": "string",
@@ -6858,6 +7628,15 @@
                             "type": "string",
                             "format": "uuid"
                         }
+                    },
+                    {
+                        "name": "latest",
+                        "in": "query",
+                        "description": "Pull latest images.",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
                     }
                 ],
                 "responses": {
@@ -7195,6 +7974,11 @@
                         "nullable": true,
                         "description": "Ports mappings."
                     },
+                    "custom_network_aliases": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Network aliases for Docker container."
+                    },
                     "base_directory": {
                         "type": "string",
                         "description": "Base directory for all commands."
@@ -7459,6 +8243,20 @@
                         "type": "string",
                         "nullable": true,
                         "description": "Custom Nginx configuration base64 encoded."
+                    },
+                    "is_http_basic_auth_enabled": {
+                        "type": "boolean",
+                        "description": "HTTP Basic Authentication enabled."
+                    },
+                    "http_basic_auth_username": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Username for HTTP Basic Authentication"
+                    },
+                    "http_basic_auth_password": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Password for HTTP Basic Authentication"
                     }
                 },
                 "type": "object"
@@ -7635,6 +8433,14 @@
                         "type": "string",
                         "format": "private-key"
                     },
+                    "public_key": {
+                        "type": "string",
+                        "description": "The public key of the private key."
+                    },
+                    "fingerprint": {
+                        "type": "string",
+                        "description": "The fingerprint of the private key."
+                    },
                     "is_git_related": {
                         "type": "boolean"
                     },
@@ -7801,6 +8607,9 @@
                         "type": "boolean"
                     },
                     "is_swarm_worker": {
+                        "type": "boolean"
+                    },
+                    "is_terminal_enabled": {
                         "type": "boolean"
                     },
                     "is_usable": {

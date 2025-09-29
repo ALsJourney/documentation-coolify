@@ -59,9 +59,18 @@ const coreMembers = [
     name: 'Aditya Tripathi',
     title: 'Developer, Community Moderator',
     links: [
-      { icon: 'github', link: 'https://github.com/shadowarcanist' },
+      { icon: 'github', link: 'https://github.com/adiologydev' },
       { icon: 'expedia', link: 'https://adiology.dev' },
       { icon: 'x', link: 'https://x.com/AdityaTripathiD' }
+    ]
+  },
+  {
+    avatar: '../images/team/oren.webp',
+    name: 'Oren Aksakal',
+    title: 'Developer',
+    links: [
+      { icon: 'github', link: 'https://github.com/orenaksakal' },
+      { icon: 'x', link: 'https://x.com/orenaksakal' }
     ]
   },
   {

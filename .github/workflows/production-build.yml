@@ -8,12 +8,15 @@ on:
 env:
   GITHUB_REGISTRY: ghcr.io
   IMAGE_NAME: coollabsio/coolify-docs
+  VITE_ANALYTICS_DOMAIN: coolify.io/docs
 
 jobs:
   build:
     runs-on: [self-hosted, arm64]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

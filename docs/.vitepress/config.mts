@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import yaml from 'vite-plugin-yaml'
 import llmstxt from 'vitepress-plugin-llms'
+import coolbotPlugin from './plugins/vitepress-plugin-coolbot';
 import { defineConfig } from 'vitepress'
 import { useSidebar } from 'vitepress-openapi'
 import spec from './theme/openapi.json' with { type: 'json' }
@@ -11,7 +12,7 @@ import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { loadEnv } from 'vitepress'
 const env = loadEnv('', process.cwd())
-const sidebar = useSidebar({ spec, collapsible: true })
+const sidebar = useSidebar({ spec })
 
 // Add SSH to bundled languages
 bundledLanguages['ssh'] = {
@@ -19,8 +20,6 @@ bundledLanguages['ssh'] = {
   scopeName: 'source.ssh-config',
   path: join(dirname(fileURLToPath(import.meta.url)), '../../node_modules/shiki/languages/ssh-config.tmLanguage.json')
 }
-
-console.log(env)
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -77,6 +76,8 @@ export default defineConfig({
       provider: 'local'
     },
 
+    outline: [2, 4],
+
     editLink: {
       pattern: 'https://github.com/coollabsio/documentation-coolify/tree/main/docs/:path',
       text: 'Edit this page on GitHub'
@@ -104,6 +105,7 @@ export default defineConfig({
               { text: 'Uninstallation', link: '/get-started/uninstallation' },
             ]
           },
+          { text: 'Cloud', link: '/get-started/cloud' },
           { text: 'Usage', link: '/get-started/usage' },
           {
             text: 'Concepts', link: '/get-started/concepts',
@@ -171,6 +173,14 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Services',
+        collapsed: true,
+        items: [
+          { text: 'Introduction', link: '/services/introduction' },
+          { text: 'All Services', link: '/services/overview' }
+        ]
+      },
+      {
         text: 'Databases',
         collapsed: true,
         items: [
@@ -188,136 +198,6 @@ export default defineConfig({
               { text: 'DragonFly', link: '/databases/dragonfly' },
               { text: 'KeyDB', link: '/databases/keydb' },
               { text: 'Clickhouse', link: '/databases/clickhouse' },
-            ]
-          }
-        ],
-      },
-      {
-        text: 'Services',
-        collapsed: true,
-        items: [
-          {
-            text: 'Overview',
-            link: '/services/overview',
-            items: [
-              { text: 'ActivePieces', link: '/services/activepieces' },
-              { text: 'Actual Budget', link: '/services/actualbudget' },
-              { text: 'AnythingLLM', link: '/services/anythingllm' },
-              { text: 'Appsmith', link: '/services/appsmith' },
-              { text: 'Appwrite', link: '/services/appwrite' },
-              { text: 'Argilla', link: '/services/argilla' },
-              { text: 'Authentik', link: '/services/authentik' },
-              { text: 'Affine', link: '/services/affine' },
-              { text: 'Apprise API', link: '/services/apprise-api' },
-              { text: 'Baby Buddy', link: '/services/babybuddy' },
-              { text: 'Beszel', link: '/services/beszel' },
-              { text: 'Browserless', link: '/services/browserless' },
-              { text: 'BudgE', link: '/services/budge' },
-              { text: 'Bugsink', link: '/services/bugsink' },
-              { text: 'Change Detection', link: '/services/changedetection' },
-              { text: 'Chaskiq', link: '/services/chaskiq' },
-              { text: 'Chatwoot', link: '/services/chatwoot' },
-              { text: 'ClassicPress', link: '/services/classicpress' },
-              { text: 'Cloudflared', link: '/services/cloudflared' },
-              { text: 'Code Server', link: '/services/code-server' },
-              { text: 'Dashboard', link: '/services/dashboard' },
-              { text: 'Directus', link: '/services/directus' },
-              { text: 'Docker Registry', link: '/services/docker-registry' },
-              { text: 'Docmost', link: '/services/docmost' },
-              { text: 'Docuseal', link: '/services/docuseal' },
-              { text: 'DokuWiki', link: '/services/dokuwiki' },
-              { text: 'Dozzle', link: '/services/dozzle' },
-              { text: 'Duplicati', link: '/services/duplicati' },
-              { text: 'Emby', link: '/services/emby' },
-              { text: 'Emby Stat', link: '/services/emby-stat' },
-              { text: 'Evolution API', link: '/services/evolution-api' },
-              { text: 'Fider', link: '/services/fider' },
-              { text: 'Filebrowser', link: '/services/filebrowser' },
-              { text: 'FileFlows', link: '/services/fileflows' },
-              { text: 'Firefly III', link: '/services/firefly-iii' },
-              { text: 'Forgejo', link: '/services/forgejo' },
-              { text: 'Formbricks', link: '/services/formbricks' },
-              { text: 'Ghost', link: '/services/ghost' },
-              { text: 'Gitea', link: '/services/gitea' },
-              { text: 'GitLab', link: '/services/gitlab' },
-              { text: 'Glance', link: '/services/glance' },
-              { text: 'Glances', link: '/services/glances' },
-              { text: 'GlitchTip', link: '/services/glitchtip' },
-              { text: 'Gotenberg', link: '/services/gotenberg' },
-              { text: 'Grafana', link: '/services/grafana' },
-              { text: 'Grocy', link: '/services/grocy' },
-              { text: 'Heimdall', link: '/services/heimdall' },
-              { text: 'Homepage', link: '/services/homepage' },
-              { text: 'Infisical', link: '/services/infisical' },
-              { text: 'Invoice Ninja', link: '/services/invoice-ninja' },
-              { text: 'Jellyfin', link: '/services/jellyfin' },
-              { text: 'Jenkins', link: '/services/jenkins' },
-              { text: 'Kimai', link: '/services/kimai' },
-              { text: 'Kuzzle', link: '/services/kuzzle' },
-              { text: 'Label Studio', link: '/services/labelstudio' },
-              { text: 'Langfuse', link: '/services/langfuse' },
-              { text: 'Listmonk', link: '/services/listmonk' },
-              { text: 'Litellm', link: '/services/litellm' },
-              { text: 'Logto', link: '/services/logto' },
-              { text: 'Mailpit', link: '/services/mailpit' },
-              { text: 'MediaWiki', link: '/services/mediawiki' },
-              { text: 'MeiliSearch', link: '/services/meilisearch' },
-              { text: 'Metabase', link: '/services/metabase' },
-              { text: 'Metube', link: '/services/metube' },
-              { text: 'Minecraft', link: '/services/minecraft' },
-              { text: 'MinIO', link: '/services/minio' },
-              { text: 'Mixpost', link: '/services/mixpost' },
-              { text: 'Moodle', link: '/services/moodle' },
-              { text: 'Mosquitto', link: '/services/mosquitto' },
-              { text: 'N8N', link: '/services/n8n' },
-              { text: 'Nextcloud', link: '/services/nextcloud' },
-              { text: 'Sonatype Nexus', link: '/services/nexus' },
-              { text: 'Nitropage', link: '/services/nitropage' },
-              { text: 'NocoDB', link: '/services/nocodb' },
-              { text: 'Odoo', link: '/services/odoo' },
-              { text: 'Ollama', link: '/services/ollama' },
-              { text: 'Openblocks', link: '/services/openblocks' },
-              { text: 'Outline', link: '/services/outline' },
-              { text: 'Overseerr', link: '/services/overseerr' },
-              { text: 'Pairdrop', link: '/services/pairdrop' },
-              { text: 'Penpot', link: '/services/penpot' },
-              { text: 'phpMyAdmin', link: '/services/phpmyadmin' },
-              { text: 'Plane', link: '/services/plane' },
-              { text: 'Plausible Analytics', link: '/services/plausible' },
-              { text: 'Plex', link: '/services/plex' },
-              { text: 'Plunk', link: '/services/plunk' },
-              { text: 'Pocketbase', link: '/services/pocketbase' },
-              { text: 'PostHog', link: '/services/posthog' },
-              { text: 'Prefect', link: '/services/prefect' },
-              { text: 'Prowlarr', link: '/services/prowlarr' },
-              { text: 'Qdrant', link: '/services/qdrant' },
-              { text: 'RabbitMQ', link: '/services/rabbitmq' },
-              { text: 'Radarr', link: '/services/radarr' },
-              { text: 'Reactive Resume', link: '/services/reactive-resume' },
-              { text: 'Rocket.Chat', link: '/services/rocketchat' },
-              { text: 'SearXNG', link: '/services/searxng' },
-              { text: 'Shlink', link: '/services/shlink' },
-              { text: 'Slash', link: '/services/slash' },
-              { text: 'Snapdrop', link: '/services/snapdrop' },
-              { text: 'Sonarr', link: '/services/sonarr' },
-              { text: 'StatusNook', link: '/services/statusnook' },
-              { text: 'Stirling PDF', link: '/services/stirling-pdf' },
-              { text: 'Supabase', link: '/services/supabase' },
-              { text: 'Syncthing', link: '/services/syncthing' },
-              { text: 'Tolgee', link: '/services/tolgee' },
-              { text: 'Trigger', link: '/services/trigger' },
-              { text: 'Umami', link: '/services/umami' },
-              { text: 'Unleash', link: '/services/unleash' },
-              { text: 'Unstructured', link: '/services/unstructured' },
-              { text: 'Uptime Kuma', link: '/services/uptime-kuma' },
-              { text: 'Vaultwarden', link: '/services/vaultwarden' },
-              { text: 'Vikunja', link: '/services/vikunja' },
-              { text: 'Weaviate', link: '/services/weaviate' },
-              { text: 'Weblate', link: '/services/weblate' },
-              { text: 'Whoogle', link: '/services/whoogle' },
-              { text: 'Windmill', link: '/services/windmill' },
-              { text: 'WordPress', link: '/services/wordpress' },
-              { text: 'Zipline', link: '/services/zipline' }
             ]
           }
         ],
@@ -376,6 +256,15 @@ export default defineConfig({
                 ]
               },
               {
+                text: 'Destinations',
+                collapsed: true,
+                items: [
+                  { text: 'Overview', link: '/knowledge-base/destinations/index' },
+                  { text: 'Creating Destinations', link: '/knowledge-base/destinations/create' },
+                  { text: 'Managing Destinations', link: '/knowledge-base/destinations/manage' },
+                ]
+              },
+              {
                 text: 'Resources',
                 collapsed: true,
                 items: [
@@ -391,9 +280,10 @@ export default defineConfig({
                 text: 'How-Tos',
                 collapsed: true,
                 items: [
+                  { text: 'Migrate Applications', link: '/knowledge-base/how-to/migrate-apps-different-host' },
                   { text: 'Backup & Restore Coolify', link: '/knowledge-base/how-to/backup-restore-coolify' },
                   { text: 'Load-balancing on Hetzner', link: '/knowledge-base/how-to/hetzner-loadbalancing' },
-                  { text: 'Wordpress Multisite', link: '/knowledge-base/how-to/wordpress-multisite' },
+                  { text: 'WordPress Multisite', link: '/knowledge-base/how-to/wordpress-multisite' },
                   { text: 'Raspberry Pi OS Setup', link: '/knowledge-base/how-to/raspberry-pi-os' },
                   { text: 'Private NPM Registry', link: '/knowledge-base/how-to/private-npm-registry' },
                   { text: 'Ollama with GPU', link: '/knowledge-base/how-to/ollama-with-gpu' },
@@ -442,6 +332,8 @@ export default defineConfig({
                   { text: 'OpenSSH', link: '/knowledge-base/server/openssh' },
                   { text: 'Oracle Cloud', link: '/knowledge-base/server/oracle-cloud' },
                   { text: 'Proxies', link: '/knowledge-base/server/proxies' },
+                  { text: 'Server Patching', link: '/knowledge-base/server/patching' },
+                  { text: 'Terminal Access', link: '/knowledge-base/server/terminal-access' },
                 ]
               },
               {
@@ -494,7 +386,6 @@ export default defineConfig({
                       { text: 'Custom SSL Certificates', link: '/knowledge-base/proxy/traefik/custom-ssl-certs' },
                       { text: 'Dashboard', link: '/knowledge-base/proxy/traefik/dashboard' },
                       { text: 'Dynamic Configurations', link: '/knowledge-base/proxy/traefik/dynamic-config' },
-                      { text: 'Healthcheck', link: '/knowledge-base/proxy/traefik/healthchecks' },
                       { text: 'Load Balancing', link: '/knowledge-base/proxy/traefik/load-balancing' },
                       { text: 'Redirects', link: '/knowledge-base/proxy/traefik/redirects' },
                       { text: 'Wildcard SSL Certificates', link: '/knowledge-base/proxy/traefik/wildcard-certs' },
@@ -537,10 +428,18 @@ export default defineConfig({
         items: [
           { text: 'Overview', link: '/troubleshoot/overview' },
           {
+            text: 'Installation',
+            collapsed: true,
+            items: [
+              { text: 'Docker Installation Failed', link: '/troubleshoot/installation/docker-install-failed' },
+            ]
+          },
+          {
             text: 'Applications',
             collapsed: true,
             items: [
-              { text: 'Bad Gateway', link: '/troubleshoot/applications/bad-gateway.md' },
+              { text: 'Bad Gateway (502)', link: '/troubleshoot/applications/bad-gateway.md' },
+              { text: 'Gateway Timeout (504)', link: '/troubleshoot/applications/gateway-timeout' },
               { text: 'Failed To Get Access Token During Deployment', link: '/troubleshoot/applications/failed-to-get-token' },
             ]
           },
@@ -577,6 +476,7 @@ export default defineConfig({
             items: [
               { text: 'Wildcard SSL not working', link: '/troubleshoot/dns-and-domains/wildcard-ssl-certs' },
               { text: "Let's Encrypt not working", link: '/troubleshoot/dns-and-domains/lets-encrypt-not-working' },
+              { text: "Cert Resolver doesn't exist", link: '/troubleshoot/dns-and-domains/certificate-resolver-doesnt-exist' },
             ]
           },
         ],
@@ -628,6 +528,16 @@ export default defineConfig({
         ignoreFiles: [
           '/docs/api-reference/api/**/*',
           '**/api-reference/api/**/*'
+        ],
+      }),
+      coolbotPlugin({
+        docsDir: 'docs',
+        writeRawOutput: false,
+        ignoreFolders: [
+          'vitepress',
+          'api-reference',
+          'node_modules',
+          'dist'
         ],
       }),
       groupIconVitePlugin({

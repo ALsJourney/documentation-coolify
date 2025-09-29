@@ -1,5 +1,6 @@
 ---
 title: Installation
+outline: 2
 ---
 
 <ZoomableImage src="/docs/images/get-started/installation-banner.webp" />
@@ -10,8 +11,8 @@ If you decide to go with **Coolify Cloud**, there's no installation required. Si
 
 Below, you'll find instructions for installing Coolify if you prefer to **self-host** it.
 
-
 ## Self-hosted Installation
+
 If you like taking control and managing everything yourself, self-hosting Coolify is the way to go. 
 
 It's completely free (apart from your server costs) and gives you full control over your setup.
@@ -21,10 +22,14 @@ It's completely free (apart from your server costs) and gives you full control o
 curl -fsSL https://cdn.coollabs.io/coolify/install.sh | sudo bash
 ```
 Run this script in your terminal, and Coolify will be installed automatically. For more details, including firewall configuration and prerequisites, check out the guide below.
+
 :::
 
-
+::: warning Note for Ubuntu Users:
+The automatic installation script only works with Ubuntu LTS versions (20.04, 22.04, 24.04). If you're using a non-LTS version (e.g., 24.10), please use the [Manual Installation](#manual-installation) method below.
+:::
 ## Before You Begin
+
 Before installing Coolify, make sure your server meets the necessary requirements.
 
 ### 1. Server Requirements
@@ -45,12 +50,18 @@ If you haven't picked a server provider yet, consider using [Hetzner ↗](https:
 
 ### 2. Supported Operating Systems
 Coolify supports several Linux distributions:
-- Debian-based (e.g., Debian, Ubuntu)
+- Debian-based (e.g., Debian, Ubuntu - all versions supported, but non-LTS Ubuntu requires manual installation)
 - Redhat-based (e.g., CentOS, Fedora, Redhat, AlmaLinux, Rocky, Asahi)
 - SUSE-based (e.g., SLES, SUSE, openSUSE)
-- Arch Linux
+- Arch Linux (Note: Not all Arch derivatives are supported)
 - Alpine Linux
 - Raspberry Pi OS 64-bit (Raspbian)
+
+::: info Note
+For some distros (like AlmaLinux), Docker must be pre-installed. If the install script fails, manually install Docker and re-run the script. 
+
+Other Linux distributions may work with Coolify, but have not been officially tested.
+:::
 
 ### 3. Supported Architectures
 Coolify runs on 64-bit systems:
@@ -170,6 +181,12 @@ Docker installed via snap is not supported!
 
 ### Manual Installation
 For those who prefer more control, you can install Coolify manually. This method requires a few extra steps.
+
+::: info Note
+This manual installation method is required for:
+- Non-LTS Ubuntu versions (e.g., 24.10)
+- Systems where the automatic script encounters issues
+:::
 
 #### Prerequisites
 - **SSH**: Ensure SSH is enabled and set up correctly (see [SSH Configuration Guide ↗](/knowledge-base/server/openssh)).

@@ -30,6 +30,12 @@ You can use private repositories with the GitHub App integration. You will get f
 3. Choose your repository from the list.
 4. That's it!
 
+:::warning Note for Coolify Cloud Users
+You can make the GitHub App available to all teams on your Coolify instance by enabling the `System Wide` option. 
+
+However, this feature is only available for self-hosted instances, as Coolify Cloud users cannot use the `System Wide` option due to how Coolify Cloud is set up.
+:::
+
 ### With Deploy Keys
 
 1. Add a private key (aka `Deploy Keys`) to Coolify and to your GitHub repository in the `Settings` / `Deploy Keys` menu.
@@ -64,11 +70,19 @@ Not required if you use GitHub App integration.
 :::
 
 In your resource, there is a `Webhooks` menu. In the `Manual Git Webhooks` section, you can find the URL what you need to set in your GitHub repository.
+<ZoomableImage src="/docs/images/knowledge-base/git/github/manual-git-webhooks.webp" />
+
 
 1. Set a secret key in the `GitHub Webhook Secret` input field.
+<ZoomableImage src="/docs/images/knowledge-base/git/github/github-webhook-secret.webp" />
+
 2. Go to your repository on GitHub and open the `Settings` / `Webhooks` menu.
+<ZoomableImage src="/docs/images/knowledge-base/git/github/github-settings-webhook.webp" />
+
 3. Add the URL from Coolify to the `URL` input field and the secret token.
 4. Select the `Push events` option.
+<ZoomableImage src="/docs/images/knowledge-base/git/github/event-push.webp" />
+
 5. That's it! Now when you push to your repository, GitHub will send a webhook request to Coolify and it will trigger a new deployment.
 
 ## Pull request deployments with webhooks (Optional)
